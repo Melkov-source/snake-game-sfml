@@ -6,6 +6,39 @@
 using namespace sf;
 using namespace std;
 
+class EventHandler
+{
+public:
+    EventHandler(RenderWindow& window) : m_window(window)
+    {
+
+    }
+
+    void update(Event& event)
+    {
+        while (m_window.pollEvent(event))
+        {
+
+            switch (event.type)
+            {
+            case Event::Closed:
+                m_window.close();
+                break;
+
+
+
+            default:
+                break;
+            }
+        }
+    }
+
+private:
+    RenderWindow& m_window;
+};
+
+
+
 Game::Game(string tittleWindow)
 {
     m_tittleWindow = tittleWindow;
@@ -14,27 +47,23 @@ Game::Game(string tittleWindow)
 void Game::run() 
 {
     RenderWindow window(VideoMode(), m_tittleWindow, Style::Fullscreen);
+    EventHandler eventHandler(window);
 
-    RectangleShape shape({100, 100});
-
-    Vector2u windowSize = window.getSize();
-    Vector2f shapeSize = shape.getSize();
-
-    Vector2f centerPosition(windowSize.x / 2 - shapeSize.x / 2, windowSize.y / 2 - shapeSize.y / 2);
-
-    shape.setPosition(centerPosition);
+    window.setFramerateLimit(60);
+    window.setVerticalSyncEnabled(true);
 
     while (window.isOpen())
     {
         Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == Event::Closed)
-                window.close();
-        }
+
+        eventHandler.update(event);
 
         window.clear();
-        window.draw(shape);
+
+        //drawing...
+
         window.display();
     }
 }
+
+
