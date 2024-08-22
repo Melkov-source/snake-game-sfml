@@ -1,0 +1,53 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Compiled Static libraries
+*.a
+*.lib
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+CMakeScripts/
+CMakeSettings.json
+
+# VS Code
+.vscode/
+
+# Visual Studio
+*.sdf
+*.opensdf
+*.suo
+*.user
+*.filters
+
+# Xcode
+*.xcworkspace/
+*.xcodeproj
+
+# Other
+/.vs/
+/.vscode/
+/.idea/
+.DS_Store
+Thumbs.db
+
+# Folders
+/build/
