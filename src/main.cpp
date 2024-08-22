@@ -1,12 +1,26 @@
-#include <iostream>
+#include <SFML/Graphics.hpp>
 
-using namespace std;
+using namespace sf;
 
 int main()
 {
-	cout << "Hello World!" << endl;
+    RenderWindow window(VideoMode(200, 200), "SFML works!");
+    CircleShape shape(100.f);
+    shape.setFillColor(sf::Color::Green);
 
-	int a;
+    while (window.isOpen())
+    {
+        Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+                window.close();
+        }
 
-	cin >> a;
+        window.clear();
+        window.draw(shape);
+        window.display();
+    }
+
+    return 0;
 }
