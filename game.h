@@ -1,18 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
-
-#include "SFML/Graphics.hpp"
-#include "SFML/Window.hpp"
-#include "SFML/System.hpp"
-#include "SFML/Audio.hpp"
-#include "SFML/Network.hpp"
-
-using namespace sf;
-
+#include "state-base.h"
 
 class Game
 {
@@ -20,6 +9,7 @@ public:
 	Game();
 	virtual ~Game();
 
+	void updateDeltaTime();
 	void updateEvents();
 	void update();
 	void render();
@@ -28,6 +18,9 @@ public:
 private:
 	RenderWindow *m_renderWindow;
 	Event m_event;
+
+	Clock m_deltaTimeClock;
+	float m_deltaTime;
 
 	void createWindow();
 };

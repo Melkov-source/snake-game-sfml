@@ -2,12 +2,19 @@
 
 Game::Game()
 {
-
+	this->createWindow();
 }
 
 Game::~Game()
 {
 	delete this->m_renderWindow;
+}
+
+void Game::updateDeltaTime()
+{
+	this->m_deltaTime = this->m_deltaTimeClock.restart().asSeconds();
+
+	std::cout << this->m_deltaTime << std::endl;
 }
 
 void Game::updateEvents()
@@ -27,6 +34,7 @@ void Game::updateEvents()
 
 void Game::update()
 {
+	this->updateEvents();
 }
 
 void Game::render()
@@ -40,6 +48,7 @@ void Game::run()
 {
 	while (this->m_renderWindow->isOpen())
 	{
+		this->updateDeltaTime();
 		this->update();
 		this->render();
 	}
@@ -47,7 +56,23 @@ void Game::run()
 
 void Game::createWindow()
 {
-	VideoMode videoMode(800, 800);
+	ifstream windowConfig("configs/window.ini");
 
-	this->m_renderWindow = new RenderWindow(videoMode, "Snake");
+	string title = "None";
+	VideoMode videoMode(800, 600);
+	unsigned int targetFrameRate = 120;
+	bool isVerticalSync = false;
+
+	if (windowConfig.is_open())
+	{
+		getline(windowConfig, title);
+		windowConfig >> videoMode.width >> videoMode.height;
+		windowConfig >> targetFrameRate;
+		windowConfig >> isVerticalSync;
+	}
+
+	this->m_renderWindow = new RenderWindow(videoMode, title);
+
+	this->m_renderWindow->setFramerateLimit(targetFrameRate);
+	this->m_renderWindow->setVerticalSyncEnabled(isVerticalSync);
 }
