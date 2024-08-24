@@ -50,4 +50,4 @@ CMakeSettings.json
 Thumbs.db
 
 # Folders
-/build/
+*/build/

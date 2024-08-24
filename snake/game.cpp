@@ -65,7 +65,7 @@ void Game::createWindow()
 
 	if (windowConfig.is_open())
 	{
-		getline(windowConfig, title);
+		windowConfig >> title;
 		windowConfig >> videoMode.width >> videoMode.height;
 		windowConfig >> targetFrameRate;
 		windowConfig >> isVerticalSync;
