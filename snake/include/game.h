@@ -8,11 +8,9 @@ public:
 	Game();
 	virtual ~Game();
 
-	void update_delta_time();
-	void update_events();
+	void run();
 	void update();
 	void render();
-	void run();
 	void shutdown();
 
 private:
@@ -25,5 +23,7 @@ private:
 	std::stack<StateBase*> states_;
 
 	void initialize();
+	void update_states();
+	void update_events();
 };
 

@@ -12,15 +12,15 @@ GameState::~GameState()
 
 void GameState::update(const float delta_time)
 {
+    std::cout << "state.game.update: " << delta_time << '\n';
 }
 
 void GameState::render()
 {
-    ImGui::Begin("Hello, world!");
-    ImGui::Button("Look at this pretty button");
+    ImGui::Begin("Game");
+    if(ImGui::Button("Quit"))
+    {
+        exit();
+    }
     ImGui::End(); 
-}
-
-void GameState::exit()
-{
 }

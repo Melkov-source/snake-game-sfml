@@ -9,6 +9,4 @@ public:
     
     void update(const float delta_time) override;
     void render() override;
-
-    void exit() override;
 };
