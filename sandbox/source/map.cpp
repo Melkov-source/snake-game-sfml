@@ -1,4 +1,9 @@
-#include "map.h"
+#include "../include/map.h"
+
+Map::~Map()
+{
+	std::cout << "Map destroyed for this: " << this << '\n';
+}
 
 void Map::draw(const Player& player) const
 {

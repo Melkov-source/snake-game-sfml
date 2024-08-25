@@ -1,6 +1,6 @@
 #include <iostream>
-#include "player.h"
-#include "map.h"
+#include "./include/player.h"
+#include "./include/map.h"
 
 int main()
 {
@@ -10,7 +10,8 @@ int main()
 
 	do
 	{
-		constexpr Map map;
+		Map map2;
+		Map& map = map2;
 
 		system("cls");
 		show_info(player);
@@ -21,4 +22,6 @@ int main()
 
 		move(player, input);
 	} while (input != 'q');
+
+	std::cin >> input;
 }

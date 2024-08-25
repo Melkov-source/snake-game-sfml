@@ -7,6 +7,7 @@ constexpr unsigned short MAP_HEIGHT = 10;
 class Map
 {
 public:
+	~Map();
 	void draw(const Player& player) const;
 
 private:

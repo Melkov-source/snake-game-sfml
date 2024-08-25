@@ -1,4 +1,4 @@
-#include "player.h"
+#include "../include/player.h"
 
 void show_info(const Player& player)
 {
