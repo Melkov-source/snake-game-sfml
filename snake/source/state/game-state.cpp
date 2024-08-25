@@ -58,7 +58,8 @@ namespace state
                 "Info",
                 "Warn",
                 "Error",
-                "Critical"
+                "Critical",
+                "None"
             };
 
             static int current_type = 0; // Index for the current log type
@@ -84,6 +85,9 @@ namespace state
                 break;
                 case 5: // Critical
                     set_priority(utils::CRITICAL_PRIORITY);
+                break;
+                case 6: // None
+                    set_priority(utils::NONE_PRIORITY);
                 break;
             }
 

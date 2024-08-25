@@ -14,7 +14,8 @@ namespace utils
         INFO_PRIORITY,
         WARN_PRIORITY,
         ERROR_PRIORITY,
-        CRITICAL_PRIORITY
+        CRITICAL_PRIORITY,
+        NONE_PRIORITY
     };
 
     static LOG_PRIORITY priority_;
