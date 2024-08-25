@@ -5,11 +5,6 @@ GameState::GameState(sf::RenderWindow* render_window) : StateBase(render_window)
     
 }
 
-
-GameState::~GameState()
-{
-}
-
 void GameState::update(const float delta_time)
 {
     std::cout << "state.game.update: " << delta_time << '\n';
@@ -17,10 +12,17 @@ void GameState::update(const float delta_time)
 
 void GameState::render()
 {
-    ImGui::Begin("Game");
-    if(ImGui::Button("Quit"))
+    ImGui::Begin("state: game");
+    
+    if(ImGui::Button("quit"))
     {
         exit();
     }
+    
     ImGui::End(); 
+}
+
+void GameState::dispose()
+{
+    std::cout << "state.game.dispose: " << this << "\n";
 }

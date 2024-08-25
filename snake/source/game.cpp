@@ -120,6 +120,8 @@ void Game::update_states()
 
     if (state->state_code == state::STATE_EXIT_CODE)
     {
+        state->dispose();
+        
         delete state;
 
         this->states_.pop();

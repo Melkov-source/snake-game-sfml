@@ -5,9 +5,8 @@ StateBase::StateBase(sf::RenderWindow* render_window) :
 {
 }
 
-StateBase::~StateBase()
+void StateBase::update(const float delta_time)
 {
-    std::cout << "state.delete: " << this << "\n";
 }
 
 void StateBase::exit()

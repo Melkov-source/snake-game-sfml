@@ -30,12 +30,12 @@ public:
 	int state_code;
 	
 	explicit StateBase(sf::RenderWindow* render_window);
-	virtual ~StateBase();
 	
-	virtual void update(const float delta_time) = 0;
+	virtual void update(const float delta_time);
 	virtual void render() = 0;
 
 	void exit();
+	virtual void dispose() = 0;
 
 private:
 	std::vector<sf::Texture> textures_;
