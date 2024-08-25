@@ -68,31 +68,31 @@ namespace state
             switch (current_type)
             {
                 case 0: // Trace
-                    utils::Logger::set_priority(utils::TRACE_PRIORITY);
+                    set_priority(utils::TRACE_PRIORITY);
                 break;
                 case 1: // Debug
-                    utils::Logger::set_priority(utils::DEBUG_PRIORITY);
+                    set_priority(utils::DEBUG_PRIORITY);
                 break;
                 case 2: // Info
-                    utils::Logger::set_priority(utils::INFO_PRIORITY);
+                    set_priority(utils::INFO_PRIORITY);
                 break;
                 case 3: // Warn
-                    utils::Logger::set_priority(utils::WARN_PRIORITY);
+                    set_priority(utils::WARN_PRIORITY);
                 break;
                 case 4: // Error
-                    utils::Logger::set_priority(utils::ERROR_PRIORITY);
+                    set_priority(utils::ERROR_PRIORITY);
                 break;
                 case 5: // Critical
-                    utils::Logger::set_priority(utils::CRITICAL_PRIORITY);
+                    set_priority(utils::CRITICAL_PRIORITY);
                 break;
             }
 
-            if (ImGui::Button("trace")) utils::Logger::trace("This test log for trace type message");
-            if (ImGui::Button("debug")) utils::Logger::debug("This test log for debug type message");
-            if (ImGui::Button("info")) utils::Logger::info("This test log for info type message");
-            if (ImGui::Button("warn")) utils::Logger::warn("This test log for warn type message");
-            if (ImGui::Button("error")) utils::Logger::error("This test log for error type message");
-            if (ImGui::Button("critical")) utils::Logger::critical("This test log for critical type message");
+            if (ImGui::Button("trace")) utils::trace("This test log for trace type message");
+            if (ImGui::Button("debug")) utils::debug("This test log for debug type message");
+            if (ImGui::Button("info")) utils::info("This test log for info type message");
+            if (ImGui::Button("warn")) utils::warn("This test log for warn type message");
+            if (ImGui::Button("error")) utils::error("This test log for error type message");
+            if (ImGui::Button("critical")) utils::critical("This test log for critical type message");
 
             ImGui::End();
         }

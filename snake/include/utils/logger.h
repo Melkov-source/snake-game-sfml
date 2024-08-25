@@ -16,77 +16,72 @@ namespace utils
         ERROR_PRIORITY,
         CRITICAL_PRIORITY
     };
-    
-    class Logger
-    {
-    public:
-        static void set_priority(const LOG_PRIORITY priority)
-        {
-            priority_ = priority;
-        }
 
-        template <typename... Args>
+    static LOG_PRIORITY priority_;
+
+    template <typename... Args>
         static void trace(const char* message, Args... args)
-        {
-            if (priority_ > TRACE_PRIORITY) return;
+    {
+        if (priority_ > TRACE_PRIORITY) return;
 
-            printf("[Trace]\t");
-            printf(message, args...);
-            printf("\n");
-        }
+        printf("[Trace]\t");
+        printf(message, args...);
+        printf("\n");
+    }
         
-        template <typename... Args>
-        static void debug(const char* message, Args... args)
-        {
-            if (priority_ > DEBUG_PRIORITY) return;
+    template <typename... Args>
+    static void debug(const char* message, Args... args)
+    {
+        if (priority_ > DEBUG_PRIORITY) return;
 
-            printf("[Debug]\t");
-            printf(message, args...);
-            printf("\n");
-        }
+        printf("[Debug]\t");
+        printf(message, args...);
+        printf("\n");
+    }
         
-        template <typename... Args>
-        static void info(const char* message, Args... args)
-        {
-            if (priority_ > INFO_PRIORITY) return;
+    template <typename... Args>
+    static void info(const char* message, Args... args)
+    {
+        if (priority_ > INFO_PRIORITY) return;
 
-            printf("[Info]\t");
-            printf(message, args...);
-            printf("\n");
-        }
+        printf("[Info]\t");
+        printf(message, args...);
+        printf("\n");
+    }
         
-        template <typename... Args>
-        static void warn(const char* message, Args... args)
-        {
-            if (priority_ > WARN_PRIORITY) return;
+    template <typename... Args>
+    static void warn(const char* message, Args... args)
+    {
+        if (priority_ > WARN_PRIORITY) return;
 
-            printf("[Warn]\t");
-            printf(message, args...);
-            printf("\n");
-        }
+        printf("[Warn]\t");
+        printf(message, args...);
+        printf("\n");
+    }
         
-        template <typename... Args>
-        static void error(const char* message, Args... args)
-        {
-            if (priority_ > ERROR_PRIORITY) return;
+    template <typename... Args>
+    static void error(const char* message, Args... args)
+    {
+        if (priority_ > ERROR_PRIORITY) return;
 
-            printf("[Error]\t");
-            printf(message, args...);
-            printf("\n");
-        }
+        printf("[Error]\t");
+        printf(message, args...);
+        printf("\n");
+    }
         
-        template <typename... Args>
-        static void critical(const char* message, Args... args)
-        {
-            if (priority_ > CRITICAL_PRIORITY) return;
+    template <typename... Args>
+    static void critical(const char* message, Args... args)
+    {
+        if (priority_ > CRITICAL_PRIORITY) return;
 
-            printf("[Critical]\t");
-            printf(message, args...);
-            printf("\n");
-        }
+        printf("[Critical]\t");
+        printf(message, args...);
+        printf("\n");
+    }
 
-    private:
-        static LOG_PRIORITY priority_;
-    };
+    static void set_priority(const LOG_PRIORITY priority)
+    {
+        priority_ = priority;
+    }
     
 }
