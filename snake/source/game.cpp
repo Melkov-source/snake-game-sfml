@@ -1,6 +1,6 @@
 #include "../include/game.h"
 
-#include "../include/states/game-state.h"
+#include "../include/state/game-state.h"
 
 Game::Game()
 {
@@ -46,7 +46,7 @@ void Game::initialize()
     ImGui::SFML::Init(*this->p_render_window_);
     
 
-    const auto game_state = new GameState(this->p_render_window_);
+    const auto game_state = new state::GameState(this->p_render_window_);
 
     this->states_.push(game_state);
 }
@@ -78,7 +78,7 @@ void Game::render()
 
     if (this->states_.empty() == false)
     {
-        StateBase& state = *this->states_.top();
+        state::StateBase& state = *this->states_.top();
         state.render();
     }
 
@@ -104,7 +104,6 @@ void Game::update_events()
                 this->p_render_window_->close();
             break;
             default:
-                std::cout << "game.update: event type not found - " << event_.type;
                 break;
         }
     }
