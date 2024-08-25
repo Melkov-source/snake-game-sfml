@@ -10,18 +10,6 @@ Game::~Game()
 	delete this->p_render_window_;
 }
 
-void Game::run()
-{
-	while (this->p_render_window_->isOpen())
-	{
-		this->update_delta_time();
-		this->update();
-		this->render();
-	}
-
-	this->shutdown();
-}
-
 void Game::initialize()
 {
 	ifstream window_config("configs/window.ini");
@@ -45,6 +33,18 @@ void Game::initialize()
 	this->p_render_window_->setVerticalSyncEnabled(is_vertical_sync);
 
 	ImGui::SFML::Init(*this->p_render_window_);
+}
+
+void Game::run()
+{
+	while (this->p_render_window_->isOpen())
+	{
+		this->update_delta_time();
+		this->update();
+		this->render();
+	}
+
+	this->shutdown();
 }
 
 void Game::update_delta_time()

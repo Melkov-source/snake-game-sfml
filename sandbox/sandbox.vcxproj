@@ -289,6 +289,27 @@
     <ClInclude Include="include\map.h" />
     <ClInclude Include="include\player.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="build\main.obj" />
+    <Content Include="build\map.obj" />
+    <Content Include="build\player.obj" />
+    <Content Include="build\sandbox.exe" />
+    <Content Include="build\sandbox.exe.recipe" />
+    <Content Include="build\sandbox.ilk" />
+    <Content Include="build\sandbox.pdb" />
+    <Content Include="build\sandbox.tlog\CL.command.1.tlog" />
+    <Content Include="build\sandbox.tlog\Cl.items.tlog" />
+    <Content Include="build\sandbox.tlog\CL.read.1.tlog" />
+    <Content Include="build\sandbox.tlog\CL.write.1.tlog" />
+    <Content Include="build\sandbox.tlog\link.command.1.tlog" />
+    <Content Include="build\sandbox.tlog\link.read.1.tlog" />
+    <Content Include="build\sandbox.tlog\link.secondary.1.tlog" />
+    <Content Include="build\sandbox.tlog\link.write.1.tlog" />
+    <Content Include="build\sandbox.tlog\sandbox.lastbuildstate" />
+    <Content Include="build\sandbox.vcxproj.FileListAbsolute.txt" />
+    <Content Include="build\vc143.idb" />
+    <Content Include="build\vc143.pdb" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
