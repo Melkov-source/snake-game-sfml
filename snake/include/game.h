@@ -1,6 +1,6 @@
 #pragma once
 
-#include "state-base.h"
+#include "./states/state-base.h"
 
 class Game
 {
@@ -16,11 +16,13 @@ public:
 	void shutdown();
 
 private:
-	RenderWindow *p_render_window_;
-	Event event_;
+	sf::RenderWindow *p_render_window_;
+	sf::Event event_;
 
-	Clock delta_time_clock_;
-	Time delta_time_;
+	sf::Clock delta_time_clock_;
+	sf::Time delta_time_;
+
+	std::stack<StateBase*> states_;
 
 	void initialize();
 };

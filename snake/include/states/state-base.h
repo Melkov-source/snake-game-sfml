@@ -1,5 +1,4 @@
-#ifndef STATE_H
-#define STATE_H
+#pragma once
 
 #include <vector>
 #include <iostream>
@@ -7,6 +6,8 @@
 #include <cstdlib>
 #include <fstream>
 #include <sstream>
+#include <stack>
+#include <map>
 
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
@@ -17,22 +18,19 @@
 #include "imgui.h"
 #include "imgui-SFML.h"
 
-using namespace sf;
-using namespace std;
-
 class StateBase
 {
-private:
-	vector<Texture> m_textures;
-
 public:
-	StateBase();
+	explicit StateBase(sf::RenderWindow* render_window);
 	virtual ~StateBase();
 
-	virtual void update() = 0;
+	virtual void exit() = 0;
+
+	virtual void update(const float delta_time) = 0;
 	virtual void render() = 0;
 
+private:
+	std::vector<sf::Texture> textures_;
+	sf::RenderWindow* render_window_;
 };
-
-#endif
 

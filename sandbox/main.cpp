@@ -24,4 +24,6 @@ int main()
 	} while (input != 'q');
 
 	std::cin >> input;
+
+	return EXIT_SUCCESS;
 }

@@ -1,5 +1,7 @@
 #include "../include/game.h"
 
+#include "../include/states/game-state.h"
+
 Game::Game()
 {
 	this->initialize();
@@ -8,14 +10,23 @@ Game::Game()
 Game::~Game()
 {
 	delete this->p_render_window_;
+
+	while (this->states_.empty() == false)
+	{
+		const auto state = this->states_.top();
+		
+		delete state;
+
+		this->states_.pop();
+	}
 }
 
 void Game::initialize()
 {
-	ifstream window_config("configs/window.ini");
+	std::ifstream window_config("configs/window.ini");
 
-	string title = "None";
-	VideoMode video_mode(800, 600);
+	std::string title = "None";
+	sf::VideoMode video_mode(800, 600);
 	unsigned int target_frame_rate = 120;
 	bool is_vertical_sync = false;
 
@@ -27,12 +38,16 @@ void Game::initialize()
 		window_config >> is_vertical_sync;
 	}
 
-	this->p_render_window_ = new RenderWindow(video_mode, title);
+	this->p_render_window_ = new sf::RenderWindow(video_mode, title);
 
 	this->p_render_window_->setFramerateLimit(target_frame_rate);
 	this->p_render_window_->setVerticalSyncEnabled(is_vertical_sync);
 
 	ImGui::SFML::Init(*this->p_render_window_);
+
+	const auto game_state = new GameState(this->p_render_window_);
+
+	this->states_.push(game_state);
 }
 
 void Game::run()
@@ -60,7 +75,7 @@ void Game::update_events()
 		
 		switch (this->event_.type)
 		{
-			case Event::Closed:
+			case sf::Event::Closed:
 				this->p_render_window_->close();
 				break;
 			default:
@@ -74,15 +89,26 @@ void Game::update()
 	this->update_events();
 	ImGui::SFML::Update(*this->p_render_window_, this->delta_time_);
 
-	ImGui::Begin("Hello, world!");
-	ImGui::Button("Look at this pretty button");
-	ImGui::End();
+	if(this->states_.empty() == false)
+	{
+		StateBase& state = *this->states_.top();
+
+		const float delta_time_seconds = this->delta_time_.asSeconds();
+		
+		state.update(delta_time_seconds);
+	}
 }
 
 void Game::render()
 {
 	this->p_render_window_->clear();
 	
+	if(this->states_.empty() == false)
+	{
+		StateBase& state = *this->states_.top();
+		state.render();
+	}
+
 	ImGui::SFML::Render(*this->p_render_window_);
 	
 	this->p_render_window_->display();
