@@ -30,6 +30,7 @@ public:
 	int state_code;
 	
 	explicit StateBase(sf::RenderWindow* render_window);
+	virtual ~StateBase() = 0;
 	
 	virtual void update(const float delta_time);
 	virtual void render() = 0;

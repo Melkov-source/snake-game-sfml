@@ -113,6 +113,7 @@ void Game::update_states()
 {
     if (this->states_.empty())
     {
+        this->p_render_window_->close();
         return;
     }
 

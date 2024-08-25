@@ -5,6 +5,7 @@ class GameState final : public StateBase
 {
 public:
     explicit GameState(sf::RenderWindow* render_window);
+    ~GameState() override;
     
     void update(const float delta_time) override;
     void render() override;
