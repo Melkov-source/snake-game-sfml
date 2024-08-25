@@ -32,12 +32,12 @@ namespace state
 
         ImGui::Text("Delta Time: %f", this->delta_time_);
 
-        if (ImGui::Button("logger"))
+        if (ImGui::Button("logger.settings"))
         {
             this->is_render_logger_box_ = !this->is_render_logger_box_;
         }
 
-        if (ImGui::Button("quit"))
+        if (ImGui::Button("state.quit"))
         {
             exit();
         }
@@ -49,7 +49,7 @@ namespace state
     {
         if (this->is_render_logger_box_)
         {
-            ImGui::Begin("logger");
+            ImGui::Begin("logger.settings");
 
 
             const char* types[] = {
