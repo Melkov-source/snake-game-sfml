@@ -44,6 +44,7 @@ void Game::initialize()
     this->p_render_window_->setVerticalSyncEnabled(is_vertical_sync);
 
     ImGui::SFML::Init(*this->p_render_window_);
+    
 
     const auto game_state = new GameState(this->p_render_window_);
 
@@ -97,12 +98,13 @@ void Game::update_events()
     {
         ImGui::SFML::ProcessEvent(*this->p_render_window_, this->event_);
 
-        switch (this->event_.type)
+        switch (this->event_.type)  // NOLINT(clang-diagnostic-switch-enum)
         {
             case sf::Event::Closed:
                 this->p_render_window_->close();
             break;
             default:
+                std::cout << "game.update: event type not found - " << event_.type;
                 break;
         }
     }
