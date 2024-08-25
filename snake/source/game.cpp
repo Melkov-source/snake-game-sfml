@@ -2,6 +2,7 @@
 
 #include "../include/state/game-state.h"
 
+
 Game::Game()
 {
     this->initialize();

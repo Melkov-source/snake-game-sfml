@@ -18,6 +18,8 @@
 #include "imgui.h"
 #include "imgui-SFML.h"
 
+#include "../../include/utils/logger.h"
+
 namespace state
 {
 	constexpr int STATE_ENTER_CODE = 1;

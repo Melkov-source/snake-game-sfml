@@ -15,6 +15,10 @@ namespace state
 
     private:
         float delta_time_{};
+        bool is_render_logger_box_{false};
+
+        void render_gui_box_state();
+        void render_gui_box_logger() const;
     }; 
 }
 
