@@ -14,6 +14,9 @@
 #include "SFML/Audio.hpp"
 #include "SFML/Network.hpp"
 
+#include "imgui.h"
+#include "imgui-SFML.h"
+
 using namespace sf;
 using namespace std;
 

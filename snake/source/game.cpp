@@ -2,29 +2,66 @@
 
 Game::Game()
 {
-	this->createWindow();
+	this->initialize();
 }
 
 Game::~Game()
 {
-	delete this->m_renderWindow;
+	delete this->p_render_window_;
 }
 
-void Game::updateDeltaTime()
+void Game::run()
 {
-	this->m_deltaTime = this->m_deltaTimeClock.restart().asSeconds();
-
-	std::cout << this->m_deltaTime << std::endl;
-}
-
-void Game::updateEvents()
-{
-	while (this->m_renderWindow->pollEvent(this->m_event))
+	while (this->p_render_window_->isOpen())
 	{
-		switch (this->m_event.type)
+		this->update_delta_time();
+		this->update();
+		this->render();
+	}
+
+	this->shutdown();
+}
+
+void Game::initialize()
+{
+	ifstream window_config("configs/window.ini");
+
+	string title = "None";
+	VideoMode video_mode(800, 600);
+	unsigned int target_frame_rate = 120;
+	bool is_vertical_sync = false;
+
+	if (window_config.is_open())
+	{
+		window_config >> title;
+		window_config >> video_mode.width >> video_mode.height;
+		window_config >> target_frame_rate;
+		window_config >> is_vertical_sync;
+	}
+
+	this->p_render_window_ = new RenderWindow(video_mode, title);
+
+	this->p_render_window_->setFramerateLimit(target_frame_rate);
+	this->p_render_window_->setVerticalSyncEnabled(is_vertical_sync);
+
+	ImGui::SFML::Init(*this->p_render_window_);
+}
+
+void Game::update_delta_time()
+{
+	this->delta_time_ = this->delta_time_clock_.restart();
+}
+
+void Game::update_events()
+{
+	while (this->p_render_window_->pollEvent(this->event_))
+	{
+		ImGui::SFML::ProcessEvent(*this->p_render_window_, this->event_);
+		
+		switch (this->event_.type)
 		{
 			case Event::Closed:
-				this->m_renderWindow->close();
+				this->p_render_window_->close();
 				break;
 			default:
 				break;
@@ -34,45 +71,25 @@ void Game::updateEvents()
 
 void Game::update()
 {
-	this->updateEvents();
+	this->update_events();
+	ImGui::SFML::Update(*this->p_render_window_, this->delta_time_);
+
+	ImGui::Begin("Hello, world!");
+	ImGui::Button("Look at this pretty button");
+	ImGui::End();
 }
 
 void Game::render()
 {
-	this->m_renderWindow->clear();
-
-	this->m_renderWindow->display();
+	this->p_render_window_->clear();
+	
+	ImGui::SFML::Render(*this->p_render_window_);
+	
+	this->p_render_window_->display();
 }
 
-void Game::run()
+
+void Game::shutdown()
 {
-	while (this->m_renderWindow->isOpen())
-	{
-		this->updateDeltaTime();
-		this->update();
-		this->render();
-	}
-}
-
-void Game::createWindow()
-{
-	ifstream windowConfig("configs/window.ini");
-
-	string title = "None";
-	VideoMode videoMode(800, 600);
-	unsigned int targetFrameRate = 120;
-	bool isVerticalSync = false;
-
-	if (windowConfig.is_open())
-	{
-		windowConfig >> title;
-		windowConfig >> videoMode.width >> videoMode.height;
-		windowConfig >> targetFrameRate;
-		windowConfig >> isVerticalSync;
-	}
-
-	this->m_renderWindow = new RenderWindow(videoMode, title);
-
-	this->m_renderWindow->setFramerateLimit(targetFrameRate);
-	this->m_renderWindow->setVerticalSyncEnabled(isVerticalSync);
+	ImGui::SFML::Shutdown();
 }

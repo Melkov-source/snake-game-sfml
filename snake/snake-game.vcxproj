@@ -19,6 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="lib\imgui\imgui-SFML.cpp" />
+    <ClCompile Include="lib\imgui\imgui.cpp" />
+    <ClCompile Include="lib\imgui\imgui_draw.cpp" />
+    <ClCompile Include="lib\imgui\imgui_tables.cpp" />
+    <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\game.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>
@@ -94,7 +99,7 @@
       </PreprocessorDefinitions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../lib/SFML/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./lib/sfml/include;./lib/imgui</AdditionalIncludeDirectories>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="source\state-base.cpp">
@@ -171,13 +176,240 @@
       </PreprocessorDefinitions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../lib/SFML/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./lib/sfml/include;./lib/imgui</AdditionalIncludeDirectories>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\game.h" />
     <ClInclude Include="include\state-base.h" />
+    <ClInclude Include="lib\imgui\imconfig-SFML.h" />
+    <ClInclude Include="lib\imgui\imconfig.h" />
+    <ClInclude Include="lib\imgui\imgui-SFML.h" />
+    <ClInclude Include="lib\imgui\imgui-SFML_export.h" />
+    <ClInclude Include="lib\imgui\imgui.h" />
+    <ClInclude Include="lib\imgui\imgui_internal.h" />
+    <ClInclude Include="lib\imgui\imstb_rectpack.h" />
+    <ClInclude Include="lib\imgui\imstb_textedit.h" />
+    <ClInclude Include="lib\imgui\imstb_truetype.h" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\AlResource.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\Export.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\InputSoundFile.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\Listener.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\Music.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\OutputSoundFile.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\Sound.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\SoundBuffer.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\SoundBufferRecorder.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\SoundFileFactory.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\SoundFileFactory.inl" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\SoundFileReader.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\SoundFileWriter.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\SoundRecorder.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\SoundSource.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Audio\SoundStream.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Config.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\GpuPreference.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\BlendMode.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\CircleShape.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Color.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\ConvexShape.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Drawable.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Export.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Font.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Glsl.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Glsl.inl" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Glyph.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Image.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\PrimitiveType.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Rect.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Rect.inl" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\RectangleShape.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\RenderStates.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\RenderTarget.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\RenderTexture.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\RenderWindow.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Shader.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Shape.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Sprite.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Text.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Texture.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Transform.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Transformable.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\Vertex.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\VertexArray.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\VertexBuffer.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Graphics\View.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Main.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Network.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Network\Export.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Network\Ftp.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Network\Http.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Network\IpAddress.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Network\Packet.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Network\Socket.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Network\SocketHandle.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Network\SocketSelector.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Network\TcpListener.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Network\TcpSocket.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Network\UdpSocket.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\OpenGL.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Clock.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Err.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Export.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\FileInputStream.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\InputStream.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Lock.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\MemoryInputStream.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Mutex.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\NativeActivity.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\NonCopyable.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Sleep.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\String.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\String.inl" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Thread.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Thread.inl" />
+    <ClInclude Include="lib\sfml\include\SFML\System\ThreadLocal.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\ThreadLocalPtr.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\ThreadLocalPtr.inl" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Time.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Utf.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Utf.inl" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Vector2.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Vector2.inl" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Vector3.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\System\Vector3.inl" />
+    <ClInclude Include="lib\sfml\include\SFML\Window.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\Clipboard.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\Context.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\ContextSettings.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\Cursor.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\Event.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\Export.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\GlResource.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\Joystick.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\Keyboard.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\Mouse.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\Sensor.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\Touch.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\VideoMode.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\Vulkan.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\Window.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\WindowBase.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\WindowHandle.hpp" />
+    <ClInclude Include="lib\sfml\include\SFML\Window\WindowStyle.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="build\configs\window.ini" />
+    <Content Include="build\game.obj" />
+    <Content Include="build\imgui-SFML.obj" />
+    <Content Include="build\imgui.obj" />
+    <Content Include="build\imgui_draw.obj" />
+    <Content Include="build\imgui_tables.obj" />
+    <Content Include="build\imgui_widgets.obj" />
+    <Content Include="build\main.obj" />
+    <Content Include="build\openal32.dll" />
+    <Content Include="build\sfml-audio-2.dll" />
+    <Content Include="build\sfml-audio-d-2.dll" />
+    <Content Include="build\sfml-graphics-2.dll" />
+    <Content Include="build\sfml-graphics-d-2.dll" />
+    <Content Include="build\sfml-network-2.dll" />
+    <Content Include="build\sfml-network-d-2.dll" />
+    <Content Include="build\sfml-system-2.dll" />
+    <Content Include="build\sfml-system-d-2.dll" />
+    <Content Include="build\sfml-window-2.dll" />
+    <Content Include="build\sfml-window-d-2.dll" />
+    <Content Include="build\snake-game.Build.CppClean.log" />
+    <Content Include="build\snake-game.exe.recipe" />
+    <Content Include="build\snake-game.iobj" />
+    <Content Include="build\snake-game.ipdb" />
+    <Content Include="build\snake-game.log" />
+    <Content Include="build\snake-game.pdb" />
+    <Content Include="build\snake-game.tlog\CL.command.1.tlog" />
+    <Content Include="build\snake-game.tlog\Cl.items.tlog" />
+    <Content Include="build\snake-game.tlog\CL.read.1.tlog" />
+    <Content Include="build\snake-game.tlog\CL.write.1.tlog" />
+    <Content Include="build\snake-game.tlog\link.command.1.tlog" />
+    <Content Include="build\snake-game.tlog\link.read.1.tlog" />
+    <Content Include="build\snake-game.tlog\link.secondary.1.tlog" />
+    <Content Include="build\snake-game.tlog\link.write.1.tlog" />
+    <Content Include="build\snake-game.tlog\snake-game.lastbuildstate" />
+    <Content Include="build\snake-game.tlog\unsuccessfulbuild" />
+    <Content Include="build\snake-game.vcxproj.FileListAbsolute.txt" />
+    <Content Include="build\state-base.obj" />
+    <Content Include="build\vc143.pdb" />
+    <Content Include="lib\sfml\bin\openal32.dll" />
+    <Content Include="lib\sfml\bin\sfml-audio-2.dll" />
+    <Content Include="lib\sfml\bin\sfml-audio-d-2.dll" />
+    <Content Include="lib\sfml\bin\sfml-graphics-2.dll" />
+    <Content Include="lib\sfml\bin\sfml-graphics-d-2.dll" />
+    <Content Include="lib\sfml\bin\sfml-network-2.dll" />
+    <Content Include="lib\sfml\bin\sfml-network-d-2.dll" />
+    <Content Include="lib\sfml\bin\sfml-system-2.dll" />
+    <Content Include="lib\sfml\bin\sfml-system-d-2.dll" />
+    <Content Include="lib\sfml\bin\sfml-window-2.dll" />
+    <Content Include="lib\sfml\bin\sfml-window-d-2.dll" />
+    <Content Include="lib\sfml\lib\cmake\SFML\SFMLConfig.cmake" />
+    <Content Include="lib\sfml\lib\cmake\SFML\SFMLConfigDependencies.cmake" />
+    <Content Include="lib\sfml\lib\cmake\SFML\SFMLConfigVersion.cmake" />
+    <Content Include="lib\sfml\lib\cmake\SFML\SFMLSharedTargets-debug.cmake" />
+    <Content Include="lib\sfml\lib\cmake\SFML\SFMLSharedTargets-release.cmake" />
+    <Content Include="lib\sfml\lib\cmake\SFML\SFMLSharedTargets.cmake" />
+    <Content Include="lib\sfml\lib\cmake\SFML\SFMLStaticTargets-debug.cmake" />
+    <Content Include="lib\sfml\lib\cmake\SFML\SFMLStaticTargets-release.cmake" />
+    <Content Include="lib\sfml\lib\cmake\SFML\SFMLStaticTargets.cmake" />
+    <Content Include="lib\sfml\lib\Debug\sfml-audio-s-d.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-audio-s.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-audio.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-graphics-s-d.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-graphics-s.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-graphics.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-main-d.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-main-s.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-network-s-d.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-network-s.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-network.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-system-s-d.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-system-s.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-system.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-window-s-d.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-window-s.pdb" />
+    <Content Include="lib\sfml\lib\Debug\sfml-window.pdb" />
+    <Content Include="lib\sfml\lib\flac.lib" />
+    <Content Include="lib\sfml\lib\freetype.lib" />
+    <Content Include="lib\sfml\lib\ogg.lib" />
+    <Content Include="lib\sfml\lib\openal32.lib" />
+    <Content Include="lib\sfml\lib\sfml-audio-d.lib" />
+    <Content Include="lib\sfml\lib\sfml-audio-s-d.lib" />
+    <Content Include="lib\sfml\lib\sfml-audio-s.lib" />
+    <Content Include="lib\sfml\lib\sfml-audio.lib" />
+    <Content Include="lib\sfml\lib\sfml-graphics-d.lib" />
+    <Content Include="lib\sfml\lib\sfml-graphics-s-d.lib" />
+    <Content Include="lib\sfml\lib\sfml-graphics-s.lib" />
+    <Content Include="lib\sfml\lib\sfml-graphics.lib" />
+    <Content Include="lib\sfml\lib\sfml-main-d.lib" />
+    <Content Include="lib\sfml\lib\sfml-main.lib" />
+    <Content Include="lib\sfml\lib\sfml-network-d.lib" />
+    <Content Include="lib\sfml\lib\sfml-network-s-d.lib" />
+    <Content Include="lib\sfml\lib\sfml-network-s.lib" />
+    <Content Include="lib\sfml\lib\sfml-network.lib" />
+    <Content Include="lib\sfml\lib\sfml-system-d.lib" />
+    <Content Include="lib\sfml\lib\sfml-system-s-d.lib" />
+    <Content Include="lib\sfml\lib\sfml-system-s.lib" />
+    <Content Include="lib\sfml\lib\sfml-system.lib" />
+    <Content Include="lib\sfml\lib\sfml-window-d.lib" />
+    <Content Include="lib\sfml\lib\sfml-window-s-d.lib" />
+    <Content Include="lib\sfml\lib\sfml-window-s.lib" />
+    <Content Include="lib\sfml\lib\sfml-window.lib" />
+    <Content Include="lib\sfml\lib\vorbis.lib" />
+    <Content Include="lib\sfml\lib\vorbisenc.lib" />
+    <Content Include="lib\sfml\lib\vorbisfile.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib\sfml\lib\Release\" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -245,10 +477,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>./lib/sfml/include;./lib/imgui;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./lib/sfml/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -259,12 +495,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>./lib/sfml/include;./lib/imgui;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./lib/sfml/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -274,13 +514,14 @@
       <PreprocessorDefinitions>
       </PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./lib/SFML/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./lib/sfml/include;./lib/imgui;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>./lib/SFML/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./lib/sfml/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -292,16 +533,20 @@
       <PreprocessorDefinitions>
       </PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../lib/SFML/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./lib/sfml/include;./lib/imgui;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../lib/SFML/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./lib/sfml/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib</AdditionalDependencies>
     </Link>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

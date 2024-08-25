@@ -1,5 +1,4 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
 
 #include "state-base.h"
 
@@ -9,21 +8,20 @@ public:
 	Game();
 	virtual ~Game();
 
-	void updateDeltaTime();
-	void updateEvents();
+	void update_delta_time();
+	void update_events();
 	void update();
 	void render();
 	void run();
+	void shutdown();
 
 private:
-	RenderWindow *m_renderWindow;
-	Event m_event;
+	RenderWindow *p_render_window_;
+	Event event_;
 
-	Clock m_deltaTimeClock;
-	float m_deltaTime;
+	Clock delta_time_clock_;
+	Time delta_time_;
 
-	void createWindow();
+	void initialize();
 };
-
-#endif
 
