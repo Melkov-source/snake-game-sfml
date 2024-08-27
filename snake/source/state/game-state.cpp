@@ -4,12 +4,14 @@ namespace state
 {
     GameState::GameState(sf::RenderWindow* render_window) : StateBase(render_window)
     {
-        this->current_debug_priority_index_ = new int(utils::INFO_PRIORITY);
+        this->current_debug_priority_index_ = new int(utils::TRACE_PRIORITY);
+        this->assets_manager_ = new assets::AssetsManager();
     }
 
     GameState::~GameState()
     {
         delete this->current_debug_priority_index_;
+        delete this->assets_manager_;
     }
 
     void GameState::update(const float delta_time)
@@ -21,6 +23,14 @@ namespace state
     {
         this->render_gui_box_state();
         this->render_gui_box_logger();
+
+        if(this->sprites_.empty() == false)
+        {
+            for (const auto sprite : this->sprites_)
+            {
+                this->render_window_->draw(*sprite);
+            }
+        }
     }
 
     void GameState::dispose()
@@ -33,6 +43,34 @@ namespace state
         ImGui::Begin("state: game");
 
         ImGui::Text("Delta Time: %f", this->delta_time_);
+
+        if(ImGui::Button("Draw Grass Texture"))
+        {
+            const auto grass_texture = this->assets_manager_->load_texture("textures/grass.png");
+
+            const auto grass_sprite = new sf::Sprite(); 
+
+            grass_sprite->setTexture(*grass_texture);
+
+            const sf::Vector2u window_size = this->render_window_->getSize();
+            const sf::Vector2u texture_size = grass_texture->getSize();
+
+            const sf::Vector2u center_position =
+            {
+                window_size.x / 2 - texture_size.x / 2,
+                window_size.y / 2 - texture_size.y / 2
+            };
+
+            const auto size = this->sprites_.size();
+            const unsigned int add_x = texture_size.x * static_cast<unsigned int>(size);
+
+            const float target_x = static_cast<float>(center_position.x + add_x);
+            const float target_y = static_cast<float>(center_position.y);
+
+            grass_sprite->setPosition(target_x, target_y);
+
+            this->sprites_.push_back(grass_sprite);
+        }
 
         if (ImGui::Button("logger.settings"))
         {
@@ -76,6 +114,7 @@ namespace state
                     case 4: set_priority(utils::ERROR_PRIORITY); break;
                     case 5:set_priority(utils::CRITICAL_PRIORITY); break;
                     case 6:set_priority(utils::NONE_PRIORITY); break;
+                    default: ;
                 }
             }
 

@@ -39,9 +39,11 @@ namespace state
 		void exit();
 		virtual void dispose() = 0;
 
+	protected:
+		sf::RenderWindow* render_window_;
+
 	private:
 		std::vector<sf::Texture> textures_;
-		sf::RenderWindow* render_window_;
 	};
 }
 
