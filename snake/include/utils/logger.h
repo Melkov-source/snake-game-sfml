@@ -2,20 +2,17 @@
 
 #include <cstdio>
 
-
-
 namespace utils
 {
-   
     enum LOG_PRIORITY
     {
-        TRACE_PRIORITY,
-        DEBUG_PRIORITY,
-        INFO_PRIORITY,
-        WARN_PRIORITY,
-        ERROR_PRIORITY,
-        CRITICAL_PRIORITY,
-        NONE_PRIORITY
+        TRACE_PRIORITY = 0,
+        DEBUG_PRIORITY = 1,
+        INFO_PRIORITY = 2,
+        WARN_PRIORITY = 3,
+        ERROR_PRIORITY = 4,
+        CRITICAL_PRIORITY = 5,
+        NONE_PRIORITY = 6
     };
 
     static LOG_PRIORITY priority_;
@@ -83,6 +80,11 @@ namespace utils
     static void set_priority(const LOG_PRIORITY priority)
     {
         priority_ = priority;
+    }
+
+    static LOG_PRIORITY get_priority()
+    {
+        return priority_;
     }
     
 }

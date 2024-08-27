@@ -4,10 +4,12 @@ namespace state
 {
     GameState::GameState(sf::RenderWindow* render_window) : StateBase(render_window)
     {
+        this->current_debug_priority_index_ = new int(utils::INFO_PRIORITY);
     }
 
     GameState::~GameState()
     {
+        delete this->current_debug_priority_index_;
     }
 
     void GameState::update(const float delta_time)
@@ -51,7 +53,6 @@ namespace state
         {
             ImGui::Begin("logger.settings");
 
-
             const char* types[] = {
                 "Trace",
                 "Debug",
@@ -61,34 +62,21 @@ namespace state
                 "Critical",
                 "None"
             };
-
-            static int current_type = 0; // Index for the current log type
-            ImGui::Combo("Log Level", &current_type, types, IM_ARRAYSIZE(types));
-
-            // Set the priority based on the selected log level
-            switch (current_type)
+            
+            ImGui::Combo("Log Level", current_debug_priority_index_, types, IM_ARRAYSIZE(types));
+            
+            if(utils::get_priority() != *current_debug_priority_index_)
             {
-                case 0: // Trace
-                    set_priority(utils::TRACE_PRIORITY);
-                break;
-                case 1: // Debug
-                    set_priority(utils::DEBUG_PRIORITY);
-                break;
-                case 2: // Info
-                    set_priority(utils::INFO_PRIORITY);
-                break;
-                case 3: // Warn
-                    set_priority(utils::WARN_PRIORITY);
-                break;
-                case 4: // Error
-                    set_priority(utils::ERROR_PRIORITY);
-                break;
-                case 5: // Critical
-                    set_priority(utils::CRITICAL_PRIORITY);
-                break;
-                case 6: // None
-                    set_priority(utils::NONE_PRIORITY);
-                break;
+                switch (*this->current_debug_priority_index_)
+                {
+                    case 0: set_priority(utils::TRACE_PRIORITY); break;
+                    case 1: set_priority(utils::DEBUG_PRIORITY); break;
+                    case 2: set_priority(utils::INFO_PRIORITY); break;
+                    case 3: set_priority(utils::WARN_PRIORITY); break;
+                    case 4: set_priority(utils::ERROR_PRIORITY); break;
+                    case 5:set_priority(utils::CRITICAL_PRIORITY); break;
+                    case 6:set_priority(utils::NONE_PRIORITY); break;
+                }
             }
 
             if (ImGui::Button("trace")) utils::trace("This test log for trace type message");
