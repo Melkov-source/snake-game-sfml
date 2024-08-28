@@ -57,8 +57,8 @@ namespace state
 
             const sf::Vector2u center_position =
             {
-                window_size.x / 2 - texture_size.x / 2,
-                window_size.y / 2 - texture_size.y / 2
+                0 ,
+                0
             };
 
             const auto size = this->sprites_.size();
@@ -69,6 +69,10 @@ namespace state
 
             grass_sprite->setPosition(target_x, target_y);
 
+            auto origin = grass_sprite->getOrigin();
+
+            std::cout << origin.x <<origin.y;
+            
             this->sprites_.push_back(grass_sprite);
         }
 
