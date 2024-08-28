@@ -2,19 +2,55 @@
 
 #include <optional>
 
-void GameObject::draw(sf::RenderTarget& target, const std::optional<sf::Transform&> parent_transform) const
+namespace engine
 {
-    sf::Transform combined_transform = this->transform_;
-
-    if(parent_transform)
+    GameObject::GameObject()
     {
-        combined_transform *= parent_transform.value();
+        this->transform = new Transform();
     }
 
-    this->on_draw(target, combined_transform);
-    
-    for (const auto child : this->children_)
+    void GameObject::draw(sf::RenderTarget& target, const sf::Transform* parent_transform) const
     {
-        child->draw(target, combined_transform);
+        sf::Transform combined_transform = this->transform_;
+
+        if(parent_transform != nullptr)
+        {
+            combined_transform *= *parent_transform;
+        }
+   
+        this->on_draw(target, combined_transform);
+    
+        for (const auto child : this->children_)
+        {
+            child->draw(target, &combined_transform);
+        }
+    }
+
+    Transform& GameObject::get_transform() const
+    {
+        return *this->transform;
+    }
+
+    void GameObject::on_draw(sf::RenderTarget& target, const sf::Transform& transform) const
+    {
+    }
+
+    template <typename TComponent>
+    TComponent* GameObject::get_component(const std::string name)
+    {
+        for (const auto component : this->components_)
+        {
+            if(component->name == name)
+            {
+                return component;
+            }
+        }
+
+        return nullptr;
+    }
+    
+    void GameObject::add_component(Component* component)
+    {
+        this->components_.push_back(component);
     }
 }

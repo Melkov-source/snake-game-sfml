@@ -1,9 +1,12 @@
 ﻿#include "../../include/core/scene.h"
 
-void Scene::draw(sf::RenderTarget& target) const
+namespace engine
 {
-    for (const auto child : this->children_)
+    void Scene::draw(sf::RenderTarget& target) const
     {
-        child->draw(target, std::nullopt);
+        for (const auto child : this->children_)
+        {
+            child->draw(target, nullptr);
+        }
     }
 }

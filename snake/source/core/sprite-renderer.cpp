@@ -1,6 +1,18 @@
 ﻿#include "../../include/core/sprite-renderer.h"
 
-void SpriteRenderer::on_draw(sf::RenderTarget& target, const sf::Transform& transform) const
+namespace engine
 {
-    target.draw(this->sprite_, transform);
+    SpriteRenderer::SpriteRenderer()
+    {
+        this->name = "sprite_renderer";
+    }
+
+    SpriteRenderer::~SpriteRenderer()
+    {
+    }
+
+    void SpriteRenderer::on_draw(sf::RenderTarget& target, const sf::Transform& transform) const
+    {
+        target.draw(this->sprite_, transform);
+    }
 }

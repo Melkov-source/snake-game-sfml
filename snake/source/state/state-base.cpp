@@ -2,7 +2,7 @@
 
 namespace state
 {
-    StateBase::StateBase(sf::RenderWindow* render_window) :
+    StateBase::StateBase(sf::RenderTarget* render_window) :
         state_code(STATE_ENTER_CODE), render_window_(render_window)
     {
     }

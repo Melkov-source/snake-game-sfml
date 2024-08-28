@@ -2,11 +2,14 @@
 #include "game-object.h"
 #include "SFML/Graphics.hpp"
 
-class Scene
+namespace engine
 {
-public:
-    void draw(sf::RenderTarget& target) const;
+    class Scene
+    {
+    public:
+        void draw(sf::RenderTarget& target) const;
 
-private:
-    std::vector<GameObject*> children_;
-};
+    private:
+        std::vector<GameObject*> children_;
+    };
+}

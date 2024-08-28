@@ -30,7 +30,7 @@ namespace state
 	public:
 		int state_code;
 	
-		explicit StateBase(sf::RenderWindow* render_window);
+		explicit StateBase(sf::RenderTarget* render_window);
 		virtual ~StateBase();
 	
 		virtual void update(const float delta_time);
@@ -40,7 +40,7 @@ namespace state
 		virtual void dispose() = 0;
 
 	protected:
-		sf::RenderWindow* render_window_;
+		sf::RenderTarget* render_window_;
 
 	private:
 		std::vector<sf::Texture> textures_;

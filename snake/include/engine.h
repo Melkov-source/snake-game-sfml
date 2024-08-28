@@ -2,16 +2,16 @@
 
 #include "./state/state-base.h"
 
-class Game
+class Engine
 {
 public:
-    Game();
-    ~Game();
+    Engine();
+    ~Engine();
 
     void run();
     void update();
     void render();
-    void shutdown();
+    void close();
 
 private:
     sf::RenderWindow* p_render_window_;

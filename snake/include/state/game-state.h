@@ -7,7 +7,7 @@ namespace state
     class GameState final : public StateBase
     {
     public:
-        explicit GameState(sf::RenderWindow* render_window);
+        explicit GameState(sf::RenderTarget* render_window);
         ~GameState() override;
     
         void update(const float delta_time) override;

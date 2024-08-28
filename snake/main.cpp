@@ -1,8 +1,8 @@
-#include "./include/game.h"
+#include "./include/engine.h"
 
 int main()
 {
-    Game game;
+    Engine game;
 
     game.run();
 

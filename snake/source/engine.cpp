@@ -1,14 +1,14 @@
-#include "../include/game.h"
+#include "../include/engine.h"
 
 #include "../include/state/game-state.h"
 
 
-Game::Game()
+Engine::Engine()
 {
     this->initialize();
 }
 
-Game::~Game()
+Engine::~Engine()
 {
     delete this->p_render_window_;
 
@@ -22,7 +22,7 @@ Game::~Game()
     }
 }
 
-void Game::initialize()
+void Engine::initialize()
 {
     std::ifstream window_config("configs/window.ini");
 
@@ -45,14 +45,13 @@ void Game::initialize()
     this->p_render_window_->setVerticalSyncEnabled(is_vertical_sync);
 
     ImGui::SFML::Init(*this->p_render_window_);
-    
 
     const auto game_state = new state::GameState(this->p_render_window_);
 
     this->states_.push(game_state);
 }
 
-void Game::run()
+void Engine::run()
 {
     while (this->p_render_window_->isOpen())
     {
@@ -60,10 +59,10 @@ void Game::run()
         this->render();
     }
 
-    this->shutdown();
+    this->close();
 }
 
-void Game::update()
+void Engine::update()
 {
     this->delta_time_ = this->delta_time_clock_.restart();
     
@@ -73,7 +72,7 @@ void Game::update()
     ImGui::SFML::Update(*this->p_render_window_, this->delta_time_);
 }
 
-void Game::render()
+void Engine::render()
 {
     this->p_render_window_->clear();
 
@@ -88,12 +87,12 @@ void Game::render()
     this->p_render_window_->display();
 }
 
-void Game::shutdown()
+void Engine::close()
 {
     ImGui::SFML::Shutdown();
 }
 
-void Game::update_events()
+void Engine::update_events()
 {
     while (this->p_render_window_->pollEvent(this->event_))
     {
@@ -111,7 +110,7 @@ void Game::update_events()
 }
 
 
-void Game::update_states()
+void Engine::update_states()
 {
     if (this->states_.empty())
     {

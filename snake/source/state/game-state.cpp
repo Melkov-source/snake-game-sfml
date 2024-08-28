@@ -1,8 +1,10 @@
 ﻿#include "../../include/state/game-state.h"
 
+#include "../../include/core/sprite-renderer.h"
+
 namespace state
 {
-    GameState::GameState(sf::RenderWindow* render_window) : StateBase(render_window)
+    GameState::GameState(sf::RenderTarget* render_window) : StateBase(render_window)
     {
         this->current_debug_priority_index_ = new int(utils::TRACE_PRIORITY);
         this->assets_manager_ = new assets::AssetsManager();
@@ -24,7 +26,7 @@ namespace state
         this->render_gui_box_state();
         this->render_gui_box_logger();
 
-        if(this->sprites_.empty() == false)
+        if (this->sprites_.empty() == false)
         {
             for (const auto sprite : this->sprites_)
             {
@@ -40,15 +42,45 @@ namespace state
 
     void GameState::render_gui_box_state()
     {
-        ImGui::Begin("state: game");
+        ImGui::SetNextWindowPos(ImVec2(0, 0)); // Устанавливаем позицию в левый верхний угол
+        ImGui::SetNextWindowSize(ImVec2(200, this->render_window_->getSize().y));
+        // Устанавливаем фиксированную ширину и высоту окна
+
+        ImGui::Begin("state.game", nullptr,
+                     ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
         ImGui::Text("Delta Time: %f", this->delta_time_);
 
-        if(ImGui::Button("Draw Grass Texture"))
+        if (ImGui::Button("Create prefab"))
+        {
+            engine::GameObject game_object;
+
+            auto sprite = new engine::SpriteRenderer();
+
+            game_object.add_component(sprite);
+            game_object.add_component(sprite);
+            game_object.add_component(sprite);
+            game_object.add_component(sprite);
+            game_object.add_component(sprite);
+            game_object.add_component(sprite);
+            game_object.add_component(sprite);
+            game_object.add_component(sprite);
+            game_object.add_component(sprite);
+            game_object.add_component(sprite);
+
+            assets_manager_->create_prefab("prefabs/test.prefab", game_object);
+        }
+
+        if (ImGui::Button("Load prefab"))
+        {
+            assets_manager_->load_prefab("prefabs/test.prefab");
+        }
+
+        if (ImGui::Button("Draw Grass Texture"))
         {
             const auto grass_texture = this->assets_manager_->load_texture("textures/grass.png");
 
-            const auto grass_sprite = new sf::Sprite(); 
+            const auto grass_sprite = new sf::Sprite();
 
             grass_sprite->setTexture(*grass_texture);
 
@@ -57,7 +89,7 @@ namespace state
 
             const sf::Vector2u center_position =
             {
-                0 ,
+                0,
                 0
             };
 
@@ -71,8 +103,8 @@ namespace state
 
             auto origin = grass_sprite->getOrigin();
 
-            std::cout << origin.x <<origin.y;
-            
+            std::cout << origin.x << origin.y;
+
             this->sprites_.push_back(grass_sprite);
         }
 
@@ -104,20 +136,27 @@ namespace state
                 "Critical",
                 "None"
             };
-            
+
             ImGui::Combo("Log Level", current_debug_priority_index_, types, IM_ARRAYSIZE(types));
-            
-            if(utils::get_priority() != *current_debug_priority_index_)
+
+            if (utils::get_priority() != *current_debug_priority_index_)
             {
                 switch (*this->current_debug_priority_index_)
                 {
-                    case 0: set_priority(utils::TRACE_PRIORITY); break;
-                    case 1: set_priority(utils::DEBUG_PRIORITY); break;
-                    case 2: set_priority(utils::INFO_PRIORITY); break;
-                    case 3: set_priority(utils::WARN_PRIORITY); break;
-                    case 4: set_priority(utils::ERROR_PRIORITY); break;
-                    case 5:set_priority(utils::CRITICAL_PRIORITY); break;
-                    case 6:set_priority(utils::NONE_PRIORITY); break;
+                    case 0: set_priority(utils::TRACE_PRIORITY);
+                        break;
+                    case 1: set_priority(utils::DEBUG_PRIORITY);
+                        break;
+                    case 2: set_priority(utils::INFO_PRIORITY);
+                        break;
+                    case 3: set_priority(utils::WARN_PRIORITY);
+                        break;
+                    case 4: set_priority(utils::ERROR_PRIORITY);
+                        break;
+                    case 5: set_priority(utils::CRITICAL_PRIORITY);
+                        break;
+                    case 6: set_priority(utils::NONE_PRIORITY);
+                        break;
                     default: ;
                 }
             }
