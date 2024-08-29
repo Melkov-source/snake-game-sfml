@@ -42,12 +42,20 @@ namespace state
 
     void GameState::render_gui_box_state()
     {
+        ImGui::SetNextWindowPos(ImVec2(200, this->render_window_->getSize().y - 200)); // Устанавливаем позицию в левый верхний угол
+        ImGui::SetNextWindowSize(ImVec2(this->render_window_->getSize().x - 200, 200));
+
+        ImGui::Begin("Logger", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+
+          ImGui::Text("Delta Time: %f", this->delta_time_);
+
+        ImGui::End();
+        
         ImGui::SetNextWindowPos(ImVec2(0, 0)); // Устанавливаем позицию в левый верхний угол
         ImGui::SetNextWindowSize(ImVec2(200, this->render_window_->getSize().y));
         // Устанавливаем фиксированную ширину и высоту окна
 
-        ImGui::Begin("state.game", nullptr,
-                     ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+        ImGui::Begin("state.game", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
         ImGui::Text("Delta Time: %f", this->delta_time_);
 
@@ -74,6 +82,16 @@ namespace state
         if (ImGui::Button("Load prefab"))
         {
             assets_manager_->load_prefab("prefabs/test.prefab");
+        }
+
+        if(ImGui::Button("Print all files in dir"))
+        {
+            std::string path = "assets";
+            for (const auto & entry : std::filesystem::directory_iterator(path))
+            {
+                std::cout << entry.path() << std::endl;
+            }
+              
         }
 
         if (ImGui::Button("Draw Grass Texture"))
