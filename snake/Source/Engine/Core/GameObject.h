@@ -8,14 +8,15 @@
 class GameObject
 {
 public:
+    virtual ~GameObject();
     std::string Name;
 
     void AddComponent(Component& component);
 
-    void Start();
-    void Update(float deltaTime);
+    virtual void Start();
+    virtual void Update(float deltaTime);
     void Render(sf::RenderTarget& renderTarget);
-    void Dispose();
+    virtual void Dispose();
 
 private:
     std::vector<Component*> _components;

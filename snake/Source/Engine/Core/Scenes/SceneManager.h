@@ -12,6 +12,8 @@ public:
     Scene* GetCurrentScene() const;
     Scene* GetSceneByName(const std::string& nameScene);
 
+    void SetScene(const std::string& nameScene);
+
     void Update(float deltaTime) const;
     void Render(sf::RenderTarget& renderTarget) const;
 

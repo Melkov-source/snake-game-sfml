@@ -1,5 +1,6 @@
 ﻿#include "SceneManager.h"
 
+#include <iostream>
 #include <utility>
 
 Scene* SceneManager::CreateScene(const std::string& sceneName)
@@ -30,7 +31,20 @@ Scene* SceneManager::GetSceneByName(const std::string& nameScene)
 
     return this->_scenes[nameScene];
 }
-    
+
+void SceneManager::SetScene(const std::string& nameScene)
+{
+    if(this->_scenes.count(nameScene) == false)
+    {
+        std::cout << "Not found target scene: " << nameScene << "\n";
+        return;
+    }
+
+    const auto scene = this->_scenes[nameScene];
+
+    this->_currentScene = scene;
+}
+
 void SceneManager::Update(const float deltaTime) const
 {
     if(this->_currentScene != nullptr)

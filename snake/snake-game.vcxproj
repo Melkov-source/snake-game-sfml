@@ -107,6 +107,7 @@
     <ClCompile Include="Source\Engine\Core\Scenes\SceneManager.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
     <ClCompile Include="Source\Game\Game.cpp" />
+    <ClCompile Include="Source\Game\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\imgui\imconfig-SFML.h" />
@@ -226,6 +227,7 @@
     <ClInclude Include="Source\Engine\Engine.h" />
     <ClInclude Include="Source\Game\Application.h" />
     <ClInclude Include="Source\Game\Game.h" />
+    <ClInclude Include="Source\Game\Player.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="build\assets\prefabs\grass.json" />

@@ -1,34 +1,37 @@
 ﻿#ifndef APPLICATION_H
 #define APPLICATION_H
 
+#include "Game.h"
 #include "../Engine/Engine.h"
 
-namespace Game
+class Application
 {
-    class Application
+public:
+    static void Start()
     {
-    public:
-        static void Start()
-        {
-            const auto config = new Engine::Config{
-                "Snake",
-                sf::Vector2u{400, 600},
-                60,
-                false
-            };
+        const auto config = new Engine::Config{
+            "Snake",
+            sf::Vector2u{400, 600},
+            60,
+            false
+        };
 
-            _engine = new Engine(config);
+        _engine = new Engine(config);
 
-            _engine->Run();
-        }
+        Game game{*_engine};
 
-        static void Close()
-        {
-        }
+        game.Start();
 
-    private:
-        inline static Engine* _engine;
-    };
-}
+        _engine->Run();
+    }
+
+    static void Close()
+    {
+    }
+
+private:
+    inline static Engine* _engine;
+};
+
 
 #endif

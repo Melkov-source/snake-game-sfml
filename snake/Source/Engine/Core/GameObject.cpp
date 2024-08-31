@@ -1,5 +1,8 @@
 ﻿#include "GameObject.h"
 
+GameObject::~GameObject()
+{
+}
 void GameObject::AddComponent(Component& component)
 {
     this->_components.push_back(&component);

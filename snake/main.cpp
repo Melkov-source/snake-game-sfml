@@ -5,7 +5,7 @@
 
 int main()
 {
-    Game::Application::Start();
+    Application::Start();
     
     return EXIT_SUCCESS;
 }
