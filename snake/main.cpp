@@ -1,6 +1,6 @@
 ﻿#include <cstdlib>
 
-#include "source/game/application/Application.h"
+#include "Source/game/application/Application.h"
 
 int main()
 {

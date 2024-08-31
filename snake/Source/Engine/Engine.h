@@ -6,6 +6,8 @@
 #include "SFML/Window.hpp"
 #include "imgui-SFML.h"
 
+#include "Core/Scenes/SceneManager.h"
+
 class Engine
 {
 public:
@@ -17,22 +19,22 @@ public:
         bool IsVerticalSync{false};
     };
 
+    const Core::Scenes::SceneManager* SceneManager;
+
     explicit Engine(Config* config);
-    ~Engine();
 
     void Run();
     void Dispose();
 
 private:
-    void Initialize();
-    void Update();
-    void Render();
-
-    void InitializeRenderWindow();
-
     Config* _config;
     sf::RenderWindow* _renderWindow;
     sf::Event _event;
     sf::Clock _deltaTimeClock;
     sf::Time _deltaTime;
+    
+    void Initialize();
+    void InitializeRenderWindow();
+    void Update();
+    void Render();
 };

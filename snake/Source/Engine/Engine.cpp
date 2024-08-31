@@ -2,12 +2,9 @@
 
 Engine::Engine(Config* config) : _config(config)
 {
+    this->SceneManager = new Core::Scenes::SceneManager();
+    
     this->Initialize();
-}
-
-Engine::~Engine()
-{
-    this->Dispose();
 }
 
 void Engine::Initialize()
