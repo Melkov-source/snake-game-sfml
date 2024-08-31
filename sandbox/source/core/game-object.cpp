@@ -2,7 +2,7 @@
 
 #include <optional>
 
-namespace engine
+namespace Engine
 {
     GameObject::GameObject()
     {

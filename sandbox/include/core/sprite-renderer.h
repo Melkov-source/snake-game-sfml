@@ -2,7 +2,7 @@
 #include "component.h"
 #include "game-object.h"
 
-namespace engine
+namespace Engine
 {
     class SpriteRenderer final : public Component
     {

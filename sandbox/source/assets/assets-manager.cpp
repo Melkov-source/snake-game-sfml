@@ -21,10 +21,8 @@ namespace assets
         const auto texture = new sf::Texture();
 
         const std::string target_path = ASSETS_ROOT_PATH + '/' + texture_path;
-        
-        const auto area = sf::IntRect(10,10,32, 32);
 
-        if(texture->loadFromFile(target_path, area) == false)
+        if(texture->loadFromFile(target_path) == false)
         {
             utils::error("Not found texture: %a", target_path);
 
@@ -62,7 +60,7 @@ namespace assets
         std::cout << transform.position.x;
     }
 
-    json AssetsManager::create_prefab(const std::string& path, const engine::GameObject& game_object)
+    json AssetsManager::create_prefab(const std::string& path, const Engine::GameObject& game_object)
     {
         json json_prefab;
 

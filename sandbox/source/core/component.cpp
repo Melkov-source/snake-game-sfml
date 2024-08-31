@@ -1,6 +1,6 @@
 ﻿#include "../../include/core/component.h"
 
-namespace engine
+namespace Engine
 {
     Component::Component()
     {

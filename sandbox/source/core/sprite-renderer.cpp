@@ -1,6 +1,6 @@
 ﻿#include "../../include/core/sprite-renderer.h"
 
-namespace engine
+namespace Engine
 {
     SpriteRenderer::SpriteRenderer()
     {

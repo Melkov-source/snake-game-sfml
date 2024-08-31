@@ -1,29 +1,10 @@
-#include <iostream>
-#include "./include/player.h"
-#include "./include/map.h"
+#include "./include/engine.h"
 
 int main()
 {
-	Player player{ 5, 5 };
+    Engine game;
 
-	char input{};
+    game.run();
 
-	do
-	{
-		Map map2;
-		Map& map = map2;
-
-		system("cls");
-		show_info(player);
-		map.draw(player);
-
-		std::cout << "Enter pleas direction for player (W, A, S, D): ";
-		std::cin >> input;
-
-		move(player, input);
-	} while (input != 'q');
-
-	std::cin >> input;
-
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }

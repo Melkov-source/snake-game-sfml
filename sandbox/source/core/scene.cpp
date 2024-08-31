@@ -1,6 +1,6 @@
 ﻿#include "../../include/core/scene.h"
 
-namespace engine
+namespace Engine
 {
     void Scene::draw(sf::RenderTarget& target) const
     {

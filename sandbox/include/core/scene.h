@@ -2,7 +2,7 @@
 #include "game-object.h"
 #include "SFML/Graphics.hpp"
 
-namespace engine
+namespace Engine
 {
     class Scene
     {

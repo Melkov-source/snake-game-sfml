@@ -17,7 +17,7 @@ namespace assets
         sf::Texture* load_texture(const std::string& texture_path);
         Prefab load_prefab(const std::string& prefab_path);
 
-        nlohmann::json create_prefab(const std::string& path, const engine::GameObject& game_object);
+        nlohmann::json create_prefab(const std::string& path, const Engine::GameObject& game_object);
         
 
     private:

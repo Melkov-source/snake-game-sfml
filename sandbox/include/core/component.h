@@ -3,7 +3,7 @@
 
 #include "SFML/OpenGL.hpp"
 
-namespace engine
+namespace Engine
 {
     class Component
     {

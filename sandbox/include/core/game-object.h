@@ -4,7 +4,7 @@
 #include "../../source/core/Transform.h"
 #include "SFML/Graphics.hpp"
 
-namespace engine
+namespace Engine
 {
     class GameObject
     {

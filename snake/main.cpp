@@ -1,10 +1,10 @@
-#include "./include/engine.h"
+﻿#include <cstdlib>
+
+#include "source/game/application/Application.h"
 
 int main()
 {
-    Engine game;
-
-    game.run();
-
+    Game::Application::Start();
+    
     return EXIT_SUCCESS;
 }

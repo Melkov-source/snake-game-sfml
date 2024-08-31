@@ -1,6 +1,8 @@
 ﻿#include "../../include/state/game-state.h"
 
 #include "../../include/core/sprite-renderer.h"
+#include "../Layers/LayerRenderer.h"
+#include "../Layers/LayerRendererManager.h"
 
 namespace state
 {
@@ -57,13 +59,118 @@ namespace state
 
         ImGui::Begin("state.game", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
+        if(ImGui::Button("Layer Renderer (Debug)"))
+        {
+            const auto layerRendererManager = new LayerRendererManager();
+            
+            for (int index = 0; index < 10; ++index)
+            {
+                const auto layerRenderer = new LayerRenderer();
+                
+                layerRenderer->Order = 15;
+
+                layerRendererManager->RegisterLayerRenderer(*layerRenderer);
+            }
+
+            for (int index = 0; index < 5; ++index)
+            {
+                const auto layerRenderer = new LayerRenderer();
+
+                layerRenderer->Order = 4;
+
+                layerRendererManager->RegisterLayerRenderer(*layerRenderer);
+            }
+
+            for (int index = 0; index < 2; ++index)
+            {
+                const auto layerRenderer = new LayerRenderer();
+
+                layerRenderer->Order = 10;
+
+                layerRendererManager->RegisterLayerRenderer(*layerRenderer);
+            }
+
+            for (int index = 0; index < 3; ++index)
+            {
+                const auto layerRenderer = new LayerRenderer();
+
+                layerRenderer->Order = 7;
+
+                layerRendererManager->RegisterLayerRenderer(*layerRenderer);
+            }
+
+            layerRendererManager->Render(*this->render_window_);
+        }
+
+        if(ImGui::Button("Test"))
+        {
+            const sf::Vector2u window_size = this->render_window_->getSize();
+
+            sf::Image* image = new sf::Image();
+
+            image->loadFromFile("assets/textures/grass.png");
+            
+            sf::Texture* texture = new sf::Texture();
+
+            texture->loadFromImage(*image);
+            auto sprite = new sf::Sprite();
+
+            sprite->setTexture(*texture);
+
+            sprite->setScale(1, 1);
+
+           
+
+            sprite->setPosition(window_size.x / 2, window_size.y / 2);
+
+            this->sprites_.push_back(sprite);
+        }
+        
         ImGui::Text("Delta Time: %f", this->delta_time_);
+
+        if(ImGui::Button("create field"))
+        {
+            sf::Vector2u size = this->render_window_->getSize();
+
+            unsigned int width = size.x;
+
+            int count = width / 32;
+            int delta = width % 32;
+
+            float additional_size = delta / count;
+
+            float target_size = 32 + additional_size;
+
+            const auto grass_texture = this->assets_manager_->load_texture("textures/grass.png");
+
+            float position_previous;
+
+            for (int i = 0; i < count - 1; ++i)
+            {
+                const auto grass_sprite = new sf::Sprite();
+
+                grass_sprite->setTexture(*grass_texture);
+
+                if(i == 0)
+                {
+                    grass_sprite->setPosition(0, 0);
+                }
+                else
+                {
+                    grass_sprite->setPosition(position_previous + target_size + 2, 0);
+                }
+
+                position_previous = grass_sprite->getPosition().x;
+
+                this->sprites_.push_back(grass_sprite);
+            }
+        }
 
         if (ImGui::Button("Create prefab"))
         {
-            engine::GameObject game_object;
+            Engine::GameObject game_object;
 
-            auto sprite = new engine::SpriteRenderer();
+            auto sprite = new Engine::SpriteRenderer();
 
             game_object.add_component(sprite);
             game_object.add_component(sprite);
