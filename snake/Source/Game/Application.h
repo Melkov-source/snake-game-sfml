@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿#ifndef APPLICATION_H
+#define APPLICATION_H
 
 #include "../Engine/Engine.h"
 
@@ -29,3 +30,5 @@ namespace Game
         inline static Engine* _engine;
     };
 }
+
+#endif

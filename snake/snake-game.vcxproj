@@ -24,8 +24,8 @@
     <ClCompile Include="lib\imgui\imgui_draw.cpp" />
     <ClCompile Include="lib\imgui\imgui_tables.cpp" />
     <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Source\Engine\Core\Components\Component.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Source\Engine\Core\GameObject.cpp" />
     <ClCompile Include="Source\Engine\Core\Scenes\Scene.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>
@@ -106,7 +106,7 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Core\Scenes\SceneManager.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
-    <ClCompile Include="Source\game\Player.cpp" />
+    <ClCompile Include="Source\Game\Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\imgui\imconfig-SFML.h" />
@@ -130,7 +130,6 @@
     <ClInclude Include="lib\sfml\include\SFML\Audio\SoundBuffer.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Audio\SoundBufferRecorder.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Audio\SoundFileFactory.hpp" />
-    <ClInclude Include="lib\sfml\include\SFML\Audio\SoundFileFactory.inl" />
     <ClInclude Include="lib\sfml\include\SFML\Audio\SoundFileReader.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Audio\SoundFileWriter.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Audio\SoundRecorder.hpp" />
@@ -147,12 +146,10 @@
     <ClInclude Include="lib\sfml\include\SFML\Graphics\Export.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Graphics\Font.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Graphics\Glsl.hpp" />
-    <ClInclude Include="lib\sfml\include\SFML\Graphics\Glsl.inl" />
     <ClInclude Include="lib\sfml\include\SFML\Graphics\Glyph.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Graphics\Image.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Graphics\PrimitiveType.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Graphics\Rect.hpp" />
-    <ClInclude Include="lib\sfml\include\SFML\Graphics\Rect.inl" />
     <ClInclude Include="lib\sfml\include\SFML\Graphics\RectangleShape.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Graphics\RenderStates.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Graphics\RenderTarget.hpp" />
@@ -196,19 +193,13 @@
     <ClInclude Include="lib\sfml\include\SFML\System\NonCopyable.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\System\Sleep.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\System\String.hpp" />
-    <ClInclude Include="lib\sfml\include\SFML\System\String.inl" />
     <ClInclude Include="lib\sfml\include\SFML\System\Thread.hpp" />
-    <ClInclude Include="lib\sfml\include\SFML\System\Thread.inl" />
     <ClInclude Include="lib\sfml\include\SFML\System\ThreadLocal.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\System\ThreadLocalPtr.hpp" />
-    <ClInclude Include="lib\sfml\include\SFML\System\ThreadLocalPtr.inl" />
     <ClInclude Include="lib\sfml\include\SFML\System\Time.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\System\Utf.hpp" />
-    <ClInclude Include="lib\sfml\include\SFML\System\Utf.inl" />
     <ClInclude Include="lib\sfml\include\SFML\System\Vector2.hpp" />
-    <ClInclude Include="lib\sfml\include\SFML\System\Vector2.inl" />
     <ClInclude Include="lib\sfml\include\SFML\System\Vector3.hpp" />
-    <ClInclude Include="lib\sfml\include\SFML\System\Vector3.inl" />
     <ClInclude Include="lib\sfml\include\SFML\Window.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Window\Clipboard.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Window\Context.hpp" />
@@ -233,8 +224,8 @@
     <ClInclude Include="Source\Engine\Core\Scenes\Scene.h" />
     <ClInclude Include="Source\Engine\Core\Scenes\SceneManager.h" />
     <ClInclude Include="Source\Engine\Engine.h" />
-    <ClInclude Include="Source\game\Application.h" />
-    <ClInclude Include="Source\game\Player.h" />
+    <ClInclude Include="Source\Game\Application.h" />
+    <ClInclude Include="Source\Game\Game.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="build\assets\prefabs\grass.json" />
@@ -347,6 +338,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\sfml\lib\Release\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\sfml\include\SFML\Audio\SoundFileFactory.inl" />
+    <None Include="lib\sfml\include\SFML\Graphics\Glsl.inl" />
+    <None Include="lib\sfml\include\SFML\Graphics\Rect.inl" />
+    <None Include="lib\sfml\include\SFML\System\String.inl" />
+    <None Include="lib\sfml\include\SFML\System\Thread.inl" />
+    <None Include="lib\sfml\include\SFML\System\ThreadLocalPtr.inl" />
+    <None Include="lib\sfml\include\SFML\System\Utf.inl" />
+    <None Include="lib\sfml\include\SFML\System\Vector2.inl" />
+    <None Include="lib\sfml\include\SFML\System\Vector3.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

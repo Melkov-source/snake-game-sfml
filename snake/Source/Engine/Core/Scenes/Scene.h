@@ -1,19 +1,24 @@
-﻿#pragma once
+﻿#ifndef SCENE_H
+#define SCENE_H
 
-#include "SFML/Graphics.hpp"
+#include <string>
+#include "../GameObject.h"
 
-namespace Core::Scenes
+class Scene
 {
-    class Scene
-    {
-    public:
-        std::string Name;
-        bool IsReady;
+public:
+    std::string Name;
 
-        explicit Scene(std::string name);
+    explicit Scene(std::string name);
+
+    void AddGameObject(GameObject& gameObject);
         
-        void Update(const float deltaTime);
-        void Render(const sf::RenderTarget& renderTarget);
-        void Dispose();
-    };
-}
+    void Update(const float deltaTime);
+    void Render(sf::RenderTarget& renderTarget);
+    void Dispose();
+
+private:
+    std::vector<GameObject*> _gameObjects;
+};
+
+#endif

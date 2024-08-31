@@ -1,11 +1,11 @@
-﻿#pragma once
+﻿#ifndef ENGINE_H
+#define ENGINE_H
 
 #include <filesystem>
 
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
 #include "imgui-SFML.h"
-
 #include "Core/Scenes/SceneManager.h"
 
 class Engine
@@ -19,7 +19,7 @@ public:
         bool IsVerticalSync{false};
     };
 
-    const Core::Scenes::SceneManager* SceneManager;
+    SceneManager* SceneManagment;
 
     explicit Engine(Config* config);
 
@@ -38,3 +38,5 @@ private:
     void Update();
     void Render();
 };
+
+#endif

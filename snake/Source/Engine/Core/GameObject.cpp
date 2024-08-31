@@ -1,12 +1,36 @@
 ﻿#include "GameObject.h"
 
-namespace Core
+void GameObject::AddComponent(Component& component)
 {
-    void GameObject::Update(float deltaTime)
-    {
-    }
+    this->_components.push_back(&component);
+}
 
-    void GameObject::Render(sf::RenderTarget& renderTarget)
+void GameObject::Start()
+{
+}
+
+void GameObject::Update(float deltaTime)
+{
+    for (const auto component : _components)
     {
+        component->Update(deltaTime);
+    }
+}
+
+void GameObject::Render(sf::RenderTarget& renderTarget)
+{
+    for (const auto component : _components)
+    {
+        component->Render(renderTarget);
+    }
+}
+
+void GameObject::Dispose()
+{
+    for (const auto component : _components)
+    {
+        component->Dispose();
+
+        delete component;
     }
 }

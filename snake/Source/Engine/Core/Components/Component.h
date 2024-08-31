@@ -1,12 +1,18 @@
-﻿#pragma once
-#include "../GameObject.h"
+#ifndef COMPONENT_H
+#define COMPONENT_H
 
-namespace Core::Components
+#include "SFML/Graphics.hpp"
+
+class Component
 {
-    class Component
-    {
-    public:
-        GameObject* GameObject;
-    };
+public:
+	//GameObject* GameObject = nullptr;
 
-}
+	void Update(float deltaTime);
+	void Render(sf::RenderTarget& renderTarget);
+
+	void Dispose();
+};
+
+#endif // !COMPONENT_H
+

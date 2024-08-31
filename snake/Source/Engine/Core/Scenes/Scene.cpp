@@ -1,20 +1,35 @@
 ﻿#include "Scene.h"
 
-namespace Core::Scenes
+Scene::Scene(std::string name) : Name(name)
 {
-    Scene::Scene(std::string name) : Name(std::move(name))
-    {
-    }
+}
 
-    void Scene::Update(const float deltaTime)
-    {
-    }
+void Scene::AddGameObject(GameObject& gameObject)
+{
+    this->_gameObjects.push_back(&gameObject);
+}
 
-    void Scene::Render(const sf::RenderTarget& renderTarget)
+void Scene::Update(const float deltaTime)
+{
+    for (auto gameObject : this->_gameObjects)
     {
+        gameObject->Update(deltaTime);
     }
+}
 
-    void Scene::Dispose()
+void Scene::Render(sf::RenderTarget& renderTarget)
+{
+    for (auto gameObject : this->_gameObjects)
     {
+        gameObject->Render(renderTarget);
+    }
+}
+
+void Scene::Dispose()
+{
+    for (const auto gameObject : this->_gameObjects)
+    {
+        gameObject->Dispose();
+        delete gameObject;
     }
 }
