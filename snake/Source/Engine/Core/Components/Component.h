@@ -3,10 +3,12 @@
 
 #include "SFML/Graphics.hpp"
 
+class GameObject;
+
 class Component
 {
 public:
-	//GameObject* GameObject = nullptr;
+	GameObject* GameObject = nullptr;
 
 	void Update(float deltaTime);
 	void Render(sf::RenderTarget& renderTarget);
