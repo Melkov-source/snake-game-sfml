@@ -11,7 +11,7 @@ public:
     {
         const auto config = new Engine::Config{
             "Snake",
-            sf::Vector2u{400, 600},
+            sf::Vector2u{1280, 720},
             60,
             false
         };

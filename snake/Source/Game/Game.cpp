@@ -12,6 +12,8 @@ void Game::Start()
     
     const auto player = new Player();
 
+    player->Name = "asdasd";
+
     menuScene->AddGameObject(*player);
 
     this->_engine->SceneManagment->SetScene(menuScene->Name);
