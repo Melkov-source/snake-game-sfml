@@ -1,10 +1,11 @@
 ﻿#include "GameObject.h"
 
 #include <iostream>
+
 GameObject::~GameObject()
 {
 }
-void GameObject::AddComponent(Component& component)
+
 template <typename TComponent>
 TComponent* GameObject::AddComponent()
 {
@@ -28,17 +29,28 @@ TComponent* GameObject::AddComponent()
 
     return result;
 }
+
+template <typename TComponent>
+TComponent* GameObject::GetComponent()
 {
-    this->_components.push_back(&component);
+    for (const auto& component : this->_components)
+    {
+        if (typeid(*component) == typeid(TComponent))
+        {
+            return static_cast<TComponent*>(component);
+        }
+    }
+
+    return nullptr;
 }
 
 void GameObject::Start()
 {
 }
 
-void GameObject::Update(float deltaTime)
+void GameObject::Update(const float deltaTime)
 {
-    for (const auto component : _components)
+    for (const auto& component : _components)
     {
         component->Update(deltaTime);
     }
@@ -46,9 +58,18 @@ void GameObject::Update(float deltaTime)
 
 void GameObject::Render(sf::RenderTarget& renderTarget)
 {
-    for (const auto component : _components)
+    if(this->_components.empty() == false)
     {
-        component->Render(renderTarget);
+        for (const auto& component : this->_components)
+        {
+            if(!component)
+            {
+                std::cout << "component for render is nullptr!\n";
+                continue;
+            }
+            
+            component->Render(renderTarget);
+        }
     }
 }
 

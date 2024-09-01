@@ -2,16 +2,22 @@
 #define GAME_OBJECT_H
 
 #include <string>
-#include "Components/Component.h"
 #include <vector>
 
-class GameObject
+#include "Components/Component.h"
+#include "Components/SpriteComponent.h"
+
+class GameObject : public sf::Transformable
 {
 public:
     virtual ~GameObject();
     std::string Name;
 
-    void AddComponent(Component& component);
+    template <typename TComponent>
+    TComponent* AddComponent();
+
+    template<typename TComponent>
+    TComponent* GetComponent();
 
     virtual void Start();
     virtual void Update(float deltaTime);
@@ -21,6 +27,9 @@ public:
 private:
     std::vector<Component*> _components;
 };
+
+template SpriteComponent* GameObject::AddComponent<SpriteComponent>();
+template SpriteComponent* GameObject::GetComponent<SpriteComponent>();
 
 #endif
 
