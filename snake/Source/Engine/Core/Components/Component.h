@@ -8,12 +8,17 @@ class GameObject;
 class Component
 {
 public:
-	GameObject* GameObject = nullptr;
+	Component(GameObject& gameObject);
+	virtual ~Component();
+	std::string Name;
 
-	void Update(float deltaTime);
-	void Render(sf::RenderTarget& renderTarget);
+	virtual void Update(float deltaTime);
+	virtual void Render(sf::RenderTarget& renderTarget);
 
-	void Dispose();
+	virtual void Dispose();
+
+protected:
+	GameObject* _gameObject;
 };
 
 #endif // !COMPONENT_H
