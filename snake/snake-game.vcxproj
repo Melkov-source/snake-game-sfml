@@ -24,8 +24,10 @@
     <ClCompile Include="lib\imgui\imgui_draw.cpp" />
     <ClCompile Include="lib\imgui\imgui_tables.cpp" />
     <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Source\Engine\Core\Assets\AssetsManager.cpp" />
     <ClCompile Include="Source\Engine\Core\Components\Component.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\Engine\Core\Components\SpriteComponent.cpp" />
     <ClCompile Include="Source\Engine\Core\GameObject.cpp" />
     <ClCompile Include="Source\Engine\Core\Scenes\Scene.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>
@@ -220,7 +222,9 @@
     <ClInclude Include="lib\sfml\include\SFML\Window\WindowBase.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Window\WindowHandle.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Window\WindowStyle.hpp" />
+    <ClInclude Include="Source\Engine\Core\Assets\AssetsManager.h" />
     <ClInclude Include="Source\Engine\Core\Components\Component.h" />
+    <ClInclude Include="Source\Engine\Core\Components\SpriteComponent.h" />
     <ClInclude Include="Source\Engine\Core\GameObject.h" />
     <ClInclude Include="Source\Engine\Core\Scenes\Scene.h" />
     <ClInclude Include="Source\Engine\Core\Scenes\SceneManager.h" />
@@ -385,6 +389,8 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>false</EnableASAN>
+    <EnableFuzzer>true</EnableFuzzer>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">

@@ -42,6 +42,8 @@ void SceneManager::SetScene(const std::string& nameScene)
 
     const auto scene = this->_scenes[nameScene];
 
+    scene->Initialize();
+
     this->_currentScene = scene;
 }
 

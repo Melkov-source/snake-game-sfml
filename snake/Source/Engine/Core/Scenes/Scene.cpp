@@ -9,9 +9,17 @@ void Scene::AddGameObject(GameObject& gameObject)
     this->_gameObjects.push_back(&gameObject);
 }
 
+void Scene::Initialize()
+{
+    for (const auto gameObject : this->_gameObjects)
+    {
+        gameObject->Start();
+    }
+}
+
 void Scene::Update(const float deltaTime)
 {
-    for (auto gameObject : this->_gameObjects)
+    for (const auto gameObject : this->_gameObjects)
     {
         gameObject->Update(deltaTime);
     }
@@ -19,7 +27,7 @@ void Scene::Update(const float deltaTime)
 
 void Scene::Render(sf::RenderTarget& renderTarget)
 {
-    for (auto gameObject : this->_gameObjects)
+    for (const auto gameObject : this->_gameObjects)
     {
         gameObject->Render(renderTarget);
     }

@@ -39,6 +39,15 @@ void Engine::Update()
 {
     this->_deltaTime = this->_deltaTimeClock.restart();
 
+    this->UpdateEvents();
+
+    ImGui::SFML::Update(*this->_renderWindow, this->_deltaTime);
+
+    this->SceneManagment->Update(this->_deltaTime.asSeconds());
+}
+
+void Engine::UpdateEvents()
+{
     while (this->_renderWindow->pollEvent(this->_event))
     {
         ImGui::SFML::ProcessEvent(*this->_renderWindow, this->_event);
@@ -48,10 +57,6 @@ void Engine::Update()
             this->_renderWindow->close();
         }
     }
-
-    ImGui::SFML::Update(*this->_renderWindow, this->_deltaTime);
-
-    this->SceneManagment->Update(this->_deltaTime.asSeconds());
 }
 
 void Engine::Render()

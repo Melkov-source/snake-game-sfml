@@ -12,6 +12,8 @@ public:
     explicit Scene(std::string name);
 
     void AddGameObject(GameObject& gameObject);
+
+    void Initialize();
         
     void Update(const float deltaTime);
     void Render(sf::RenderTarget& renderTarget);

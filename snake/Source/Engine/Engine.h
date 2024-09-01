@@ -36,6 +36,7 @@ private:
     void Initialize();
     void InitializeRenderWindow();
     void Update();
+    void UpdateEvents();
     void Render();
 };
 
