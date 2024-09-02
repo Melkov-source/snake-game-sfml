@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "imgui-SFML.h"
+#include "imgui.h"
 #include "../Engine/Core/Assets/AssetsManager.h"
 #include "../Engine/Core/Components/SpriteComponent.h"
 
@@ -16,11 +18,27 @@ void Player::Start()
     std::cout << spriteRenderer->Name << " " << this->Name << "\n";
 }
 
-void Player::Update(float deltaTime)
+void Player::Update(const float deltaTime)
 {
-    GameObject::Update(deltaTime);
-    
     auto spriteComponent = this->GetComponent<SpriteComponent>();
+    
+    ImGui::Begin("Debug Player");
+
+    if(ImGui::Button("Switch texture"))
+    {
+        const auto grassTexture = AssetsManager::LoadTexture("assets/textures/game-atlass.png", {0, 0, 64, 64});
+
+        spriteComponent->SetTexture(*grassTexture);
+    }
+
+    if(ImGui::Button("Reset position"))
+    {
+       this->setPosition(0,0);
+    }
+    
+    ImGui::End();
+    
+    GameObject::Update(deltaTime);
 
     move(100.0f * deltaTime, 0.0f);
     

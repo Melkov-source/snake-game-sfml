@@ -19,12 +19,14 @@ public:
         bool IsVerticalSync{false};
     };
 
-    SceneManager* SceneManagment;
+    SceneManager* SceneManagement;
 
     explicit Engine(Config* config);
 
     void Run();
     void Dispose();
+
+    sf::Vector2u GetWindowSize() const;
 
 private:
     Config* _config;

@@ -1,20 +1,16 @@
 ﻿#include "Game.h"
 
+#include "Application.h"
 #include "Player.h"
+#include "Scenes/MenuScene.h"
 
-Game::Game(Engine& engine) : _engine(&engine)
+Game::Game()
 {
 }
 
 void Game::Start()
 {
-    const auto menuScene = this->_engine->SceneManagment->CreateScene("Menu");
-    
-    const auto player = new Player();
+    new MenuScene();
 
-    player->Name = "asdasd";
-
-    menuScene->AddGameObject(*player);
-
-    this->_engine->SceneManagment->SetScene(menuScene->Name);
+    Application::EngineApi->SceneManagement->SetScene("Menu");
 }

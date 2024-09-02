@@ -18,10 +18,6 @@ void SpriteComponent::SetTexture(const sf::Texture& texture)
     this->_sprite.setTexture(texture);
 }
 
-void SpriteComponent::SetSize(const sf::Vector2f& size)
-{
-}
-
 void SpriteComponent::SetColor(const sf::Color& color)
 {
     this->_sprite.setColor(color);

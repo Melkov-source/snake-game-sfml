@@ -2,10 +2,11 @@
 
 Engine::Engine(Config* config) : _config(config)
 {
-    this->SceneManagment = new SceneManager();
+    this->SceneManagement = new SceneManager();
     
     this->Initialize();
 }
+
 
 void Engine::Initialize()
 {
@@ -43,7 +44,7 @@ void Engine::Update()
 
     ImGui::SFML::Update(*this->_renderWindow, this->_deltaTime);
 
-    this->SceneManagment->Update(this->_deltaTime.asSeconds());
+    this->SceneManagement->Update(this->_deltaTime.asSeconds());
 }
 
 void Engine::UpdateEvents()
@@ -65,12 +66,20 @@ void Engine::Render()
 
     ImGui::SFML::Render(*this->_renderWindow);
 
-    this->SceneManagment->Render(*this->_renderWindow);
+    this->SceneManagement->Render(*this->_renderWindow);
     
     this->_renderWindow->display();
 }
 
+sf::Vector2u Engine::GetWindowSize() const
+{
+    return this->_renderWindow->getSize();
+}
+
+
 void Engine::Dispose()
 {
+    _renderWindow->close();
+    
     ImGui::SFML::Shutdown();
 }

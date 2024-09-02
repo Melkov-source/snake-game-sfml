@@ -3,18 +3,28 @@
 #include <iostream>
 #include <utility>
 
+bool SceneManager::TryRegisterScene(Scene& scene)
+{
+    if(this->_scenes.count(scene.Name))
+    {
+        return false;
+    }
+    
+    this->_scenes[scene.Name] = &scene;
+
+    return true;
+}
+
 Scene* SceneManager::CreateScene(const std::string& sceneName)
 {
     const auto scene = new Scene(sceneName);
 
-    if(this->_scenes.count(sceneName))
+    if(this->TryRegisterScene(*scene))
     {
-        return nullptr;
+        return scene;
     }
 
-    this->_scenes[sceneName] = scene;
-
-    return scene;
+    return nullptr;
 }
 
 Scene* SceneManager::GetCurrentScene() const

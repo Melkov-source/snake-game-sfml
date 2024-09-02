@@ -1,5 +1,9 @@
 ﻿#include "Scene.h"
 
+Scene::~Scene()
+{
+}
+
 Scene::Scene(std::string name) : Name(name)
 {
 }

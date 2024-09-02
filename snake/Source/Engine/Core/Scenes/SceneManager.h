@@ -8,6 +8,7 @@
 class SceneManager
 {
 public:
+    bool TryRegisterScene(Scene& scene);
     Scene* CreateScene(const std::string& sceneName);
     Scene* GetCurrentScene() const;
     Scene* GetSceneByName(const std::string& nameScene);

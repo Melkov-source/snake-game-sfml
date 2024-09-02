@@ -6,11 +6,8 @@
 class Game
 {
 public:
-    Game(Engine& engine);
+    Game();
     void Start();
-
-private:
-    Engine* _engine;
 };
 
 #endif // !GAME_H

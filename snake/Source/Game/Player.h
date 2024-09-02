@@ -5,7 +5,7 @@ class Player : public GameObject
 {
 public:
     void Start() override;
-    void Update(float deltaTime) override;
+    void Update(const float deltaTime) override;
     void Dispose() override;
 
 private:

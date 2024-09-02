@@ -20,7 +20,7 @@ public:
     TComponent* GetComponent();
 
     virtual void Start();
-    virtual void Update(float deltaTime);
+    virtual void Update(const float deltaTime);
     void Render(sf::RenderTarget& renderTarget);
     virtual void Dispose();
 

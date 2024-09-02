@@ -8,7 +8,6 @@ public:
     ~SpriteComponent() override;
 
     void SetTexture(const sf::Texture& texture);
-    void SetSize(const sf::Vector2f& size);
     void SetColor(const sf::Color& color);
 
     void Update(float deltaTime) override;

@@ -7,6 +7,8 @@
 class Application
 {
 public:
+    inline static Engine* EngineApi;
+    
     static void Start()
     {
         const auto config = new Engine::Config{
@@ -16,21 +18,21 @@ public:
             false
         };
 
-        _engine = new Engine(config);
+        EngineApi = new Engine(config);
 
-        Game game{*_engine};
+        Game game;
 
         game.Start();
 
-        _engine->Run();
+        EngineApi->Run();
     }
 
     static void Close()
     {
-    }
+        EngineApi->Dispose();
 
-private:
-    inline static Engine* _engine;
+        delete EngineApi;
+    }
 };
 
 

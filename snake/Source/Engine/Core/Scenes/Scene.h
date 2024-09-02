@@ -10,14 +10,15 @@ public:
     std::string Name;
 
     explicit Scene(std::string name);
+    virtual ~Scene();
 
     void AddGameObject(GameObject& gameObject);
 
-    void Initialize();
+    virtual void Initialize();
         
-    void Update(const float deltaTime);
-    void Render(sf::RenderTarget& renderTarget);
-    void Dispose();
+    virtual void Update(const float deltaTime);
+    virtual void Render(sf::RenderTarget& renderTarget);
+    virtual void Dispose();
 
 private:
     std::vector<GameObject*> _gameObjects;
