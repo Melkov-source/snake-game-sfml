@@ -3,58 +3,39 @@
 #include <iostream>
 #include <utility>
 
-bool SceneManager::TryRegisterScene(Scene& scene)
+template<typename TScene>
+void SceneManager::LoadScene()
 {
-    if(this->_scenes.count(scene.Name))
+    if(this->_currentScene != nullptr)
     {
-        return false;
+        this->_currentScene->Dispose();
     }
     
-    this->_scenes[scene.Name] = &scene;
+    const auto isScene = std::is_base_of_v<Scene, TScene>;
+    static_assert(isScene, "TScene no subclass for Scene");
 
-    return true;
-}
+    auto upScene = std::make_unique<TScene>();
 
-Scene* SceneManager::CreateScene(const std::string& sceneName)
-{
-    const auto scene = new Scene(sceneName);
-
-    if(this->TryRegisterScene(*scene))
+    if(!upScene)
     {
-        return scene;
+        std::cerr << "Failed to create scene\n";
+        return;
     }
 
-    return nullptr;
+    TScene* pScene = upScene.get();
+    upScene.release();
+
+    Scene* result = std::move(pScene);
+
+    result->Load();
+    result->Initialize();
+
+    this->_currentScene = result;
 }
 
 Scene* SceneManager::GetCurrentScene() const
 {
     return this->_currentScene;
-}
-
-Scene* SceneManager::GetSceneByName(const std::string& nameScene)
-{
-    if(this->_scenes.count(nameScene) == false)
-    {
-        return nullptr;
-    }
-
-    return this->_scenes[nameScene];
-}
-
-void SceneManager::SetScene(const std::string& nameScene)
-{
-    if(this->_scenes.count(nameScene) == false)
-    {
-        std::cout << "Not found target scene: " << nameScene << "\n";
-        return;
-    }
-
-    const auto scene = this->_scenes[nameScene];
-
-    scene->Initialize();
-
-    this->_currentScene = scene;
 }
 
 void SceneManager::Update(const float deltaTime) const

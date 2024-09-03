@@ -1,11 +1,17 @@
 ﻿#include "MenuScene.h"
 
+#include "GameScene.h"
 #include "imgui.h"
 #include "../Application.h"
 
-MenuScene::MenuScene() : Scene("Menu")
+MenuScene::~MenuScene()
 {
-    Application::EngineApi->SceneManagement->TryRegisterScene(*this);
+    Scene();
+}
+
+void MenuScene::Load()
+{
+    Scene::Load();
 }
 
 void MenuScene::Initialize()
@@ -36,7 +42,7 @@ void MenuScene::Update(const float deltaTime)
     ImGui::SetCursorPos({imGuiSize.x / 2 - 150, imGuiSize.y / 2 - 10 - 25});
     if (ImGui::Button("PLAY", ImVec2(300, 50)))
     {
-        // Play button pressed
+        Application::EngineApi->SceneManagement->LoadScene<GameScene>();
     }
 
     ImGui::SetCursorPos({imGuiSize.x / 2 - 150, imGuiSize.y / 2 + 60 - 25});

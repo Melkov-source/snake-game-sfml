@@ -1,16 +1,18 @@
 ﻿#include "Scene.h"
 
-Scene::~Scene()
-{
-}
+Scene::Scene()
+= default;
 
-Scene::Scene(std::string name) : Name(name)
-{
-}
+Scene::~Scene()
+= default;
 
 void Scene::AddGameObject(GameObject& gameObject)
 {
     this->_gameObjects.push_back(&gameObject);
+}
+
+void Scene::Load()
+{
 }
 
 void Scene::Initialize()

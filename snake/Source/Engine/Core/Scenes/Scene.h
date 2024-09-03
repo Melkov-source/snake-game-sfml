@@ -1,22 +1,20 @@
 ﻿#ifndef SCENE_H
 #define SCENE_H
 
-#include <string>
 #include "../GameObject.h"
 
 class Scene
 {
 public:
-    std::string Name;
-
-    explicit Scene(std::string name);
+    Scene();
     virtual ~Scene();
 
     void AddGameObject(GameObject& gameObject);
 
+    virtual void Load();
     virtual void Initialize();
         
-    virtual void Update(const float deltaTime);
+    virtual void Update(float deltaTime);
     virtual void Render(sf::RenderTarget& renderTarget);
     virtual void Dispose();
 

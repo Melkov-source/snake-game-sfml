@@ -1,8 +1,9 @@
 ﻿#ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include "Game.h"
 #include "../Engine/Engine.h"
+
+class MenuScene;
 
 class Application
 {
@@ -20,9 +21,7 @@ public:
 
         EngineApi = new Engine(config);
 
-        Game game;
-
-        game.Start();
+        EngineApi->SceneManagement->LoadScene<MenuScene>();
 
         EngineApi->Run();
     }

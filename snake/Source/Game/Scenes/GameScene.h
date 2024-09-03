@@ -1,17 +1,14 @@
 ﻿#pragma once
 #include "../../Engine/Core/Scenes/Scene.h"
 
-class MenuScene final : public Scene
+class GameScene final : public Scene
 {
 public:
-    ~MenuScene() override;
+    ~GameScene() override;
     
     void Load() override;
     void Initialize() override;
-    void Update(const float deltaTime) override;
+    void Update(float deltaTime) override;
     void Render(sf::RenderTarget& renderTarget) override;
     void Dispose() override;
-
-   
 };
-
