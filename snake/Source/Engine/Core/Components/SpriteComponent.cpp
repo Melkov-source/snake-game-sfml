@@ -8,8 +8,7 @@ SpriteComponent::SpriteComponent(GameObject& gameObject): Component(gameObject)
 }
 
 SpriteComponent::~SpriteComponent()
-{
-}
+= default;
 
 void SpriteComponent::SetTexture(const sf::Texture& texture)
 {

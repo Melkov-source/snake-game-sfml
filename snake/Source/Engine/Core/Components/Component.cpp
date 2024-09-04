@@ -12,7 +12,6 @@ Component::~Component()
 
 void Component::Update(float deltaTime)
 {
-    std::cout << "update" << "\n";
 }
 void Component::Render(sf::RenderTarget& renderTarget)
 {
