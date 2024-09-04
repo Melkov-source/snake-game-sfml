@@ -31,6 +31,26 @@ void Player::Update(const float deltaTime)
         spriteComponent->SetTexture(*grassTexture);
     }
 
+    ImGui::BeginGroup();
+
+    const auto layer = GetComponent<LayerComponent>();
+    
+    if(ImGui::Button("-"))
+    {
+        layer->Order--;
+    }
+    
+    ImGui::SameLine();
+    ImGui::Text("Order: %i", layer->Order);
+    ImGui::SameLine();
+
+    if(ImGui::Button("+"))
+    {
+        layer->Order++;
+    }
+    
+    ImGui::EndGroup();
+
     if(ImGui::Button("Reset position"))
     {
        this->setPosition(0,0);

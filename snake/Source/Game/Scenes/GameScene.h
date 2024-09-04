@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "../../Engine/Core/Scenes/Scene.h"
+#include "../Debug/FPSCounter.h"
 
 class GameScene final : public Scene
 {
@@ -11,4 +12,8 @@ public:
     void Update(float deltaTime) override;
     void Render(sf::RenderTarget& renderTarget) override;
     void Dispose() override;
+
+private:
+    sf::Texture* _pGrassTexture;
+    FPSCounter _fpsCounter;
 };

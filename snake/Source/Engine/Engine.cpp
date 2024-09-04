@@ -2,7 +2,7 @@
 
 Engine::Engine(Config* config) : _config(config)
 {
-    this->SceneManagement = new SceneManager();
+    this->Scene = new SceneManager();
     
     this->Initialize();
 }
@@ -44,7 +44,7 @@ void Engine::Update()
 
     ImGui::SFML::Update(*this->_renderWindow, this->_deltaTime);
 
-    this->SceneManagement->Update(this->_deltaTime.asSeconds());
+    this->Scene->Update(this->_deltaTime.asSeconds());
 }
 
 void Engine::UpdateEvents()
@@ -63,10 +63,10 @@ void Engine::UpdateEvents()
 void Engine::Render()
 {
     this->_renderWindow->clear();
-
+    
+    this->Scene->Render(*this->_renderWindow);
+    
     ImGui::SFML::Render(*this->_renderWindow);
-
-    this->SceneManagement->Render(*this->_renderWindow);
     
     this->_renderWindow->display();
 }

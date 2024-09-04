@@ -21,7 +21,7 @@ void MenuScene::Initialize()
 
 void MenuScene::Update(const float deltaTime)
 {
-    const auto windowSize = Application::EngineApi->GetWindowSize();
+    const auto windowSize = Application::Core->GetWindowSize();
     constexpr auto flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse;
     const auto imGuiSize = ImVec2
     (
@@ -42,7 +42,7 @@ void MenuScene::Update(const float deltaTime)
     ImGui::SetCursorPos({imGuiSize.x / 2 - 150, imGuiSize.y / 2 - 10 - 25});
     if (ImGui::Button("PLAY", ImVec2(300, 50)))
     {
-        Application::EngineApi->SceneManagement->LoadScene<GameScene>();
+        Application::Core->Scene->LoadScene<GameScene>();
     }
 
     ImGui::SetCursorPos({imGuiSize.x / 2 - 150, imGuiSize.y / 2 + 60 - 25});

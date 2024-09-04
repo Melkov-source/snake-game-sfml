@@ -8,7 +8,7 @@ class MenuScene;
 class Application
 {
 public:
-    inline static Engine* EngineApi;
+    inline static Engine* Core;
     
     static void Start()
     {
@@ -19,18 +19,18 @@ public:
             false
         };
 
-        EngineApi = new Engine(config);
+        Core = new Engine(config);
 
-        EngineApi->SceneManagement->LoadScene<MenuScene>();
+        Core->Scene->LoadScene<MenuScene>();
 
-        EngineApi->Run();
+        Core->Run();
     }
 
     static void Close()
     {
-        EngineApi->Dispose();
+        Core->Dispose();
 
-        delete EngineApi;
+        delete Core;
     }
 };
 

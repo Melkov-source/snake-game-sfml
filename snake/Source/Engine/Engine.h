@@ -19,7 +19,7 @@ public:
         bool IsVerticalSync{false};
     };
 
-    SceneManager* SceneManagement;
+    SceneManager* Scene;
 
     explicit Engine(Config* config);
 
