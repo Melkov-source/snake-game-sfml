@@ -5,8 +5,6 @@ VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "snake-game", "./snake/snake-game.vcxproj", "{4F787DB9-30D5-4B90-85AB-7E040CCAA4A8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sandbox", "./sandbox/sandbox.vcxproj", "{A0E3E0FC-0F79-4D09-BCCD-1956DCBE0E1F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
