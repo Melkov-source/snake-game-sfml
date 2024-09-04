@@ -27,10 +27,10 @@ void SceneManager::LoadScene()
 
     Scene* result = std::move(pScene);
 
+    this->_currentScene = result;
+
     result->Load();
     result->Initialize();
-
-    this->_currentScene = result;
 }
 
 Scene* SceneManager::GetCurrentScene() const
