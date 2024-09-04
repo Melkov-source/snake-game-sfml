@@ -5,11 +5,13 @@
 #include <vector>
 
 #include "Components/Component.h"
+#include "Components/LayerComponent.h"
 #include "Components/SpriteComponent.h"
 
 class GameObject : public sf::Transformable
 {
 public:
+    GameObject();
     virtual ~GameObject();
     std::string Name;
 
@@ -29,7 +31,10 @@ private:
 };
 
 template SpriteComponent* GameObject::AddComponent<SpriteComponent>();
+template LayerComponent* GameObject::AddComponent<LayerComponent>();
+
 template SpriteComponent* GameObject::GetComponent<SpriteComponent>();
+template LayerComponent* GameObject::GetComponent<LayerComponent>();
 
 #endif
 

@@ -2,6 +2,18 @@
 
 #include <iostream>
 
+#include "../../Game/Application.h"
+
+GameObject::GameObject()
+{
+    const auto scene = Application::Core->Scene->GetCurrentScene();
+
+    if(scene != nullptr)
+    {
+        scene->AddGameObject(*this);
+    }
+}
+
 GameObject::~GameObject()
 {
 }
