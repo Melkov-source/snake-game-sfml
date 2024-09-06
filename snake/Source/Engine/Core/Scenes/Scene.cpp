@@ -8,15 +8,16 @@ Scene::Scene()
 = default;
 
 Scene::~Scene()
-= default;
+{
+    for (const auto gameObject : this->_gameObjects)
+    {
+        delete gameObject;
+    }
+}
 
 void Scene::AddGameObject(GameObject& gameObject)
 {
     this->_gameObjects.push_back(&gameObject);
-}
-
-void Scene::Load()
-{
 }
 
 void Scene::Initialize()
@@ -37,7 +38,8 @@ void Scene::Update(const float deltaTime)
 
 void Scene::Render(sf::RenderTarget& renderTarget)
 {
-    std::sort(this->_gameObjects.begin(), this->_gameObjects.end(), [](const auto& obj1, const auto& obj2) {
+    std::sort(this->_gameObjects.begin(), this->_gameObjects.end(), [](const auto& obj1, const auto& obj2)
+    {
         auto layerComp1 = obj1->GetComponent<LayerComponent>();
         auto layerComp2 = obj2->GetComponent<LayerComponent>();
 
@@ -51,13 +53,4 @@ void Scene::Render(sf::RenderTarget& renderTarget)
     {
         gameObject->Render(renderTarget);
     }
-}
-
-void Scene::Dispose()
-{
-    /*for (const auto gameObject : this->_gameObjects)
-    {
-        gameObject->Dispose();
-        delete gameObject;
-    }*/
 }

@@ -1,5 +1,8 @@
 ﻿#ifndef SCENE_MANAGER_H
 #define SCENE_MANAGER_H
+#include <stack>
+#include <vector>
+
 #include "SFML/Graphics/RenderTarget.hpp"
 
 #include "../../../Game/Scenes/MenuScene.h"
@@ -15,11 +18,12 @@ public:
     template<typename TScene>
     void LoadScene();
 
-    void Update(float deltaTime) const;
+    void Update(float deltaTime);
     void Render(sf::RenderTarget& renderTarget) const;
 
 private:
-    Scene* _currentScene = nullptr;
+    std::stack<Scene*> _scenes;
+    std::vector<Scene*> _deleteScenes;
 };
 
 template void SceneManager::LoadScene<MenuScene>();

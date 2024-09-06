@@ -11,5 +11,4 @@ public:
     
     void Update(float deltaTime) override;
     void Render(sf::RenderTarget& renderTarget) override;
-    void Dispose() override;
 };

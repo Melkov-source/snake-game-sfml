@@ -6,12 +6,8 @@ class MenuScene final : public Scene
 public:
     ~MenuScene() override;
     
-    void Load() override;
     void Initialize() override;
     void Update(const float deltaTime) override;
     void Render(sf::RenderTarget& renderTarget) override;
-    void Dispose() override;
-
-   
 };
 

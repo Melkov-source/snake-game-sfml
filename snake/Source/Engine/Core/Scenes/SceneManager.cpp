@@ -6,9 +6,11 @@
 template<typename TScene>
 void SceneManager::LoadScene()
 {
-    if(this->_currentScene != nullptr)
+    if(this->_scenes.empty() == false)
     {
-        this->_currentScene->Dispose();
+        const auto currentScene = _scenes.top();
+
+        this->_deleteScenes.push_back(currentScene);
     }
     
     const auto isScene = std::is_base_of_v<Scene, TScene>;
@@ -27,29 +29,43 @@ void SceneManager::LoadScene()
 
     Scene* result = std::move(pScene);
 
-    this->_currentScene = result;
+    this->_scenes.push(result);
 
-    result->Load();
     result->Initialize();
 }
 
 Scene* SceneManager::GetCurrentScene() const
 {
-    return this->_currentScene;
+    return this->_scenes.top();
 }
 
-void SceneManager::Update(const float deltaTime) const
+void SceneManager::Update(const float deltaTime)
 {
-    if(this->_currentScene != nullptr)
+    if(this->_scenes.empty())
     {
-        _currentScene->Update(deltaTime);
+        return;
     }
+
+    const auto currentScene = this->_scenes.top();
+
+    currentScene->Update(deltaTime);
+
+    for (const auto scene : this->_deleteScenes)
+    {
+        delete scene;
+    }
+
+    this->_deleteScenes.clear();
 }
 
 void SceneManager::Render(sf::RenderTarget& renderTarget) const
 {
-    if(this->_currentScene != nullptr)
+    if(this->_scenes.empty())
     {
-        _currentScene->Render(renderTarget);
+        return;
     }
+
+    const auto currentScene = this->_scenes.top();
+    
+    currentScene->Render(renderTarget);
 }

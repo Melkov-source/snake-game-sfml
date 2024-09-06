@@ -10,14 +10,11 @@ public:
     virtual ~Scene();
 
     void AddGameObject(GameObject& gameObject);
-
-    virtual void Load();
+    
     virtual void Initialize();
         
     virtual void Update(float deltaTime);
     virtual void Render(sf::RenderTarget& renderTarget);
-    virtual void Dispose();
-
 private:
     std::vector<GameObject*> _gameObjects;
 };

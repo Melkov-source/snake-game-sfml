@@ -7,7 +7,6 @@ Engine::Engine(Config* config) : _config(config)
     this->Initialize();
 }
 
-
 void Engine::Initialize()
 {
     this->InitializeRenderWindow();
@@ -77,7 +76,7 @@ sf::Vector2u Engine::GetWindowSize() const
 }
 
 
-void Engine::Dispose()
+void Engine::Close()
 {
     _renderWindow->close();
     

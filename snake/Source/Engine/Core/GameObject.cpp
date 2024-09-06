@@ -16,6 +16,10 @@ GameObject::GameObject()
 
 GameObject::~GameObject()
 {
+    for (const auto component : _components)
+    {
+        delete component;
+    }
 }
 
 template <typename TComponent>
@@ -82,15 +86,5 @@ void GameObject::Render(sf::RenderTarget& renderTarget)
             
             component->Render(renderTarget);
         }
-    }
-}
-
-void GameObject::Dispose()
-{
-    for (const auto component : _components)
-    {
-        component->Dispose();
-
-        delete component;
     }
 }

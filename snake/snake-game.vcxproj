@@ -115,6 +115,7 @@
     <ClCompile Include="Source\Game\Debug\FPSCounter.cpp" />
     <ClCompile Include="Source\Game\Player.cpp" />
     <ClCompile Include="Source\Game\Scenes\GameScene.cpp" />
+    <ClCompile Include="Source\Game\Scenes\Grass.cpp" />
     <ClCompile Include="Source\Game\Scenes\MenuScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +241,7 @@
     <ClInclude Include="Source\Game\Debug\FPSCounter.h" />
     <ClInclude Include="Source\Game\Player.h" />
     <ClInclude Include="Source\Game\Scenes\GameScene.h" />
+    <ClInclude Include="Source\Game\Scenes\Grass.h" />
     <ClInclude Include="Source\Game\Scenes\MenuScene.h" />
   </ItemGroup>
   <ItemGroup>

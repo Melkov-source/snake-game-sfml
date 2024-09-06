@@ -6,12 +6,7 @@
 
 MenuScene::~MenuScene()
 {
-    Scene();
-}
-
-void MenuScene::Load()
-{
-    Scene::Load();
+    
 }
 
 void MenuScene::Initialize()
@@ -59,9 +54,4 @@ void MenuScene::Update(const float deltaTime)
 void MenuScene::Render(sf::RenderTarget& renderTarget)
 {
     Scene::Render(renderTarget);
-}
-
-void MenuScene::Dispose()
-{
-    Scene::Dispose();
 }

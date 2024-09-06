@@ -18,8 +18,3 @@ void LayerComponent::Render(sf::RenderTarget& renderTarget)
 {
     Component::Render(renderTarget);
 }
-
-void LayerComponent::Dispose()
-{
-    Component::Dispose();
-}

@@ -35,7 +35,3 @@ void SpriteComponent::Render(sf::RenderTarget& renderTarget)
 {
     renderTarget.draw(this->_sprite);
 }
-
-void SpriteComponent::Dispose()
-{
-}

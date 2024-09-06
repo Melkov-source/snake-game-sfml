@@ -28,7 +28,7 @@ public:
 
     static void Close()
     {
-        Core->Dispose();
+        Core->Close();
 
         delete Core;
     }

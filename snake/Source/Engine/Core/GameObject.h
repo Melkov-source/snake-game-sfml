@@ -24,8 +24,6 @@ public:
     virtual void Start();
     virtual void Update(const float deltaTime);
     void Render(sf::RenderTarget& renderTarget);
-    virtual void Dispose();
-
 private:
     std::vector<Component*> _components;
 };

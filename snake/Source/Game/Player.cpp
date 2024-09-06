@@ -73,8 +73,3 @@ void Player::Update(const float deltaTime)
         }
     }
 }
-
-void Player::Dispose()
-{
-   
-}

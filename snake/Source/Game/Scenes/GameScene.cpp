@@ -1,48 +1,37 @@
 ﻿#include "GameScene.h"
 
+#include "Grass.h"
 #include "imgui.h"
 #include "../Application.h"
 #include "../Player.h"
 #include "../../Engine/Core/Assets/AssetsManager.h"
 
-GameScene::~GameScene()
+GameScene::GameScene()
 {
-    Scene();
+    
 }
 
-void GameScene::Load()
+GameScene::~GameScene()
 {
-    Scene::Load();
-    
-    this->_pGrassTexture = AssetsManager::LoadTexture("assets/textures/game-atlass.png", {0, 0, 64, 64});
 }
 
 void GameScene::Initialize()
 {
-    const unsigned int tileSize = 64;
+    constexpr unsigned int tileSize = 64;
     const sf::Vector2u windowSize = Application::Core->GetWindowSize();
 
-    const float scale = 0.4f;
-
-    const auto player = new Player();
-
-    const auto playerLayer = player->AddComponent<LayerComponent>();
-
-    playerLayer->Order = 1;
+    constexpr float scale = 0.4f;
 
     for (unsigned int x = 0; x < windowSize.x / scale; x += tileSize)
     {
         for (unsigned int y = 0; y < windowSize.y / scale; y += tileSize)
         {
-            const auto gameObject = new GameObject();
-            const auto sprite = gameObject->AddComponent<SpriteComponent>();
-            sprite->SetTexture(*this->_pGrassTexture);
-            gameObject->setPosition(sf::Vector2f(static_cast<float>(x * scale), static_cast<float>(y * scale)));
-            gameObject->setScale(sf::Vector2f(scale, scale));
+            const auto grass = new Grass();
+            
+            grass->setPosition(sf::Vector2f(x * scale, y * scale));
+            grass->setScale(sf::Vector2f(scale, scale));
         }
     }
-
-    
     
     Scene::Initialize();
 }
@@ -64,9 +53,4 @@ void GameScene::Update(float deltaTime)
 void GameScene::Render(sf::RenderTarget& renderTarget)
 {
     Scene::Render(renderTarget);
-}
-
-void GameScene::Dispose()
-{
-    Scene::Dispose();
 }

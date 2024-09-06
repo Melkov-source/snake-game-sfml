@@ -24,7 +24,7 @@ public:
     explicit Engine(Config* config);
 
     void Run();
-    void Dispose();
+    void Close();
 
     sf::Vector2u GetWindowSize() const;
 
