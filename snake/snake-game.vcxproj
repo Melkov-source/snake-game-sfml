@@ -128,7 +128,7 @@
     <ClInclude Include="lib\imgui\imstb_rectpack.h" />
     <ClInclude Include="lib\imgui\imstb_textedit.h" />
     <ClInclude Include="lib\imgui\imstb_truetype.h" />
-    <ClInclude Include="lib\json.hpp" />
+    <ClInclude Include="lib\utils\json.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Audio.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Audio\AlResource.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Audio\Export.hpp" />
@@ -229,6 +229,7 @@
     <ClInclude Include="lib\sfml\include\SFML\Window\WindowBase.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Window\WindowHandle.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Window\WindowStyle.hpp" />
+    <ClInclude Include="Source\Engine\Debug\Logger.h" />
     <ClInclude Include="Source\Engine\Core\Assets\AssetsManager.h" />
     <ClInclude Include="Source\Engine\Core\Components\Component.h" />
     <ClInclude Include="Source\Engine\Core\Components\LayerComponent.h" />

@@ -9,7 +9,7 @@ Scene::Scene()
 
 Scene::~Scene()
 {
-    for (const auto gameObject : this->_gameObjects)
+    for (const auto& gameObject : this->_gameObjects)
     {
         delete gameObject;
     }
@@ -22,7 +22,7 @@ void Scene::AddGameObject(GameObject& gameObject)
 
 void Scene::Initialize()
 {
-    for (const auto gameObject : this->_gameObjects)
+    for (const auto& gameObject : this->_gameObjects)
     {
         gameObject->Start();
     }
@@ -30,7 +30,7 @@ void Scene::Initialize()
 
 void Scene::Update(const float deltaTime)
 {
-    for (const auto gameObject : this->_gameObjects)
+    for (const auto& gameObject : this->_gameObjects)
     {
         gameObject->Update(deltaTime);
     }
@@ -49,7 +49,7 @@ void Scene::Render(sf::RenderTarget& renderTarget)
         return order1 < order2;
     });
 
-    for (const auto gameObject : this->_gameObjects)
+    for (const auto& gameObject : this->_gameObjects)
     {
         gameObject->Render(renderTarget);
     }

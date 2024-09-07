@@ -1,4 +1,5 @@
 ﻿#include "Engine.h"
+#include "Debug/Logger.h"
 
 Engine::Engine(Config* config) : _config(config)
 {

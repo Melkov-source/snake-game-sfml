@@ -1,7 +1,5 @@
 ﻿#include "GameObject.h"
 
-#include <iostream>
-
 #include "../../Game/Application.h"
 
 GameObject::GameObject()

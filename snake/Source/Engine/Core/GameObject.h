@@ -1,6 +1,7 @@
 ﻿#ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
 
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -11,9 +12,10 @@
 class GameObject : public sf::Transformable
 {
 public:
+	std::string Name;
+
     GameObject();
     virtual ~GameObject();
-    std::string Name;
 
     template <typename TComponent>
     TComponent* AddComponent();
