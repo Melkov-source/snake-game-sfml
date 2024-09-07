@@ -1,6 +1,7 @@
 ﻿#include "FPSCounter.h"
 
 #include "imgui.h"
+#include "../../Engine/Debug/StringFormatter.h"
 
 void FPSCounter::DrawFpsText(const float deltaTime)
 {
@@ -12,6 +13,8 @@ void FPSCounter::DrawFpsText(const float deltaTime)
         _elapsedTime = 0.0f;
         _frameCount = 0;
     }
+
+    const auto fps_text = StringFormatter::Combine("FPS: $", _fps);
     
-    ImGui::Text("FPS: %f", _fps);
+    ImGui::Text(fps_text.c_str());
 }
