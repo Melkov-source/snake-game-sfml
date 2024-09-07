@@ -38,16 +38,20 @@ void MenuScene::Update(const float deltaTime)
     ImGui::SetWindowFontScale(2.0f);
 
     ImGui::SetCursorPos({imGuiSize.x / 2 - 150, imGuiSize.y / 2 - 10 - 25});
+    ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.0f, 0.6f, 0.0f, 1.0f));
     if (ImGui::Button("PLAY", ImVec2(300, 50)))
     {
         Application::Core->Scene->LoadScene<GameScene>();
     }
+    ImGui::PopStyleColor();
 
+    ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.6f, 0.0f, 0.0f, 1.0f));
     ImGui::SetCursorPos({imGuiSize.x / 2 - 150, imGuiSize.y / 2 + 60 - 25});
     if (ImGui::Button("EXIT", ImVec2(300, 50)))
     {
         Application::Close();
     }
+    ImGui::PopStyleColor();
 
     ImGui::End();
     
