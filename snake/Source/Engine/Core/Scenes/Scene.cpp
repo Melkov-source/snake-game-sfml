@@ -15,11 +15,6 @@ Scene::~Scene()
     }
 }
 
-void Scene::AddGameObject(GameObject& gameObject)
-{
-    this->_gameObjects.push_back(&gameObject);
-}
-
 void Scene::Initialize()
 {
     for (const auto& gameObject : this->_gameObjects)
@@ -53,4 +48,9 @@ void Scene::Render(sf::RenderTarget& renderTarget)
     {
         gameObject->Render(renderTarget);
     }
+}
+
+void Scene::AddGameObject(GameObject& gameObject)
+{
+    this->_gameObjects.push_back(&gameObject);
 }

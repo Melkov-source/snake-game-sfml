@@ -10,18 +10,6 @@ SpriteComponent::SpriteComponent(GameObject& gameObject): Component(gameObject)
 SpriteComponent::~SpriteComponent()
 = default;
 
-void SpriteComponent::SetTexture(const sf::Texture& texture)
-{
-    this->_texture = texture;
-
-    this->_sprite.setTexture(texture);
-}
-
-void SpriteComponent::SetColor(const sf::Color& color)
-{
-    this->_sprite.setColor(color);
-}
-
 void SpriteComponent::Update(float deltaTime)
 {
     Component::Update(deltaTime);
@@ -34,4 +22,16 @@ void SpriteComponent::Update(float deltaTime)
 void SpriteComponent::Render(sf::RenderTarget& renderTarget)
 {
     renderTarget.draw(this->_sprite);
+}
+
+void SpriteComponent::SetTexture(const sf::Texture& texture)
+{
+    this->_texture = texture;
+
+    this->_sprite.setTexture(texture);
+}
+
+void SpriteComponent::SetColor(const sf::Color& color)
+{
+    this->_sprite.setColor(color);
 }

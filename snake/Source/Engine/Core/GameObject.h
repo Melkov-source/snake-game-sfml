@@ -17,15 +17,15 @@ public:
     GameObject(const std::string& name);
     virtual ~GameObject();
 
+    virtual void Start();
+    virtual void Update(const float deltaTime);
+    void Render(sf::RenderTarget& renderTarget);
+
     template <typename TComponent>
     TComponent* AddComponent();
 
     template<typename TComponent>
     TComponent* GetComponent();
-
-    virtual void Start();
-    virtual void Update(const float deltaTime);
-    void Render(sf::RenderTarget& renderTarget);
 private:
     std::vector<Component*> _components;
 };
