@@ -244,6 +244,7 @@
     <ClInclude Include="Source\Game\Scenes\GameScene.h" />
     <ClInclude Include="Source\Game\Scenes\Grass.h" />
     <ClInclude Include="Source\Game\Scenes\MenuScene.h" />
+    <ClInclude Include="Source\Engine\Debug\StringFormatter.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="build\assets\prefabs\grass.json" />

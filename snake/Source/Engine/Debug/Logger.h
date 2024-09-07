@@ -1,11 +1,10 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
-#include <iostream>
-#include <string>
-#include <sstream>
 #include <iomanip>
 #include <ctime>
+
+#include "StringFormatter.h"
 
 namespace Debug
 {
@@ -97,7 +96,7 @@ namespace Debug
 
 			std::string time = "[" + current_time + "] ";
 
-			std::cout << time << color_code << priority_tag_text << FormatMessage(message, parameters...) << DEFALUT_COLOR << "\n";
+			std::cout << time << color_code << priority_tag_text << StringFormatter::Combine(message, parameters...) << DEFALUT_COLOR << "\n";
 		}
 
 		static std::string GetCurrentTime()
@@ -120,57 +119,6 @@ namespace Debug
 				<< std::setfill('0') << std::setw(2) << seconds;
 
 			return formatted_time_stream.str();
-		}
-
-		template<typename... TParameters>
-		static std::string FormatMessage(const std::string& message, TParameters... parameters)
-		{
-			std::ostringstream string_stream;
-
-			size_t char_index = 0;
-			size_t parameter_index = 0;
-
-			while (char_index < message.length())
-			{
-				size_t placeholder_char_index = message.find("$", char_index);
-
-				if (placeholder_char_index == std::string::npos)
-				{
-					string_stream << message.substr(char_index);
-					break;
-				}
-
-				string_stream << message.substr(char_index, placeholder_char_index - char_index);
-
-				if (parameter_index < sizeof...(parameters))
-				{
-					string_stream << ParametersTupleToString(parameter_index, std::forward<TParameters>(parameters)...);
-
-					parameter_index++;
-				}
-
-				char_index = placeholder_char_index + 1;
-			}
-
-			return string_stream.str();
-		}
-
-		template <typename TParameter, typename... TParameters>
-		static std::string ParametersTupleToString(size_t index, TParameter parameter, TParameters... parameters)
-		{
-			if (index == 0)
-			{
-				std::ostringstream string_stream;
-				string_stream << parameter;
-				return string_stream.str();
-			}
-
-			return ParametersTupleToString(index - 1, parameters...);
-		}
-
-		static std::string ParametersTupleToString(size_t index)
-		{
-			return "";
 		}
 	};
 }
