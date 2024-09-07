@@ -2,7 +2,7 @@
 
 #include "../../Engine/Core/Assets/AssetsManager.h"
 
-Grass::Grass()
+Grass::Grass() : GameObject("Grass")
 {
     this->_sprite = this->AddComponent<SpriteComponent>();
     this->_layer = this->AddComponent<LayerComponent>();

@@ -3,15 +3,18 @@
 #include "GameScene.h"
 #include "imgui.h"
 #include "../Application.h"
+#include "../../Engine/Debug/Logger.h"
 
 MenuScene::~MenuScene()
 {
-    
+    Debug::Logger::Log("Menu: Disposed");
 }
 
 void MenuScene::Initialize()
 {
     Scene::Initialize();
+
+    Debug::Logger::Log("Menu: Loaded");
 }
 
 void MenuScene::Update(const float deltaTime)

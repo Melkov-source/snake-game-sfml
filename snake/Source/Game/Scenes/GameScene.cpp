@@ -5,6 +5,7 @@
 #include "../Application.h"
 #include "../Player.h"
 #include "../../Engine/Core/Assets/AssetsManager.h"
+#include "../../Engine/Debug/Logger.h"
 
 GameScene::GameScene()
 {
@@ -13,6 +14,7 @@ GameScene::GameScene()
 
 GameScene::~GameScene()
 {
+    Debug::Logger::Log("Game: Disposed");
 }
 
 void GameScene::Initialize()
@@ -34,6 +36,8 @@ void GameScene::Initialize()
     }
     
     Scene::Initialize();
+
+    Debug::Logger::Log("Game: Loaded");
 }
 
 void GameScene::Update(float deltaTime)

@@ -10,9 +10,15 @@ Engine::Engine(Config* config) : _config(config)
 
 void Engine::Initialize()
 {
+    Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::BLUE, "Engine: Start initialization\n");
+
     this->InitializeRenderWindow();
 
     ImGui::SFML::Init(*this->_renderWindow);
+
+    Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::GREEN, "Engine: Initialized success Dear ImGui\n");
+
+    Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::BLUE, "Engine: End initialization\n");
 }
 
 void Engine::InitializeRenderWindow()
@@ -25,10 +31,18 @@ void Engine::InitializeRenderWindow()
 
     this->_renderWindow->setFramerateLimit(this->_config->TargetFrameRate);
     this->_renderWindow->setVerticalSyncEnabled(this->_config->IsVerticalSync);
+
+    Debug::Logger::Log("Engine: Setup window size [x: $, y: $]", windowSize.x, windowSize.y);
+    Debug::Logger::Log("Engine: Setup framerate limit: [$]", this->_config->TargetFrameRate);
+    Debug::Logger::Log("Engine: Setup verical sync: [$]", this->_config->IsVerticalSync);
+
+    Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::GREEN, "Engine: Initialized success SFML Render Window");
 }
 
 void Engine::Run()
 {
+    Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::GREEN, "Engine: Run\n");
+
     while (this->_renderWindow->isOpen())
     {
         this->Update();
@@ -75,7 +89,6 @@ sf::Vector2u Engine::GetWindowSize() const
 {
     return this->_renderWindow->getSize();
 }
-
 
 void Engine::Close()
 {

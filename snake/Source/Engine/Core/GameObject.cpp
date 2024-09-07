@@ -1,8 +1,9 @@
 ﻿#include "GameObject.h"
 
 #include "../../Game/Application.h"
+#include "../Debug/Logger.h"
 
-GameObject::GameObject()
+GameObject::GameObject(const std::string& name) : Name(name)
 {
     const auto scene = Application::Core->Scene->GetCurrentScene();
 
@@ -14,7 +15,7 @@ GameObject::GameObject()
 
 GameObject::~GameObject()
 {
-    for (const auto component : _components)
+    for (const auto component : this->_components)
     {
         delete component;
     }
@@ -23,14 +24,22 @@ GameObject::~GameObject()
 template <typename TComponent>
 TComponent* GameObject::AddComponent()
 {
+    const std::type_info& type = typeid(TComponent);
     const auto isComponent = std::is_base_of_v<Component, TComponent>;
-    static_assert(isComponent, "TComponent must be a subclass of Component");
+
+    if (isComponent == false)
+    {
+        Debug::Logger::Error("$ must be a subclass of Component", type.name());
+
+        return nullptr;
+    }
 
     auto component = std::make_unique<TComponent>(*this);
     
     if (!component)
     {
-        std::cerr << "Failed to create component\n";
+        Debug::Logger::Warning("Failed to create component");
+
         return nullptr;
     }
 
@@ -78,7 +87,7 @@ void GameObject::Render(sf::RenderTarget& renderTarget)
         {
             if(!component)
             {
-                std::cout << "component for render is nullptr!\n";
+                Debug::Logger::Warning("Component for render is nullptr!");
                 continue;
             }
             

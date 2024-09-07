@@ -14,7 +14,7 @@ class GameObject : public sf::Transformable
 public:
 	std::string Name;
 
-    GameObject();
+    GameObject(const std::string& name);
     virtual ~GameObject();
 
     template <typename TComponent>
