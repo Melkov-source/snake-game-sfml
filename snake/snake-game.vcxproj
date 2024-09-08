@@ -27,7 +27,6 @@
     <ClCompile Include="lib\imgui\imgui_draw.cpp" />
     <ClCompile Include="lib\imgui\imgui_tables.cpp" />
     <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="Source\Engine\Core\Assets\AssetsManager.cpp" />
     <ClCompile Include="Source\Engine\Core\Components\Component.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Source\Engine\Core\Components\LayerComponent.cpp" />
