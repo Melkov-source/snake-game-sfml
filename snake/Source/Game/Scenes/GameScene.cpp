@@ -19,7 +19,7 @@ void GameScene::Initialize()
     constexpr unsigned int tileSize = 64;
     const sf::Vector2u windowSize = Application::Core->GetWindowSize();
 
-    constexpr float scaleFactor = 0.6f;
+    constexpr float scaleFactor = 0.4f;
 
     const auto scale = sf::Vector2f(scaleFactor, scaleFactor);
 

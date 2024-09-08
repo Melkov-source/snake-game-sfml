@@ -24,9 +24,11 @@ void Snake::Start()
 {
     SnakeElement* head = CreateSnakeElement(SnakeElement::HEAD);
     head->setPosition(sf::Vector2f(0, 0));
+    head->SetOrder(20);
+    
     _elements.push_back(head);
     
-    for (int i = 0; i < 10; ++i)
+    for (int i = 0; i < 150; ++i)
     {
         SnakeElement* body = CreateSnakeElement(SnakeElement::BODY);
 

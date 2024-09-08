@@ -17,6 +17,8 @@ public:
     
     SnakeElement(const sf::Texture& texture, SNAKE_ELEMENT type);
     ~SnakeElement() override;
+
+    void SetOrder(int32_t order);
 private:
     SpriteComponent* _sprite;
     LayerComponent* _layer;

@@ -15,3 +15,8 @@ SnakeElement::~SnakeElement()
 {
 
 }
+
+void SnakeElement::SetOrder(int32_t order)
+{
+    this->_layer->Order = order;
+}
