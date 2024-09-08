@@ -14,10 +14,6 @@ Snake::Snake() : GameObject("Snake")
 
 Snake::~Snake()
 {
-    for (const auto& element : _elements)
-    {
-        delete element;
-    }
 }
 
 void Snake::Start()
