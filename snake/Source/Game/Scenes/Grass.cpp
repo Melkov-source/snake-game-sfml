@@ -10,8 +10,6 @@ Grass::Grass() : GameObject("Grass")
 
 Grass::~Grass()
 {
-    delete this->_sprite;
-    delete this->_layer;
 }
 
 void Grass::Start()
