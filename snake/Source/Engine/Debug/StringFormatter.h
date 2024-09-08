@@ -18,7 +18,7 @@ public:
 
 		while (char_index < message.length())
 		{
-			size_t placeholder_char_index = message.find("$", char_index);
+			const size_t placeholder_char_index = message.find('$', char_index);
 
 			if (placeholder_char_index == std::string::npos)
 			{
@@ -43,7 +43,7 @@ public:
 
 private:
 	template <typename TParameter, typename... TParameters>
-	static std::string ParametersTupleToString(size_t index, TParameter parameter, TParameters... parameters)
+	static std::string ParametersTupleToString(const size_t index, TParameter parameter, TParameters... parameters)
 	{
 		if (index == 0)
 		{
