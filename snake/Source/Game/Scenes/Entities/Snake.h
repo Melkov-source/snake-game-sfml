@@ -1,7 +1,9 @@
 #pragma once
 
 #include "../../../Engine/Core/GameObject.h"
-#include "SnakeElement.h"
+
+const sf::IntRect SNAKE_HEAD { 0,0,64,64 };
+const sf::IntRect SNAKE_BODY { 64,0,64,64 };
 
 class Snake final : public GameObject
 {
@@ -15,14 +17,15 @@ public:
     void SetSpeed(float speed);
     float GetSpeed();
 
+    void AddMass(int32_t mass);
+
 private:
     sf::Texture* _snakeTexture;
-    std::vector<SnakeElement*> _elements;
-
-    SnakeElement* CreateSnakeElement(SnakeElement::SNAKE_ELEMENT type);
+    std::vector<GameObject*> _elements;
 
     float _speed;
     float _updateTimer; 
     float _updateInterval;
+    sf::Vector2f _direction;
 };
 

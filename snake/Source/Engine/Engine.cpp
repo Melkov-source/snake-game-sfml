@@ -67,12 +67,17 @@ void Engine::UpdateEvents()
     {
         ImGui::SFML::ProcessEvent(*this->_renderWindow, this->_event);
 
-        if(this->_event.type == sf::Event::Closed)
+        switch (this->_event.type)
         {
-            this->_renderWindow->close();
-        } else if(this->_event.type == sf::Event::KeyPressed)
-        {
-            this->KeyPressed = this->_event.key.code;
+            case sf::Event::Closed:
+                this->_renderWindow->close();
+                break;
+            case sf::Event::KeyPressed:
+                this->KeyPressed = this->_event.key.code;
+                break;
+            case sf::Event::KeyReleased:
+                this->KeyPressed = sf::Keyboard::Key::Unknown;
+                break;
         }
     }
 }

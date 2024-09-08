@@ -5,6 +5,9 @@
 
 SpriteComponent::SpriteComponent(GameObject& gameObject): Component(gameObject)
 {
+    this->_sprite.setPosition(this->_gameObject->getPosition());
+    this->_sprite.setRotation(this->_gameObject->getRotation());
+    this->_sprite.setScale(this->_gameObject->getScale());
 }
 
 SpriteComponent::~SpriteComponent()
@@ -12,15 +15,20 @@ SpriteComponent::~SpriteComponent()
 
 void SpriteComponent::Update(float deltaTime)
 {
-    Component::Update(deltaTime);
-    
     this->_sprite.setPosition(this->_gameObject->getPosition());
     this->_sprite.setRotation(this->_gameObject->getRotation());
     this->_sprite.setScale(this->_gameObject->getScale());
+    
+    Component::Update(deltaTime);
 }
 
 void SpriteComponent::Render(sf::RenderTarget& renderTarget)
 {
+    if(IsEnable == false)
+    {
+        return;
+    }
+    
     renderTarget.draw(this->_sprite);
 }
 

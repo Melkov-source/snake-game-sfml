@@ -9,7 +9,8 @@ class Component
 {
 public:
 	std::string Name;
-
+	bool IsEnable{true};
+	
 	explicit Component(GameObject& gameObject);
 	virtual ~Component();
 	

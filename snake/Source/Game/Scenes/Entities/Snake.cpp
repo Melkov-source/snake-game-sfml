@@ -1,6 +1,4 @@
-// Snake.cpp
 #include "Snake.h"
-#include "SnakeElement.h"
 #include "../../Application.h"
 
 Snake::Snake() : GameObject("Snake")
@@ -14,22 +12,24 @@ Snake::Snake() : GameObject("Snake")
 
 Snake::~Snake()
 {
+    Debug::Logger::Log("Snake destroyed");
 }
 
 void Snake::Start()
 {
-    SnakeElement* head = CreateSnakeElement(SnakeElement::HEAD);
-    head->setPosition(sf::Vector2f(0, 0));
-    head->SetOrder(20);
+    const auto head = new GameObject("SnakeHead");
+    
+    head->setPosition(head->getPosition());
+    head->setScale(getScale());
+
+    const auto sprite = head->AddComponent<SpriteComponent>();
+
+    sprite->SetTexture(*_snakeTexture);
+    sprite->SetTextureRect(SNAKE_HEAD);
+
+    head->AddComponent<LayerComponent>()->Order = 10;
     
     _elements.push_back(head);
-    
-    for (int i = 0; i < 150; ++i)
-    {
-        SnakeElement* body = CreateSnakeElement(SnakeElement::BODY);
-
-        _elements.push_back(body);
-    }
 }
 
 void Snake::Update(const float deltaTime)
@@ -43,31 +43,35 @@ void Snake::Update(const float deltaTime)
     
     _updateTimer = 0;
 
-    auto direction = sf::Vector2f(0, 0);
-
     const float step_size = this->getScale().x * 64;
 
     switch (Application::Core->KeyPressed)
     {
         case sf::Keyboard::Key::Left:
-            direction = sf::Vector2f(-step_size, 0);
+            this->_direction = sf::Vector2f(-step_size, 0);
             break;
         case sf::Keyboard::Key::Right:
-            direction = sf::Vector2f(step_size, 0);
+            this->_direction = sf::Vector2f(step_size, 0);
             break;
         case sf::Keyboard::Key::Up:
-            direction = sf::Vector2f(0, -step_size);
+            this->_direction = sf::Vector2f(0, -step_size);
             break;
         case sf::Keyboard::Key::Down:
-            direction = sf::Vector2f(0, step_size);
+            this->_direction = sf::Vector2f(0, step_size);
             break;
     }
 
-    for (size_t i = _elements.size() - 1; i > 0; --i) {
-        _elements[i]->setPosition(_elements[i - 1]->getPosition());
+    for (size_t index = _elements.size() - 1, target = 0; index > target; index--)
+    {
+        const auto element =  _elements[index];
+        const auto previous_element = _elements[index - 1];
+
+        const auto target_position = previous_element->getPosition();
+        
+        element->setPosition(target_position);
     }
 
-    _elements[0]->move(direction.x, direction.y);
+    _elements[0]->move(_direction.x, _direction.y);
 }
 
 void Snake::SetSpeed(float speed)
@@ -80,9 +84,24 @@ float Snake::GetSpeed()
     return _updateInterval;
 }
 
-SnakeElement* Snake::CreateSnakeElement(SnakeElement::SNAKE_ELEMENT type)
+void Snake::AddMass(const int32_t mass)
 {
-    SnakeElement* element = new SnakeElement(*_snakeTexture, type);
-    element->setScale(getScale());
-    return element;
+    for (int index = 0; index < mass; index++)
+    {
+        const auto body = new GameObject("SnakeBody");
+
+        _elements.push_back(body);
+
+        const auto previous_element = _elements[_elements.size() - 2];
+        
+        body->setPosition(previous_element->getPosition());
+        body->setScale(getScale());
+
+        const auto sprite = body->AddComponent<SpriteComponent>();
+
+        sprite->SetTexture(*_snakeTexture);
+        sprite->SetTextureRect(SNAKE_BODY);
+
+        body->AddComponent<LayerComponent>()->Order = 10;
+    }
 }

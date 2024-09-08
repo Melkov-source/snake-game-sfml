@@ -61,6 +61,12 @@ void GameScene::Update(float deltaTime)
         
         this->_snake->SetSpeed(new_speed);
     }
+
+    if(ImGui::Button("Add mass"))
+    {
+        _snake->AddMass(1);
+    }
+    
     ImGui::End();
 }
 

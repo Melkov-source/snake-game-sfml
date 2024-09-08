@@ -27,7 +27,6 @@
     <ClCompile Include="lib\imgui\imgui_draw.cpp" />
     <ClCompile Include="lib\imgui\imgui_tables.cpp" />
     <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="Source\Game\Scenes\Entities\SnakeElement.cpp" />
     <ClCompile Include="Source\Game\Scenes\Entities\Snake.cpp" />
     <ClCompile Include="Source\Engine\Core\Components\Component.cpp" />
     <ClCompile Include="main.cpp" />
@@ -229,7 +228,6 @@
     <ClInclude Include="lib\sfml\include\SFML\Window\WindowBase.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Window\WindowHandle.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Window\WindowStyle.hpp" />
-    <ClInclude Include="Source\Game\Scenes\Entities\SnakeElement.h" />
     <ClInclude Include="Source\Engine\Debug\Logger.h" />
     <ClInclude Include="Source\Engine\Core\Assets\AssetsManager.h" />
     <ClInclude Include="Source\Engine\Core\Components\Component.h" />
