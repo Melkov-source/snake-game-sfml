@@ -7,24 +7,22 @@
 class AssetsManager
 {
 public:
-    static sf::Texture* LoadTexture(const std::string& path, const sf::IntRect& area = sf::IntRect())
+    static sf::Texture* LoadTexture(const std::string& path)
     {
-        std::string key = path + std::to_string(area.left) + std::to_string(area.top) + std::to_string(area.width) + std::to_string(area.height);
-
-        if (_textures.count(key))
+        if (_textures.count(path))
         {
-            return _textures[key];
+            return _textures[path];
         }
 
         const auto texture = new sf::Texture();
 
-        if (!texture->loadFromFile(path, area))
+        if (!texture->loadFromFile(path))
         {
             std::cout << "Texture not loaded for target path: " << path << "\n";
             return nullptr;
         }
 
-        _textures[key] = texture;
+        _textures[path] = texture;
 
         return texture;
     }

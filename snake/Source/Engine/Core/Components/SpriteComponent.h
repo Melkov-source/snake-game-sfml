@@ -11,6 +11,7 @@ public:
     void Render(sf::RenderTarget& renderTarget) override;
 
     void SetTexture(const sf::Texture& texture);
+    void SetTextureRect(const sf::IntRect area);
     void SetColor(const sf::Color& color);
 private:
     sf::Sprite _sprite;

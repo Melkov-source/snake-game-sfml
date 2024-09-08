@@ -31,6 +31,11 @@ void SpriteComponent::SetTexture(const sf::Texture& texture)
     this->_sprite.setTexture(texture);
 }
 
+void SpriteComponent::SetTextureRect(const sf::IntRect area)
+{
+    this->_sprite.setTextureRect(area);
+}
+
 void SpriteComponent::SetColor(const sf::Color& color)
 {
     this->_sprite.setColor(color);
