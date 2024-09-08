@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "../../Engine/Core/Scenes/Scene.h"
 #include "../Debug/FPSCounter.h"
+#include "Entities/Snake.h"
 
 class GameScene final : public Scene
 {
@@ -14,4 +15,6 @@ public:
 private:
     sf::Texture* _pGrassTexture;
     FPSCounter _fpsCounter;
+
+    Snake* _snake;
 };

@@ -6,7 +6,10 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
 #include "imgui-SFML.h"
+#include "imgui.h"
 #include "Core/Scenes/SceneManager.h"
+#include "Core/Assets/AssetsManager.h"
+#include "Debug/Logger.h"
 
 class Engine
 {
@@ -18,6 +21,8 @@ public:
         unsigned int TargetFrameRate{60};
         bool IsVerticalSync{false};
     };
+
+    sf::Keyboard::Key KeyPressed;
 
     SceneManager* Scene;
 

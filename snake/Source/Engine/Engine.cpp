@@ -70,6 +70,9 @@ void Engine::UpdateEvents()
         if(this->_event.type == sf::Event::Closed)
         {
             this->_renderWindow->close();
+        } else if(this->_event.type == sf::Event::KeyPressed)
+        {
+            this->KeyPressed = this->_event.key.code;
         }
     }
 }

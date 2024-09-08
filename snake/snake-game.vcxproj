@@ -27,6 +27,8 @@
     <ClCompile Include="lib\imgui\imgui_draw.cpp" />
     <ClCompile Include="lib\imgui\imgui_tables.cpp" />
     <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Source\Game\Scenes\Entities\SnakeElement.cpp" />
+    <ClCompile Include="Source\Game\Scenes\Entities\Snake.cpp" />
     <ClCompile Include="Source\Engine\Core\Components\Component.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Source\Engine\Core\Components\LayerComponent.cpp" />
@@ -112,9 +114,8 @@
     <ClCompile Include="Source\Engine\Core\Scenes\SceneManager.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
     <ClCompile Include="Source\Game\Debug\FPSCounter.cpp" />
-    <ClCompile Include="Source\Game\Player.cpp" />
     <ClCompile Include="Source\Game\Scenes\GameScene.cpp" />
-    <ClCompile Include="Source\Game\Scenes\Grass.cpp" />
+    <ClCompile Include="Source\Game\Scenes\Entities\Grass.cpp" />
     <ClCompile Include="Source\Game\Scenes\MenuScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +229,7 @@
     <ClInclude Include="lib\sfml\include\SFML\Window\WindowBase.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Window\WindowHandle.hpp" />
     <ClInclude Include="lib\sfml\include\SFML\Window\WindowStyle.hpp" />
+    <ClInclude Include="Source\Game\Scenes\Entities\SnakeElement.h" />
     <ClInclude Include="Source\Engine\Debug\Logger.h" />
     <ClInclude Include="Source\Engine\Core\Assets\AssetsManager.h" />
     <ClInclude Include="Source\Engine\Core\Components\Component.h" />
@@ -239,9 +241,9 @@
     <ClInclude Include="Source\Engine\Engine.h" />
     <ClInclude Include="Source\Game\Application.h" />
     <ClInclude Include="Source\Game\Debug\FPSCounter.h" />
-    <ClInclude Include="Source\Game\Player.h" />
+    <ClInclude Include="Source\Game\Scenes\Entities\Snake.h" />
     <ClInclude Include="Source\Game\Scenes\GameScene.h" />
-    <ClInclude Include="Source\Game\Scenes\Grass.h" />
+    <ClInclude Include="Source\Game\Scenes\Entities\Grass.h" />
     <ClInclude Include="Source\Game\Scenes\MenuScene.h" />
     <ClInclude Include="Source\Engine\Debug\StringFormatter.h" />
   </ItemGroup>
