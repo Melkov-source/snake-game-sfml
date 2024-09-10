@@ -37,15 +37,6 @@ void Snake::Start()
 
 void Snake::Update(const float deltaTime)
 {
-    _updateTimer += deltaTime;
-
-    if (_updateTimer < _updateInterval)
-    {
-        return;
-    }
-    
-    _updateTimer = 0;
-
     const float step_size = this->getScale().x * 64;
 
     if (Application::Core->Event.type == sf::Event::KeyPressed)
@@ -66,6 +57,17 @@ void Snake::Update(const float deltaTime)
                 break;
         }
     }
+
+    _updateTimer += deltaTime;
+
+    if (_updateTimer < _updateInterval)
+    {
+        return;
+    }
+    
+    _updateTimer = 0;
+
+    
 
     for (size_t index = _elements.size() - 1, target = 0; index > target; index--)
     {
