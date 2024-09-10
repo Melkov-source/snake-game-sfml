@@ -3,18 +3,18 @@
 
 Engine::Engine(Config* config) : _config(config)
 {
-    this->Scene = new SceneManager();
+    Scene = new SceneManager();
     
-    this->Initialize();
+    Initialize();
 }
 
 void Engine::Initialize()
 {
     Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::BLUE, "Engine: Start initialization\n");
 
-    this->InitializeRenderWindow();
+    InitializeRenderWindow();
 
-    ImGui::SFML::Init(*this->_renderWindow);
+    ImGui::SFML::Init(*_renderWindow);
 
     Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::GREEN, "Engine: Initialized success Dear ImGui\n");
 
@@ -23,18 +23,18 @@ void Engine::Initialize()
 
 void Engine::InitializeRenderWindow()
 {
-    const auto windowSize = this->_config->WindowSize;
+    const auto windowSize = _config->WindowSize;
 
     const sf::VideoMode videoMode(windowSize.x, windowSize.y);
 
-    this->_renderWindow = new sf::RenderWindow(videoMode, this->_config->Title);
+    _renderWindow = new sf::RenderWindow(videoMode, _config->Title);
 
-    this->_renderWindow->setFramerateLimit(this->_config->TargetFrameRate);
-    this->_renderWindow->setVerticalSyncEnabled(this->_config->IsVerticalSync);
+    _renderWindow->setFramerateLimit(_config->TargetFrameRate);
+    _renderWindow->setVerticalSyncEnabled(_config->IsVerticalSync);
 
     Debug::Logger::Log("Engine: Setup window size [x: $, y: $]", windowSize.x, windowSize.y);
-    Debug::Logger::Log("Engine: Setup framerate limit: [$]", this->_config->TargetFrameRate);
-    Debug::Logger::Log("Engine: Setup verical sync: [$]", this->_config->IsVerticalSync);
+    Debug::Logger::Log("Engine: Setup framerate limit: [$]", _config->TargetFrameRate);
+    Debug::Logger::Log("Engine: Setup verical sync: [$]", _config->IsVerticalSync);
 
     Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::GREEN, "Engine: Initialized success SFML Render Window");
 }
@@ -43,40 +43,34 @@ void Engine::Run()
 {
     Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::GREEN, "Engine: Run\n");
 
-    while (this->_renderWindow->isOpen())
+    while (_renderWindow->isOpen())
     {
-        this->Update();
-        this->Render();
+        Update();
+        Render();
     }
 }
 
 void Engine::Update()
 {
-    this->_deltaTime = this->_deltaTimeClock.restart();
+    _deltaTime = _deltaTimeClock.restart();
 
-    this->UpdateEvents();
+    UpdateEvents();
 
-    ImGui::SFML::Update(*this->_renderWindow, this->_deltaTime);
+    ImGui::SFML::Update(*_renderWindow, _deltaTime);
 
-    this->Scene->Update(this->_deltaTime.asSeconds());
+    Scene->Update(_deltaTime.asSeconds());
 }
 
 void Engine::UpdateEvents()
 {
-    while (this->_renderWindow->pollEvent(this->_event))
+    while (_renderWindow->pollEvent(Event))
     {
-        ImGui::SFML::ProcessEvent(*this->_renderWindow, this->_event);
+        ImGui::SFML::ProcessEvent(*_renderWindow, Event);
 
-        switch (this->_event.type)
+        switch (Event.type)
         {
             case sf::Event::Closed:
-                this->_renderWindow->close();
-                break;
-            case sf::Event::KeyPressed:
-                this->KeyPressed = this->_event.key.code;
-                break;
-            case sf::Event::KeyReleased:
-                this->KeyPressed = sf::Keyboard::Key::Unknown;
+                _renderWindow->close();
                 break;
         }
     }
@@ -84,18 +78,18 @@ void Engine::UpdateEvents()
 
 void Engine::Render()
 {
-    this->_renderWindow->clear();
+    _renderWindow->clear();
     
-    this->Scene->Render(*this->_renderWindow);
+    Scene->Render(*_renderWindow);
     
-    ImGui::SFML::Render(*this->_renderWindow);
+    ImGui::SFML::Render(*_renderWindow);
     
-    this->_renderWindow->display();
+    _renderWindow->display();
 }
 
 sf::Vector2u Engine::GetWindowSize() const
 {
-    return this->_renderWindow->getSize();
+    return _renderWindow->getSize();
 }
 
 void Engine::Close()

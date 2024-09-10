@@ -27,6 +27,7 @@
     <ClCompile Include="lib\imgui\imgui_draw.cpp" />
     <ClCompile Include="lib\imgui\imgui_tables.cpp" />
     <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Source\Game\Scenes\Entities\Map.cpp" />
     <ClCompile Include="Source\Game\Scenes\Entities\Snake.cpp" />
     <ClCompile Include="Source\Engine\Core\Components\Component.cpp" />
     <ClCompile Include="main.cpp" />
@@ -239,6 +240,7 @@
     <ClInclude Include="Source\Engine\Engine.h" />
     <ClInclude Include="Source\Game\Application.h" />
     <ClInclude Include="Source\Game\Debug\FPSCounter.h" />
+    <ClInclude Include="Source\Game\Scenes\Entities\Map.h" />
     <ClInclude Include="Source\Game\Scenes\Entities\Snake.h" />
     <ClInclude Include="Source\Game\Scenes\GameScene.h" />
     <ClInclude Include="Source\Game\Scenes\Entities\Grass.h" />

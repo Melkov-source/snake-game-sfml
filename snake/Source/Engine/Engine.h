@@ -22,8 +22,7 @@ public:
         bool IsVerticalSync{false};
     };
 
-    sf::Keyboard::Key KeyPressed;
-
+    sf::Event Event;
     SceneManager* Scene;
 
     explicit Engine(Config* config);
@@ -36,7 +35,7 @@ public:
 private:
     Config* _config;
     sf::RenderWindow* _renderWindow;
-    sf::Event _event;
+    
     sf::Clock _deltaTimeClock;
     sf::Time _deltaTime;
     

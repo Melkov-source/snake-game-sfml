@@ -7,7 +7,7 @@ Snake::Snake() : GameObject("Snake")
 
     _speed = 64.0f;
     _updateTimer = 0.0f;
-    _updateInterval = 0.2f;
+    _updateInterval = 0.1f;
 }
 
 Snake::~Snake()
@@ -19,17 +19,20 @@ void Snake::Start()
 {
     const auto head = new GameObject("SnakeHead");
     
-    head->setPosition(head->getPosition());
     head->setScale(getScale());
+
+    _direction = {this->getScale().x * 64, 0};
 
     const auto sprite = head->AddComponent<SpriteComponent>();
 
     sprite->SetTexture(*_snakeTexture);
     sprite->SetTextureRect(SNAKE_HEAD);
 
-    head->AddComponent<LayerComponent>()->Order = 10;
+    head->AddComponent<LayerComponent>()->Order = 20;
     
     _elements.push_back(head);
+
+    AddMass(2);
 }
 
 void Snake::Update(const float deltaTime)
@@ -45,20 +48,23 @@ void Snake::Update(const float deltaTime)
 
     const float step_size = this->getScale().x * 64;
 
-    switch (Application::Core->KeyPressed)
+    if (Application::Core->Event.type == sf::Event::KeyPressed)
     {
-        case sf::Keyboard::Key::Left:
-            this->_direction = sf::Vector2f(-step_size, 0);
-            break;
-        case sf::Keyboard::Key::Right:
-            this->_direction = sf::Vector2f(step_size, 0);
-            break;
-        case sf::Keyboard::Key::Up:
-            this->_direction = sf::Vector2f(0, -step_size);
-            break;
-        case sf::Keyboard::Key::Down:
-            this->_direction = sf::Vector2f(0, step_size);
-            break;
+        switch (Application::Core->Event.key.code)
+        {
+            case sf::Keyboard::Key::Left:
+                this->_direction = sf::Vector2f(-step_size, 0);
+                break;
+            case sf::Keyboard::Key::Right:
+                this->_direction = sf::Vector2f(step_size, 0);
+                break;
+            case sf::Keyboard::Key::Up:
+                this->_direction = sf::Vector2f(0, -step_size);
+                break;
+            case sf::Keyboard::Key::Down:
+                this->_direction = sf::Vector2f(0, step_size);
+                break;
+        }
     }
 
     for (size_t index = _elements.size() - 1, target = 0; index > target; index--)
@@ -104,4 +110,9 @@ void Snake::AddMass(const int32_t mass)
 
         body->AddComponent<LayerComponent>()->Order = 10;
     }
+}
+
+void Snake::SetPositionHead(const sf::Vector2f& position)
+{
+    _elements[0]->setPosition(position);
 }

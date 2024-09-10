@@ -18,6 +18,7 @@ public:
     float GetSpeed();
 
     void AddMass(int32_t mass);
+    void SetPositionHead(const sf::Vector2f& position);
 
 private:
     sf::Texture* _snakeTexture;
