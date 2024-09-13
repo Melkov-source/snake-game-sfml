@@ -1,3 +1,9 @@
+## Ignored
+
+# Directories
+/Build/
+/Bin/
+
 # Compiled Object files
 *.slo
 *.lo
@@ -13,41 +19,42 @@
 *.dylib
 *.dll
 
+# Compiled Static libraries
+*.a
+*.lib
+
 # Executables
 *.exe
 *.out
 *.app
-
-# Compiled Static libraries
-*.a
-*.lib
 
 # CMake
 CMakeFiles/
 CMakeCache.txt
 CMakeScripts/
 CMakeSettings.json
-
-# VS Code
-.vscode/
+Makefile
 
 # Visual Studio
+.vscode/
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters
+*.sln
+/.vs/
+/.vscode/
+/.idea/
 *.sdf
 *.opensdf
 *.suo
 *.user
 *.filters
 
-# Xcode
-*.xcworkspace/
-*.xcodeproj
-
 # Other
-/.vs/
-/.vscode/
-/.idea/
 .DS_Store
 Thumbs.db
+*.log
 
-# Folders
-*/build/
+
+### No Ignored
+!/Vendor/**
