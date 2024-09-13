@@ -5,9 +5,11 @@
 #include <string>
 #include <vector>
 
-#include "Components/Component.h"
-#include "Components/LayerComponent.h"
-#include "Components/SpriteComponent.h"
+#include "Core/Components/Component.h"
+#include "Core/Components/LayerComponent.h"
+#include "Core/Components/SpriteComponent.h"
+
+#include "Debug/Logger.h"
 
 class GameObject : public sf::Transformable
 {
@@ -21,7 +23,7 @@ public:
     virtual void Update(const float deltaTime);
     void Render(sf::RenderTarget& renderTarget);
 
-    template <typename TComponent>
+    template<typename TComponent>
     TComponent* AddComponent();
 
     template<typename TComponent>
@@ -30,11 +32,11 @@ private:
     std::vector<Component*> _components;
 };
 
-template SpriteComponent* GameObject::AddComponent<SpriteComponent>();
 template LayerComponent* GameObject::AddComponent<LayerComponent>();
-
-template SpriteComponent* GameObject::GetComponent<SpriteComponent>();
 template LayerComponent* GameObject::GetComponent<LayerComponent>();
+
+template SpriteComponent* GameObject::AddComponent<SpriteComponent>();
+template SpriteComponent* GameObject::GetComponent<SpriteComponent>();
 
 #endif
 

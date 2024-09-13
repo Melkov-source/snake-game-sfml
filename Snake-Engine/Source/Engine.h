@@ -5,8 +5,8 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
 
-#include "imgui-SFML.h"
 #include "imgui.h"
+#include "imgui-SFML.h"
 
 #include "Core/Scenes/SceneManager.h"
 #include "Core/Assets/AssetsManager.h"
@@ -24,7 +24,6 @@ public:
     };
 
     sf::Event Event;
-    SceneManager* Scene;
 
     explicit Engine(Config* config);
 

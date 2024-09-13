@@ -10,27 +10,41 @@ project "Snake-Game"
    includedirs
    {
       "Source",
-
-	  -- Include Core
-	  "../Snake-Engine/Source"
+	  
+	  "../Snake-Engine/Source",
+	  "../Snake-Engine/Source/Plugins/ImGui",
+	  
+	  "../Vendor/Library/SFML/include"
    }
 
    links
    {
-      "../Snake-Engine"
+      "Snake-Engine"
+   }
+ 
+   libdirs
+   {
+		"../Vendor/Library/SFML/lib"
    }
 
    targetdir ("../Bin/" .. OutputDir .. "/%{prj.name}")
    objdir ("../Bin/Intermediates/" .. OutputDir .. "/%{prj.name}")
+   
+   postbuildcommands {
+	   '{COPY} "%{wks.location}Vendor\\Library\\SFML\\bin\\*.dll" "%{cfg.targetdir}"',
+	   '{COPY} "%{cfg.projectdir}Assets" "%{cfg.targetdir}\\Assets"'
+   }
+
 
    filter "system:windows"
        systemversion "latest"
        defines { "WINDOWS" }
 
    filter "configurations:Debug"
-       defines { "DEBUG" }
+       --defines { "DEBUG" }
        runtime "Debug"
        symbols "On"
+	   
 
    filter "configurations:Release"
        defines { "RELEASE" }

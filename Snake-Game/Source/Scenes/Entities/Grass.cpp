@@ -1,7 +1,5 @@
 ﻿#include "Grass.h"
 
-#include "../../../Engine/Core/Assets/AssetsManager.h"
-
 Grass::Grass() : GameObject("Grass")
 {
     this->_sprite = this->AddComponent<SpriteComponent>();
@@ -16,7 +14,7 @@ void Grass::Start()
 {
     this->_layer->Order = 0;
 
-    this->_textureAtlas = AssetsManager::LoadTexture("assets/textures/game-atlass.png");
+    this->_textureAtlas = AssetsManager::LoadTexture("Assets/textures/game-atlass.png");
 
     this->_sprite->SetTexture(*this->_textureAtlas);
 

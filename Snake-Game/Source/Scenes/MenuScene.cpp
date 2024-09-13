@@ -1,9 +1,6 @@
 ﻿#include "MenuScene.h"
-
 #include "GameScene.h"
-#include "imgui.h"
-#include "../Game.cpp"
-#include "../../Engine/Debug/Logger.h"
+
 
 MenuScene::~MenuScene()
 {
@@ -19,7 +16,7 @@ void MenuScene::Initialize()
 
 void MenuScene::Update(const float deltaTime)
 {
-    const auto windowSize = Application::Core->GetWindowSize();
+    const auto windowSize = sf::Vector2u{ 1280, 720 };
     constexpr auto flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse;
     const auto imGuiSize = ImVec2
     (
@@ -41,7 +38,7 @@ void MenuScene::Update(const float deltaTime)
     ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.0f, 0.6f, 0.0f, 1.0f));
     if (ImGui::Button("PLAY", ImVec2(300, 50)))
     {
-        Application::Core->Scene->LoadScene<GameScene>();
+        SceneManager::LoadScene<GameScene>();
     }
     ImGui::PopStyleColor();
 
@@ -49,7 +46,7 @@ void MenuScene::Update(const float deltaTime)
     ImGui::SetCursorPos({imGuiSize.x / 2 - 150, imGuiSize.y / 2 + 60 - 25});
     if (ImGui::Button("EXIT", ImVec2(300, 50)))
     {
-        Application::Close();
+        //GetEngine()->Close();
     }
     ImGui::PopStyleColor();
 

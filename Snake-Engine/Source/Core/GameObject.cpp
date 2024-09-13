@@ -1,7 +1,5 @@
 ﻿#include "GameObject.h"
-
-#include "../Debug/Logger.h"
-#include "Scenes/SceneManager.h"
+#include "Core/Scenes/SceneManager.h"
 
 GameObject::GameObject(const std::string& name) : Name(name)
 {

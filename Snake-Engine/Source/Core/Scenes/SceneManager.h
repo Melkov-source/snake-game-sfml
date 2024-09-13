@@ -5,36 +5,33 @@
 #include <stack>
 #include <vector>
 
-#include "SFML/Graphics/RenderTarget.hpp"
-
 #include "Scene.h"
 
-class Scene;
 
 class SceneManager
 {
 public:
     static Scene* GetCurrentScene()
     {
-        return this->_scenes.top();
+        return _scenes.top();
     }
 
     template<typename TScene>
     static void LoadScene()
     {
-        if(_scenes.empty() == false)
+        if (_scenes.empty() == false)
         {
             const auto currentScene = _scenes.top();
 
             _deleteScenes.push_back(currentScene);
         }
-    
+
         const auto isScene = std::is_base_of_v<Scene, TScene>;
         static_assert(isScene, "TScene no subclass for Scene");
 
         auto upScene = std::make_unique<TScene>();
 
-        if(!upScene)
+        if (!upScene)
         {
             std::cerr << "Failed to create scene\n";
             return;
@@ -82,6 +79,6 @@ public:
     }
 
 private:
-    static std::stack<Scene*> _scenes;
-    static std::vector<Scene*> _deleteScenes;
+    inline static std::stack<Scene*> _scenes;
+    inline static std::vector<Scene*> _deleteScenes;
 };

@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include "../../Engine/Core/Scenes/Scene.h"
-#include "../Debug/FPSCounter.h"
+#include "Core/Scenes/SceneManager.h"
+#include "Debug/FPSCounter.h"
 #include "Entities/Snake.h"
 
 class Map;

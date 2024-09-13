@@ -1,5 +1,5 @@
 #include "Map.h"
-#include "../../../Engine/Debug/Logger.h"
+#include "Debug/Logger.h"
 
 Map::Map()
 = default;

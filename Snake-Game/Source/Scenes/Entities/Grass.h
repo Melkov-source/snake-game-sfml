@@ -1,5 +1,6 @@
 ﻿#pragma once
-#include "../../../Engine/Core/GameObject.h"
+#include "Core/GameObject.h"
+#include "Core/Assets/AssetsManager.h"
 
 const sf::IntRect GRASS_DEFAULT { 0,0,64,64 };
 const sf::IntRect GRASS_TRAMPLED { 0,64,64,64 };

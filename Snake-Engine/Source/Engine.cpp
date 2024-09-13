@@ -1,10 +1,7 @@
 ﻿#include "Engine.h"
-#include "Debug/Logger.h"
 
 Engine::Engine(Config* config) : _config(config)
 {
-    Scene = new SceneManager();
-    
     Initialize();
 }
 
@@ -58,7 +55,7 @@ void Engine::Update()
 
     ImGui::SFML::Update(*_renderWindow, _deltaTime);
 
-    Scene->Update(_deltaTime.asSeconds());
+    SceneManager::Update(_deltaTime.asSeconds());
 }
 
 void Engine::UpdateEvents()
@@ -80,7 +77,7 @@ void Engine::Render()
 {
     _renderWindow->clear();
     
-    Scene->Render(*_renderWindow);
+    SceneManager::Render(*_renderWindow);
     
     ImGui::SFML::Render(*_renderWindow);
     

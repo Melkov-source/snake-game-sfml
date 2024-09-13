@@ -1,7 +1,7 @@
 ﻿#include "FPSCounter.h"
 
 #include "imgui.h"
-#include "../../Engine/Debug/StringFormatter.h"
+#include "Debug/StringFormatter.h"
 
 void FPSCounter::DrawFpsText(const float deltaTime)
 {

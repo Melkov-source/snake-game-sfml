@@ -1,9 +1,8 @@
 #include "Snake.h"
-#include "../../Game.cpp"
 
 Snake::Snake() : GameObject("Snake")
 {
-    _snakeTexture = AssetsManager::LoadTexture("assets/textures/snake-atlass.png");
+    _snakeTexture = AssetsManager::LoadTexture("Assets/textures/snake-atlass.png");
 
     _speed = 64.0f;
     _updateTimer = 0.0f;
@@ -39,9 +38,9 @@ void Snake::Update(const float deltaTime)
 {
     const float step_size = this->getScale().x * 64;
 
-    if (Application::Core->Event.type == sf::Event::KeyPressed)
+    /*if (GetEngine()->Event.type == sf::Event::KeyPressed)
     {
-        switch (Application::Core->Event.key.code)
+        switch (GetEngine()->Event.key.code)
         {
             case sf::Keyboard::Key::Left:
                 this->_direction = sf::Vector2f(-step_size, 0);
@@ -56,7 +55,7 @@ void Snake::Update(const float deltaTime)
                 this->_direction = sf::Vector2f(0, step_size);
                 break;
         }
-    }
+    }*/
 
     _updateTimer += deltaTime;
 

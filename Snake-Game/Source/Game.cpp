@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "Engine.h"
-#include "Scenes/MenuScene.h"
+#include <Scenes/MenuScene.h>
 
 int main()
 {
@@ -15,7 +15,8 @@ int main()
     
     Engine engine(config);
 
-    engine.Scene->LoadScene<MenuScene>();
+
+    SceneManager::LoadScene<MenuScene>();
     
     engine.Run();
 

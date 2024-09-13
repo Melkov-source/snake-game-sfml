@@ -1,7 +1,6 @@
 ﻿#include "SpriteComponent.h"
 
-#include "../GameObject.h"
-
+#include "Core/GameObject.h"
 
 SpriteComponent::SpriteComponent(GameObject& gameObject): Component(gameObject)
 {

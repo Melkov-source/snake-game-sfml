@@ -12,8 +12,22 @@ project "Snake-Engine"
       "Source",
 
       "../Vendor/Library/SFML/include",
-      "Source/Plugins/ImGui"
+	  "Source/Plugins/ImGui"
    }
+   
+   libdirs
+   {
+		"../Vendor/Library/SFML/lib"
+   }
+   
+   links 
+   {
+      "sfml-graphics", 
+	  "sfml-window", 
+	  "sfml-system",
+	  "opengl32"
+   }
+  
 
    targetdir ("../Bin/" .. OutputDir .. "/%{prj.name}")
    objdir ("../Bin/Intermediates/" .. OutputDir .. "/%{prj.name}")
