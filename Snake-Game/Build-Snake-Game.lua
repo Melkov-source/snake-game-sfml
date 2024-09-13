@@ -41,7 +41,7 @@ project "Snake-Game"
        defines { "WINDOWS" }
 
    filter "configurations:Debug"
-       --defines { "DEBUG" }
+       defines { "DEBUG" }
        runtime "Debug"
        symbols "On"
 	   

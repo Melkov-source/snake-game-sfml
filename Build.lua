@@ -11,6 +11,6 @@ workspace "Snake"
 OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 
 
-include "Snake-Engine/Build-Snake-Engine.lua"
 
+include "Snake-Engine/Build-Snake-Engine.lua"
 include "Snake-Game/Build-Snake-Game.lua"
