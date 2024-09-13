@@ -21,7 +21,7 @@ void GameScene::Initialize()
     const auto scaleFactor = 0.4f;
     const auto scale = sf::Vector2f(scaleFactor, scaleFactor);
 
-    const sf::Vector2u window_size = sf::Vector2u {1280, 720};
+    const sf::Vector2u window_size = sf::Vector2u {1280, 720 - 50};
 
     _map = new Map();
     _snake = new Snake();
@@ -39,14 +39,37 @@ void GameScene::Update(float deltaTime)
 {
     Scene::Update(deltaTime);
 
-    ImGui::Begin("Game", nullptr, ImGuiWindowFlags_NoTitleBar);
-    _fpsCounter.DrawFpsText(deltaTime);
+    
 
-    if(ImGui::Button("Menu"))
+    const auto windowSize = sf::Vector2u { 1280, 720 };
+    constexpr auto flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse;
+    const auto imGuiSize = ImVec2
+    (
+        static_cast<float>(windowSize.x),
+        static_cast<float>(70)
+    );
+
+    ImGui::SetNextWindowPos(ImVec2(0, windowSize.y - 70));
+    ImGui::Begin("Game Menu", nullptr, flags);
+    ImGui::SetWindowSize(imGuiSize);
+
+    if (ImGui::Button("Menu", ImVec2(100, 50)))
     {
         SceneManager::LoadScene<MenuScene>();
     }
-    
+
+    ImGui::BeginGroup();
+
+    ImGui::SameLine();
+
+    for (size_t i = 0; i < 5; i++)
+    {
+        ImGui::Text("Task: 1");
+        ImGui::SameLine();
+    }
+
+    ImGui::EndGroup();
+
     ImGui::End();
 }
 
