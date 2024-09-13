@@ -40,6 +40,8 @@ void Engine::Run()
 {
     Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::GREEN, "Engine: Run\n");
 
+    InputManager::Event = &Event;
+
     while (_renderWindow->isOpen())
     {
         Update();

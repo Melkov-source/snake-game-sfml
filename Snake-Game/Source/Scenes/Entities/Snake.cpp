@@ -38,9 +38,9 @@ void Snake::Update(const float deltaTime)
 {
     const float step_size = this->getScale().x * 64;
 
-    /*if (GetEngine()->Event.type == sf::Event::KeyPressed)
+    if (InputManager::Event->type == sf::Event::KeyPressed)
     {
-        switch (GetEngine()->Event.key.code)
+        switch (InputManager::Event->key.code)
         {
             case sf::Keyboard::Key::Left:
                 this->_direction = sf::Vector2f(-step_size, 0);
@@ -55,7 +55,7 @@ void Snake::Update(const float deltaTime)
                 this->_direction = sf::Vector2f(0, step_size);
                 break;
         }
-    }*/
+    }
 
     _updateTimer += deltaTime;
 

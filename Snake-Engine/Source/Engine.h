@@ -8,6 +8,7 @@
 #include "imgui.h"
 #include "imgui-SFML.h"
 
+#include "Core/Input/InputManager.h"
 #include "Core/Scenes/SceneManager.h"
 #include "Core/Assets/AssetsManager.h"
 #include "Debug/Logger.h"

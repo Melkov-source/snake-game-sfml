@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core/GameObject.h"
+#include "Core/Input/InputManager.h"
 #include "Core/Assets/AssetsManager.h"
 
 const sf::IntRect SNAKE_HEAD { 0,0,64,64 };
