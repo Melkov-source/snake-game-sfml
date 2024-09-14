@@ -11,13 +11,7 @@ project "Snake-Engine"
    {
       "Source",
 
-      "../Vendor/Library/SFML/include",
 	  "Source/Plugins/ImGui"
-   }
-   
-   libdirs
-   {
-		"../Vendor/Library/SFML/lib"
    }
    
    links 
@@ -25,7 +19,7 @@ project "Snake-Engine"
       "sfml-graphics", 
 	  "sfml-window", 
 	  "sfml-system",
-	  "opengl32"
+	  "GL"
    }
   
 

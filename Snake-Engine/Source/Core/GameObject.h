@@ -6,32 +6,43 @@
 #include <vector>
 
 #include "Core/Components/Component.h"
-#include "Core/Components/LayerComponent.h"
+#include "Core/Components/LayerComponent.h" 
 #include "Core/Components/SpriteComponent.h"
 
 #include "Debug/Logger.h"
 
 class GameObject : public sf::Transformable
 {
-public:
-	std::string Name;
+  public:
+    std::string Name;
 
-    GameObject(const std::string& name);
+    GameObject(const std::string &name);
     virtual ~GameObject();
 
     virtual void Start();
     virtual void Update(const float deltaTime);
-    void Render(sf::RenderTarget& renderTarget);
+    void Render(sf::RenderTarget &renderTarget);
 
-    template<typename TComponent>
-    TComponent* AddComponent();
+    template <typename TComponent> void AddComponent(TComponent *component)
+    {
+        _components.push_back(component);
+    }
 
-    template<typename TComponent>
-    TComponent* GetComponent();
-private:
-    std::vector<Component*> _components;
+    template <typename TComponent> TComponent *GetComponent()
+    {
+        for (const auto &component : this->_components)
+        {
+            if (typeid(*component) == typeid(TComponent))
+            {
+                return static_cast<TComponent *>(component);
+            }
+        }
+
+        return nullptr;
+    }
+
+  private:
+    std::vector<Component *> _components;
 };
 
-
 #endif
-

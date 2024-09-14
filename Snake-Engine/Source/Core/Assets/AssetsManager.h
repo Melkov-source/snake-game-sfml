@@ -6,8 +6,8 @@
 
 class AssetsManager
 {
-public:
-    static sf::Texture* LoadTexture(const std::string& path)
+  public:
+    static sf::Texture *LoadTexture(const std::string &path)
     {
         if (_textures.count(path))
         {
@@ -27,6 +27,6 @@ public:
         return texture;
     }
 
-private:
-    inline static std::map<std::string, sf::Texture*> _textures;
+  private:
+    inline static std::map<std::string, sf::Texture *> _textures;
 };

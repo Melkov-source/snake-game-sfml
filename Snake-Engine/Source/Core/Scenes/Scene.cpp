@@ -3,12 +3,11 @@
 #include "../Components/Component.h"
 #include "../Components/LayerComponent.h"
 
-Scene::Scene()
-= default;
+Scene::Scene() = default;
 
 Scene::~Scene()
 {
-    for (const auto& gameObject : this->_gameObjects)
+    for (const auto &gameObject : this->_gameObjects)
     {
         delete gameObject;
     }
@@ -16,7 +15,7 @@ Scene::~Scene()
 
 void Scene::Initialize()
 {
-    for (const auto& gameObject : this->_gameObjects)
+    for (const auto &gameObject : this->_gameObjects)
     {
         gameObject->Start();
     }
@@ -24,16 +23,15 @@ void Scene::Initialize()
 
 void Scene::Update(const float deltaTime)
 {
-    for (const auto& gameObject : this->_gameObjects)
+    for (const auto &gameObject : this->_gameObjects)
     {
         gameObject->Update(deltaTime);
     }
 }
 
-void Scene::Render(sf::RenderTarget& renderTarget)
+void Scene::Render(sf::RenderTarget &renderTarget)
 {
-    std::sort(this->_gameObjects.begin(), this->_gameObjects.end(), [](const auto& obj1, const auto& obj2)
-    {
+    std::sort(this->_gameObjects.begin(), this->_gameObjects.end(), [](const auto &obj1, const auto &obj2) {
         auto layerComp1 = obj1->template GetComponent<LayerComponent>();
         auto layerComp2 = obj2->template GetComponent<LayerComponent>();
 
@@ -43,13 +41,13 @@ void Scene::Render(sf::RenderTarget& renderTarget)
         return order1 < order2;
     });
 
-    for (const auto& gameObject : this->_gameObjects)
+    for (const auto &gameObject : this->_gameObjects)
     {
         gameObject->Render(renderTarget);
     }
 }
 
-void Scene::AddGameObject(GameObject& gameObject)
+void Scene::AddGameObject(GameObject &gameObject)
 {
     this->_gameObjects.push_back(&gameObject);
 }

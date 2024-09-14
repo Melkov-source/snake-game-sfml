@@ -1,6 +1,6 @@
 ﻿#include "Engine.h"
 
-Engine::Engine(Config* config) : _config(config)
+Engine::Engine(Config *config) : _config(config)
 {
     Initialize();
 }
@@ -68,9 +68,9 @@ void Engine::UpdateEvents()
 
         switch (Event.type)
         {
-            case sf::Event::Closed:
-                _renderWindow->close();
-                break;
+        case sf::Event::Closed:
+            _renderWindow->close();
+            break;
         }
     }
 }
@@ -78,11 +78,11 @@ void Engine::UpdateEvents()
 void Engine::Render()
 {
     _renderWindow->clear();
-    
+
     SceneManager::Render(*_renderWindow);
-    
+
     ImGui::SFML::Render(*_renderWindow);
-    
+
     _renderWindow->display();
 }
 
@@ -94,6 +94,6 @@ sf::Vector2u Engine::GetWindowSize() const
 void Engine::Close()
 {
     _renderWindow->close();
-    
+
     ImGui::SFML::Shutdown();
 }

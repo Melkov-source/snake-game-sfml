@@ -5,17 +5,17 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
 
-#include "imgui.h"
 #include "imgui-SFML.h"
+#include "imgui.h"
 
+#include "Core/Assets/AssetsManager.h"
 #include "Core/Input/InputManager.h"
 #include "Core/Scenes/SceneManager.h"
-#include "Core/Assets/AssetsManager.h"
 #include "Debug/Logger.h"
 
 class Engine
 {
-public:
+  public:
     struct Config
     {
         std::string Title{"None"};
@@ -26,20 +26,20 @@ public:
 
     sf::Event Event;
 
-    explicit Engine(Config* config);
+    explicit Engine(Config *config);
 
     void Run();
     void Close();
 
     sf::Vector2u GetWindowSize() const;
 
-private:
-    Config* _config;
-    sf::RenderWindow* _renderWindow;
-    
+  private:
+    Config *_config;
+    sf::RenderWindow *_renderWindow;
+
     sf::Clock _deltaTimeClock;
     sf::Time _deltaTime;
-    
+
     void Initialize();
     void InitializeRenderWindow();
     void Update();

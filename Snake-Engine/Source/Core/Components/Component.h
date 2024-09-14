@@ -7,20 +7,18 @@ class GameObject;
 
 class Component
 {
-public:
-	std::string Name;
-	bool IsEnable{true};
-	
-	explicit Component(GameObject& gameObject);
-	virtual ~Component();
-	
+  public:
+    std::string Name;
+    bool IsEnable{true};
 
-	virtual void Update(float deltaTime);
-	virtual void Render(sf::RenderTarget& renderTarget);
-	
-protected:
-	GameObject* _gameObject;
+    explicit Component(GameObject &gameObject);
+    virtual ~Component();
+
+    virtual void Update(float deltaTime);
+    virtual void Render(sf::RenderTarget &renderTarget);
+
+  protected:
+    GameObject *_gameObject;
 };
 
 #endif // !COMPONENT_H
-

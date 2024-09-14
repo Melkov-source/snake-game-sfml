@@ -3,6 +3,6 @@
 
 class InputManager
 {
-public:
-	inline static sf::Event* Event;
+  public:
+    inline static sf::Event *Event;
 };
