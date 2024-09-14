@@ -40,58 +40,79 @@ namespace Debug
 		};
 
 		template <typename... TParameters>
-		static void LogColor(const LOG_COLOR color, const std::string& message, TParameters... parameters)
+		static void LogColor(const LOG_COLOR color, const std::string &message, TParameters... parameters)
 		{
 			std::string target_color;
 
 			switch (color)
 			{
-				case WHITE: target_color = WHITE_COLOR; break;
-				case RED: target_color = RED_COLOR; break;
-				case GREEN: target_color = GREEN_COLOR; break;
-				case BLUE: target_color = BLUE_COLOR; break;
-				case YELLOW: target_color = YELLOW_COLOR; break;
-				case PURPLE: target_color = PURPLE_COLOR; break;
+			case WHITE:
+				target_color = WHITE_COLOR;
+				break;
+			case RED:
+				target_color = RED_COLOR;
+				break;
+			case GREEN:
+				target_color = GREEN_COLOR;
+				break;
+			case BLUE:
+				target_color = BLUE_COLOR;
+				break;
+			case YELLOW:
+				target_color = YELLOW_COLOR;
+				break;
+			case PURPLE:
+				target_color = PURPLE_COLOR;
+				break;
 
-				default: target_color = WHITE_COLOR; break;
+			default:
+				target_color = WHITE_COLOR;
+				break;
 			}
 
 			PrintMessage(LOG, target_color, message, parameters...);
 		}
 
 		template <typename... TParameters>
-		static void Log(const std::string& message, TParameters... parameters)
+		static void Log(const std::string &message, TParameters... parameters)
 		{
 			PrintMessage(LOG, WHITE_COLOR, message, parameters...);
 		}
 
 		template <typename... TParameters>
-		static void Warning(const std::string& message, TParameters... parameters)
+		static void Warning(const std::string &message, TParameters... parameters)
 		{
 			PrintMessage(WARNING, YELLOW_COLOR, message, parameters...);
 		}
 
 		template <typename... TParameters>
-		static void Error(const std::string& message, TParameters... parameters)
+		static void Error(const std::string &message, TParameters... parameters)
 		{
 			PrintMessage(ERROR, RED_COLOR, message, parameters...);
 		}
 
 	private:
 		template <typename... TParameters>
-		static void PrintMessage(const LOG_PRIORITY priority, const std::string& color_code, const std::string& message, TParameters... parameters)
+		static void PrintMessage(const LOG_PRIORITY priority, const std::string &color_code, const std::string &message, TParameters... parameters)
 		{
 			std::string priority_tag_text;
 
 			switch (priority)
 			{
-				case LOG: priority_tag_text = "[LOG] "; break;
-				case WARNING: priority_tag_text = "[WARNING] "; break;
-				case ERROR: priority_tag_text = "[ERROR] "; break;
+			case LOG:
+				priority_tag_text = "[LOG] ";
+				break;
+			case WARNING:
+				priority_tag_text = "[WARNING] ";
+				break;
+			case ERROR:
+				priority_tag_text = "[ERROR] ";
+				break;
 
-				default: priority_tag_text = "[NONE] "; break;
+			default:
+				priority_tag_text = "[NONE] ";
+				break;
 			}
-
 			const auto current_time = GetCurrentTime();
 
 			const std::string time = "[" + current_time + "] ";
@@ -102,14 +123,14 @@ namespace Debug
 		static std::string GetCurrentTime()
 		{
 			time_t current_time;
-			struct tm time_info;
+			struct tm *time_info;
 
 			time(&current_time);
-			localtime_s(&time_info, &current_time);
+			time_info = localtime(&current_time);
 
-			const int hours = time_info.tm_hour;
-			const int minutes = time_info.tm_min;
-			const int seconds = time_info.tm_sec;
+			const int hours = time_info->tm_hour;
+			const int minutes = time_info->tm_min;
+			const int seconds = time_info->tm_sec;
 
 			std::ostringstream formatted_time_stream;
 
@@ -122,6 +143,5 @@ namespace Debug
 		}
 	};
 }
-
 
 #endif // !LOGGER_H

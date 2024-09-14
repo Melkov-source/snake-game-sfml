@@ -34,8 +34,8 @@ void Scene::Render(sf::RenderTarget& renderTarget)
 {
     std::sort(this->_gameObjects.begin(), this->_gameObjects.end(), [](const auto& obj1, const auto& obj2)
     {
-        auto layerComp1 = obj1->GetComponent<LayerComponent>();
-        auto layerComp2 = obj2->GetComponent<LayerComponent>();
+        auto layerComp1 = obj1->template GetComponent<LayerComponent>();
+        auto layerComp2 = obj2->template GetComponent<LayerComponent>();
 
         int order1 = layerComp1 ? layerComp1->Order : 0;
         int order2 = layerComp2 ? layerComp2->Order : 0;

@@ -32,11 +32,6 @@ private:
     std::vector<Component*> _components;
 };
 
-template LayerComponent* GameObject::AddComponent<LayerComponent>();
-template LayerComponent* GameObject::GetComponent<LayerComponent>();
-
-template SpriteComponent* GameObject::AddComponent<SpriteComponent>();
-template SpriteComponent* GameObject::GetComponent<SpriteComponent>();
 
 #endif
 
