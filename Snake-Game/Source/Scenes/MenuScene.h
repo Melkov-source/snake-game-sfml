@@ -5,7 +5,6 @@
 #include "Core/Scenes/SceneManager.h"
 #include "Debug/Logger.h"
 
-
 class MenuScene final : public Scene
 {
 public:

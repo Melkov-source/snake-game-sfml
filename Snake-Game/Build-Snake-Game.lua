@@ -13,27 +13,23 @@ project "Snake-Game"
 	  
 	  "../Snake-Engine/Source",
 	  "../Snake-Engine/Source/Plugins/ImGui",
-	  
-	  "../Vendor/Library/SFML/include"
    }
 
    links
    {
-      "Snake-Engine"
-   }
- 
-   libdirs
-   {
-		"../Vendor/Library/SFML/lib"
+        "Snake-Engine",
+        "sfml-graphics", 
+	    "sfml-window", 
+	    "sfml-system",
+	    "GL"
    }
 
    targetdir ("../Bin/" .. OutputDir .. "/%{prj.name}")
    objdir ("../Bin/Intermediates/" .. OutputDir .. "/%{prj.name}")
    
-   postbuildcommands {
-	   '{COPY} "%{wks.location}Vendor\\Library\\SFML\\bin\\*.dll" "%{cfg.targetdir}"',
-	   '{COPY} "%{cfg.projectdir}Assets" "%{cfg.targetdir}\\Assets"'
-   }
+    postbuildcommands {
+	    '{COPY} "%{cfg.projectdir}Assets" "%{cfg.targetdir}\\Assets"'
+    }
 
 
    filter "system:windows"

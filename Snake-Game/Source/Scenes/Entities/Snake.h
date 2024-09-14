@@ -1,15 +1,15 @@
 #pragma once
 
+#include "Core/Assets/AssetsManager.h"
 #include "Core/GameObject.h"
 #include "Core/Input/InputManager.h"
-#include "Core/Assets/AssetsManager.h"
 
-const sf::IntRect SNAKE_HEAD { 0,0,64,64 };
-const sf::IntRect SNAKE_BODY { 64,0,64,64 };
+const sf::IntRect SNAKE_HEAD{0, 0, 64, 64};
+const sf::IntRect SNAKE_BODY{64, 0, 64, 64};
 
 class Snake final : public GameObject
 {
-public:
+  public:
     Snake();
     ~Snake() override;
 
@@ -20,15 +20,14 @@ public:
     float GetSpeed();
 
     void AddMass(int32_t mass);
-    void SetPositionHead(const sf::Vector2f& position);
+    void SetPositionHead(const sf::Vector2f &position);
 
-private:
-    sf::Texture* _snakeTexture;
-    std::vector<GameObject*> _elements;
+  private:
+    sf::Texture *_snakeTexture;
+    std::vector<GameObject *> _elements;
 
     float _speed;
-    float _updateTimer; 
+    float _updateTimer;
     float _updateInterval;
     sf::Vector2f _direction;
 };
-

@@ -13,8 +13,7 @@ int main()
         false
     };
     
-    Engine engine(config);
-
+    Engine engine(config); 
 
     SceneManager::LoadScene<MenuScene>();
     
@@ -22,4 +21,3 @@ int main()
 
     return 0;
 }
-

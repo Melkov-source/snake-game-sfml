@@ -17,18 +17,23 @@ Snake::~Snake()
 void Snake::Start()
 {
     const auto head = new GameObject("SnakeHead");
-    
+
     head->setScale(getScale());
 
     _direction = {this->getScale().x * 64, 0};
 
-    const auto sprite = head->AddComponent<SpriteComponent>();
+    const auto sprite = new SpriteComponent(*head);
+
+    head->AddComponent(sprite);
 
     sprite->SetTexture(*_snakeTexture);
     sprite->SetTextureRect(SNAKE_HEAD);
 
-    head->AddComponent<LayerComponent>()->Order = 20;
-    
+    const auto layer = new LayerComponent(*head);
+    layer->Order = 20;
+
+    head->AddComponent(layer);
+
     _elements.push_back(head);
 
     AddMass(2);
@@ -40,20 +45,23 @@ void Snake::Update(const float deltaTime)
 
     if (InputManager::Event->type == sf::Event::KeyPressed)
     {
-        switch (InputManager::Event->key.code)
+        const auto key_code = static_cast<uint32_t>(InputManager::Event->key.code);
+
+        switch (key_code)
         {
-            case sf::Keyboard::Key::Left:
-                this->_direction = sf::Vector2f(-step_size, 0);
-                break;
-            case sf::Keyboard::Key::Right:
-                this->_direction = sf::Vector2f(step_size, 0);
-                break;
-            case sf::Keyboard::Key::Up:
-                this->_direction = sf::Vector2f(0, -step_size);
-                break;
-            case sf::Keyboard::Key::Down:
-                this->_direction = sf::Vector2f(0, step_size);
-                break;
+        case 71:
+            Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::YELLOW, "key: $", InputManager::Event->key.code);
+            this->_direction = sf::Vector2f(-step_size, 0);
+            break;
+        case 72:
+            this->_direction = sf::Vector2f(step_size, 0);
+            break;
+        case 73:
+            this->_direction = sf::Vector2f(0, -step_size);
+            break;
+        case 74:
+            this->_direction = sf::Vector2f(0, step_size);
+            break;
         }
     }
 
@@ -63,22 +71,24 @@ void Snake::Update(const float deltaTime)
     {
         return;
     }
-    
+
     _updateTimer = 0;
 
-    
-
-    for (size_t index = _elements.size() - 1, target = 0; index > target; index--)
+    for (std::size_t index = _elements.size() - 1, target = 0; index > target; index--)
     {
-        const auto element =  _elements[index];
+        const auto element = _elements[index];
         const auto previous_element = _elements[index - 1];
 
         const auto target_position = previous_element->getPosition();
-        
+
         element->setPosition(target_position);
     }
 
+    Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::YELLOW, "x: $, y: $", _direction.x, _direction.y);
+
     _elements[0]->move(_direction.x, _direction.y);
+
+    Debug::Logger::Log("Pos- x: $, y: $", _elements[0]->getPosition().x, _elements[0]->getPosition().y);
 }
 
 void Snake::SetSpeed(float speed)
@@ -100,20 +110,25 @@ void Snake::AddMass(const int32_t mass)
         _elements.push_back(body);
 
         const auto previous_element = _elements[_elements.size() - 2];
-        
+
         body->setPosition(previous_element->getPosition());
         body->setScale(getScale());
 
-        const auto sprite = body->AddComponent<SpriteComponent>();
+        const auto sprite = new SpriteComponent(*body);
+
+        body->AddComponent(sprite);
 
         sprite->SetTexture(*_snakeTexture);
         sprite->SetTextureRect(SNAKE_BODY);
 
-        body->AddComponent<LayerComponent>()->Order = 10;
+        const auto layer = new LayerComponent(*body);
+        layer->Order = 10;
+
+        body->AddComponent(layer);
     }
 }
 
-void Snake::SetPositionHead(const sf::Vector2f& position)
+void Snake::SetPositionHead(const sf::Vector2f &position)
 {
     _elements[0]->setPosition(position);
 }

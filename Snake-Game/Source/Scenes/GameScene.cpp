@@ -39,8 +39,6 @@ void GameScene::Update(float deltaTime)
 {
     Scene::Update(deltaTime);
 
-    
-
     const auto windowSize = sf::Vector2u { 1280, 720 };
     constexpr auto flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse;
     const auto imGuiSize = ImVec2
@@ -62,7 +60,7 @@ void GameScene::Update(float deltaTime)
 
     ImGui::SameLine();
 
-    for (size_t i = 0; i < 5; i++)
+    for (std::size_t i = 0; i < 5; i++)
     {
         ImGui::Text("Task: 1");
         ImGui::SameLine();

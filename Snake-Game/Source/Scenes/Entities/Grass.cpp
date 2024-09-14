@@ -2,8 +2,13 @@
 
 Grass::Grass() : GameObject("Grass")
 {
-    this->_sprite = this->AddComponent<SpriteComponent>();
-    this->_layer = this->AddComponent<LayerComponent>();
+    this->_sprite = new SpriteComponent(*this);
+
+    AddComponent(this->_sprite);
+
+    this->_layer = new LayerComponent(*this);
+
+    AddComponent(this->_layer);
 }
 
 Grass::~Grass()
