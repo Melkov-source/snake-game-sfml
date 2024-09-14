@@ -24,7 +24,7 @@ void Grass::Start()
     this->_sprite->SetTexture(*this->_textureAtlas);
 
     this->SetState(NORMAL);
-    
+
     GameObject::Start();
 }
 
@@ -39,12 +39,12 @@ void Grass::SetState(STATE state)
 
     switch (state)
     {
-        case NORMAL:
-            this->_sprite->SetTextureRect(GRASS_DEFAULT);
-            break;
-        case TRAMPLED:
-            this->_sprite->SetTextureRect(GRASS_TRAMPLED);
-            break;
+    case NORMAL:
+        this->_sprite->SetTextureRect(GRASS_DEFAULT);
+        break;
+    case TRAMPLED:
+        this->_sprite->SetTextureRect(GRASS_TRAMPLED);
+        break;
     }
 }
 

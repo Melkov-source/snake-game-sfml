@@ -7,11 +7,10 @@
 
 class MenuScene final : public Scene
 {
-public:
+  public:
     ~MenuScene() override;
-    
+
     void Initialize() override;
     void Update(const float deltaTime) override;
-    void Render(sf::RenderTarget& renderTarget) override;
+    void Render(sf::RenderTarget &renderTarget) override;
 };
-

@@ -1,7 +1,7 @@
 ﻿#include "Application.h"
 
-#include "MenuScene.h"
 #include "GameScene.h"
+#include "MenuScene.h"
 
 MenuScene::~MenuScene()
 {
@@ -19,13 +19,10 @@ void MenuScene::Update(const float deltaTime)
 {
     const auto windowSize = Application::GetWindowSize();
 
-    constexpr auto flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse;
-    const auto imGuiSize = ImVec2
-    (
-        static_cast<float>(windowSize.x),
-        static_cast<float>(windowSize.y)
-    );
-    
+    constexpr auto flags =
+        ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse;
+    const auto imGuiSize = ImVec2(static_cast<float>(windowSize.x), static_cast<float>(windowSize.y));
+
     ImGui::SetNextWindowPos(ImVec2(0, 0));
     ImGui::Begin("Game Menu", nullptr, flags);
     ImGui::SetWindowSize(imGuiSize);
@@ -53,11 +50,11 @@ void MenuScene::Update(const float deltaTime)
     ImGui::PopStyleColor();
 
     ImGui::End();
-    
+
     Scene::Update(deltaTime);
 }
 
-void MenuScene::Render(sf::RenderTarget& renderTarget)
+void MenuScene::Render(sf::RenderTarget &renderTarget)
 {
     Scene::Render(renderTarget);
 }
