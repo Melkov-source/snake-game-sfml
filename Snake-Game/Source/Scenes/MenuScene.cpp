@@ -1,6 +1,7 @@
-﻿#include "MenuScene.h"
-#include "GameScene.h"
+﻿#include "Application.h"
 
+#include "MenuScene.h"
+#include "GameScene.h"
 
 MenuScene::~MenuScene()
 {
@@ -16,7 +17,8 @@ void MenuScene::Initialize()
 
 void MenuScene::Update(const float deltaTime)
 {
-    const auto windowSize = sf::Vector2u{ 1280, 720 };
+    const auto windowSize = Application::GetWindowSize();
+
     constexpr auto flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse;
     const auto imGuiSize = ImVec2
     (
@@ -46,7 +48,7 @@ void MenuScene::Update(const float deltaTime)
     ImGui::SetCursorPos({imGuiSize.x / 2 - 150, imGuiSize.y / 2 + 60 - 25});
     if (ImGui::Button("EXIT", ImVec2(300, 50)))
     {
-        //GetEngine()->Close();
+        Application::Close();
     }
     ImGui::PopStyleColor();
 

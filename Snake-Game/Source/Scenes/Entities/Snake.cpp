@@ -50,7 +50,6 @@ void Snake::Update(const float deltaTime)
         switch (key_code)
         {
         case 71:
-            Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::YELLOW, "key: $", InputManager::Event->key.code);
             this->_direction = sf::Vector2f(-step_size, 0);
             break;
         case 72:
@@ -87,8 +86,6 @@ void Snake::Update(const float deltaTime)
     Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::YELLOW, "x: $, y: $", _direction.x, _direction.y);
 
     _elements[0]->move(_direction.x, _direction.y);
-
-    Debug::Logger::Log("Pos- x: $, y: $", _elements[0]->getPosition().x, _elements[0]->getPosition().y);
 }
 
 void Snake::SetSpeed(float speed)

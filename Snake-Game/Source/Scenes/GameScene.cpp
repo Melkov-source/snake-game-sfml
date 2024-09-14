@@ -1,4 +1,6 @@
-﻿#include "GameScene.h"
+﻿#include "Application.h"
+
+#include "GameScene.h"
 #include "MenuScene.h"
 
 #include "Entities/Map.h"
@@ -39,7 +41,7 @@ void GameScene::Update(float deltaTime)
 {
     Scene::Update(deltaTime);
 
-    const auto windowSize = sf::Vector2u { 1280, 720 };
+    const auto windowSize = Application::GetWindowSize();
     constexpr auto flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse;
     const auto imGuiSize = ImVec2
     (
