@@ -1,7 +1,12 @@
 ﻿#pragma once
 #include "Core/Scenes/SceneManager.h"
 #include "Debug/FPSCounter.h"
+
+#include "MenuScene.h"
+
 #include "Entities/Snake.h"
+#include "Entities/Map.h"
+#include "Items/Apple.h"
 
 class Map;
 

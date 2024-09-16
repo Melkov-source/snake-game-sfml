@@ -83,8 +83,6 @@ void Snake::Update(const float deltaTime)
         element->setPosition(target_position);
     }
 
-    Debug::Logger::LogColor(Debug::Logger::LOG_COLOR::YELLOW, "x: $, y: $", _direction.x, _direction.y);
-
     _elements[0]->move(_direction.x, _direction.y);
 }
 

@@ -1,10 +1,6 @@
 ﻿#include "Application.h"
 
 #include "GameScene.h"
-#include "MenuScene.h"
-
-#include "Entities/Map.h"
-#include "Entities/Snake.h"
 
 GameScene::GameScene()
 {
@@ -25,6 +21,8 @@ void GameScene::Initialize()
 
     _map = new Map();
     _snake = new Snake();
+
+    const auto apple = new Apple();
 
     _map->Initialize(scale, window_size);
 

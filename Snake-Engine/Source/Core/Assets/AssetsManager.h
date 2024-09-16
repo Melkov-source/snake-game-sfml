@@ -2,7 +2,14 @@
 #include <iostream>
 #include <map>
 
+#include <string>
+#include <unistd.h> // For getcwd
+
 #include "SFML/Graphics/Texture.hpp"
+
+#ifndef PATH_MAX
+#define PATH_MAX 4096 // Define PATH_MAX if not already defined
+#endif
 
 class AssetsManager
 {
